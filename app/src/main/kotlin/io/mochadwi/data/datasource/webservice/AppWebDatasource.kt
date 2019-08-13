@@ -1,12 +1,11 @@
 package io.mochadwi.data.datasource.webservice
 
 import io.mochadwi.data.datasource.webservice.json.post.PostResponse
-import io.mochadwi.data.datasource.webservice.json.user.UsersResponse
+import io.mochadwi.data.datasource.webservice.json.product.ProductsResponse
 import io.mochadwi.util.helper.AppHelper.Const.ENDPOINT_POSTS
-import io.mochadwi.util.helper.AppHelper.Const.ENDPOINT_SEARCH_USERS
+import io.mochadwi.util.helper.AppHelper.Const.ENDPOINT_PRODUCTS
 import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
-import retrofit2.http.QueryMap
 
 /**
  *
@@ -17,11 +16,9 @@ import retrofit2.http.QueryMap
  */
 
 interface AppWebDatasource {
-    @GET(ENDPOINT_SEARCH_USERS)
-    fun getUsersAsync(
-            @QueryMap param: Map<String, String>
-    ): Deferred<UsersResponse>
-
     @GET(ENDPOINT_POSTS)
     fun getPostsAsync(): Deferred<List<PostResponse>>
+
+    @GET(ENDPOINT_PRODUCTS)
+    fun getProductsAsync(): Deferred<ProductsResponse>
 }

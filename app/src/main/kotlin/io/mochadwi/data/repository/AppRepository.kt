@@ -44,12 +44,21 @@ class AppRepositoryImpl(
         }
     }
 
+    // TODO(mochamadiqbaldwicahyo): 2019-08-13 Don't do transformation / mapper here in the repo
     private fun remoteGetPostsAsync(): Deferred<List<PostModel>?> = coroutineAsync(IO) {
         val result = appWebDatasource.getPostsAsync().await()
         result.map {
             postDao.upsert(PostEntity.from(it))
             PostModel.from(it)
         }
+    }
+
+    override fun getProductsAsync(): Deferred<List<Product>?> = coroutineAsync(IO) {
+        remoteGetProductsAsync().await() ?: emptyList()
+    }
+
+    private fun remoteGetProductsAsync(): Deferred<List<Product>?> = coroutineAsync(IO) {
+        ProductResultMapper.from(appWebDatasource.getProductsAsync().await())
     }
 
     override fun searchPostsAsync(query: String): Deferred<List<PostModel>?> = coroutineAsync(IO) {
