@@ -37,14 +37,20 @@
         </provider>
 
         <activity
-            android:name="io.mochadwi.view.HomeActivity"
-            android:configChanges="layoutDirection|orientation|screenSize"
-            android:launchMode="singleTop"
+            android:name="io.mochadwi.view.SplashActivity"
             android:theme="@style/AppTheme.Launcher">
             <intent-filter>
-                <action android:name="android.intent.action.SEARCH"/>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="io.mochadwi.view.HomeActivity"
+            android:configChanges="layoutDirection|orientation|screenSize"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH"/>
             </intent-filter>
 
             <meta-data
@@ -52,11 +58,6 @@
                 android:resource="@xml/searchable"/>
 
         </activity>
-
-        <activity
-            android:name="io.mochadwi.view.userdetail.UserDetailActivity"
-            android:screenOrientation="portrait"/>
-
     </application>
 
 </manifest>

@@ -9,6 +9,9 @@ Etalase app
 - [x] Mengimplementasikan kotlin-coroutines
 - [x] arsitektur berbasis offline-first
 - [x] format commit dengan git-karma
+- [ ] Use modular approach [per-feature](https://github.com/mochadwi/android-news-app)
+- [ ] Add use case / interactor
+- [ ] Add mapper / transformation [prefer to this template](https://github.com/hipe-id/clean-arch-mvvm-template/tree/develop) I used to build
 
 ### Nice to have:
 - [x] mengimplementasikan navigation component dari jetpack

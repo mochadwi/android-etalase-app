@@ -325,6 +325,8 @@ class AppHelper {
         const val ENDPOINT_WOMEN = "women.json"
         const val ENDPOINT_POSTS = "posts"
 
+        const val ATTR_IMAGE_SOURCE = "img:src"
+        const val TAG_IMAGE_URL = "IMG-URL"
     }
 
     /**

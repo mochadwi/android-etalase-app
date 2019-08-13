@@ -13,6 +13,8 @@ import io.mochadwi.BuildConfig
 import io.mochadwi.R
 import io.mochadwi.util.ext.gone
 import io.mochadwi.util.ext.loadImage
+import io.mochadwi.util.helper.AppHelper.Const.ATTR_IMAGE_SOURCE
+import io.mochadwi.util.helper.AppHelper.Const.TAG_IMAGE_URL
 import io.mochadwi.util.helper.GlideApp
 
 /**
@@ -26,12 +28,12 @@ import io.mochadwi.util.helper.GlideApp
 object ImageBinding {
 
     @SuppressLint("PrivateResource")
-    @BindingAdapter("image:glideImage")
+    @BindingAdapter(ATTR_IMAGE_SOURCE)
     @JvmStatic
-    fun ImageView.setGlideImage(imageUrl: String?) {
+    fun ImageView.setImageSource(imageUrl: String?) {
         try {
             if (BuildConfig.DEBUG) {
-                Log.d("IMAGE-URL", imageUrl.toString())
+                Log.d(TAG_IMAGE_URL, imageUrl.toString())
             }
         } catch (e: Exception) {
             e.printStackTrace()
@@ -41,12 +43,12 @@ object ImageBinding {
     }
 
     @SuppressLint("PrivateResource")
-    @BindingAdapter("image:glideImage")
+    @BindingAdapter(ATTR_IMAGE_SOURCE)
     @JvmStatic
-    fun ImageView.setGlideImage(imageUrl: Uri?) {
+    fun ImageView.setImageSource(imageUrl: Uri?) {
         try {
             if (BuildConfig.DEBUG) {
-                Log.d("IMAGE-URL", imageUrl.toString())
+                Log.d(TAG_IMAGE_URL, imageUrl.toString())
             }
         } catch (e: Exception) {
             e.printStackTrace()
@@ -56,12 +58,12 @@ object ImageBinding {
     }
 
     @SuppressLint("PrivateResource")
-    @BindingAdapter("image:glideImage")
+    @BindingAdapter(ATTR_IMAGE_SOURCE)
     @JvmStatic
-    fun ImageView.setGlideImage(imageDrawable: Drawable?) {
+    fun ImageView.setImageSource(imageDrawable: Drawable?) {
         try {
             if (BuildConfig.DEBUG) {
-                Log.d("IMAGE-URL", imageDrawable.toString())
+                Log.d(TAG_IMAGE_URL, imageDrawable.toString())
             }
         } catch (e: Exception) {
             e.printStackTrace()
@@ -73,16 +75,14 @@ object ImageBinding {
     @SuppressLint("PrivateResource")
     @BindingAdapter("image:imgDrawable", "imgUrl")
     @JvmStatic
-    fun ImageView.setGlideImage(img0: Drawable?, img1: String?) {
+    fun ImageView.setImageSource(img0: Drawable?, img1: String?) {
         try {
             if (BuildConfig.DEBUG) {
-                Log.d("IMAGE-URL", "$img0 + $img1")
+                Log.d(TAG_IMAGE_URL, "$img0 + $img1")
             }
         } catch (e: Exception) {
             e.printStackTrace()
         }
-
-//        loadImage(context, img1)
 
         GlideApp.with(this.context)
             .load(img0 ?: img1)
