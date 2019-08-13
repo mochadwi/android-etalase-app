@@ -50,4 +50,12 @@ class AppRepositoryTest : KoinTest {
             assertEquals(true, result?.isNotEmpty().default)
         }
     }
+
+    @Test
+    fun test_getProductsApi() {
+        runBlocking {
+            val result = repository.getProductsAsync().await()
+            result?.forEach(::println)
+        }
+    }
 }
