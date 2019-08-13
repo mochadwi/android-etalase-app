@@ -4,15 +4,14 @@ import androidx.room.Room
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import io.mochadwi.data.datasource.room.AppDatabase
-import io.mochadwi.data.repository.AppRepository
 import io.mochadwi.data.repository.AppRepositoryImpl
+import io.mochadwi.domain.repository.AppRepository
 import io.mochadwi.util.rx.ApplicationSchedulerProvider
 import io.mochadwi.util.rx.SchedulerProvider
 import io.mochadwi.view.post.PostViewModel
 import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
-
 
 /**
  * App Components

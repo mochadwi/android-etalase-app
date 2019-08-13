@@ -1,11 +1,11 @@
 package io.mochadwi.view.post
 
 import androidx.lifecycle.LiveData
-import io.mochadwi.data.repository.AppRepository
 import io.mochadwi.domain.ErrorState
 import io.mochadwi.domain.LoadingState
 import io.mochadwi.domain.PostListState
 import io.mochadwi.domain.State
+import io.mochadwi.domain.repository.AppRepository
 import io.mochadwi.util.base.BaseViewModel
 import io.mochadwi.util.ext.toSingleEvent
 import io.mochadwi.util.mvvm.LiveEvent

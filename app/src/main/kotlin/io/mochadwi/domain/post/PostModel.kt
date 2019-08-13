@@ -10,6 +10,7 @@ data class PostModel(
         val body: String = "" // cupiditate quo est a modi nesciunt solutaipsa voluptas error itaque dicta inautem qui minus magnam et distinctio eumaccusamus ratione error aut
 ) {
     companion object {
+        // TODO(mochamadiqbaldwicahyo): 2019-08-13 Don't do this on domain layer
         fun from(post: PostResponse) = with(post) {
             PostModel(userId, id, title, body)
         }

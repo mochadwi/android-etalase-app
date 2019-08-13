@@ -2,7 +2,7 @@ package io.mochadwi
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import io.mochadwi.data.repository.AppRepository
+import io.mochadwi.domain.repository.AppRepository
 import io.mochadwi.util.ext.default
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals

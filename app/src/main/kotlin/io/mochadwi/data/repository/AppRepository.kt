@@ -3,7 +3,10 @@ package io.mochadwi.data.repository
 import io.mochadwi.data.datasource.room.PostDao
 import io.mochadwi.data.datasource.room.PostEntity
 import io.mochadwi.data.datasource.webservice.AppWebDatasource
+import io.mochadwi.data.mapper.ProductResultMapper
 import io.mochadwi.domain.post.PostModel
+import io.mochadwi.domain.product.Product
+import io.mochadwi.domain.repository.AppRepository
 import io.mochadwi.util.ext.coroutineAsync
 import io.mochadwi.util.ext.default
 import io.mochadwi.util.ext.sameContentWith
@@ -17,14 +20,6 @@ import kotlinx.coroutines.Dispatchers.IO
  * dedicated to build etalase-app
  *
  */
-
-/**
- * App repository
- */
-interface AppRepository {
-    fun getPostsAsync(): Deferred<List<PostModel>?>
-    fun searchPostsAsync(query: String): Deferred<List<PostModel>?>
-}
 
 /**
  * App repository

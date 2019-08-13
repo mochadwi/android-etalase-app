@@ -2,12 +2,12 @@ package io.mochadwi.mock.mvvm
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
-import io.mochadwi.data.repository.AppRepository
 import io.mochadwi.di.testOnlineEtalaseApp
 import io.mochadwi.domain.ErrorState
 import io.mochadwi.domain.LoadingState
 import io.mochadwi.domain.PostListState
 import io.mochadwi.domain.State
+import io.mochadwi.domain.repository.AppRepository
 import io.mochadwi.util.MockitoHelper.argumentCaptor
 import io.mochadwi.util.TestSchedulerProvider
 import io.mochadwi.util.mock.MockedData.mockPostsModel
