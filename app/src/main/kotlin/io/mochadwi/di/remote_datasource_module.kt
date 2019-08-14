@@ -50,11 +50,11 @@ fun createOkHttpClient(vararg interceptors: Interceptor): OkHttpClient {
 
 inline fun <reified T> createWebService(okHttpClient: OkHttpClient, url: String): T {
     val retrofit = Retrofit.Builder()
-            .baseUrl(url)
-            .client(okHttpClient)
-            .addConverterFactory(ScalarsConverterFactory.create())
-            .addConverterFactory(Json.asConverterFactory(MediaType.get("application/json")))
-            .addCallAdapterFactory(CoroutineCallAdapterFactory())
-            .build()
+        .baseUrl(url)
+        .client(okHttpClient)
+        .addConverterFactory(ScalarsConverterFactory.create())
+        .addCallAdapterFactory(CoroutineCallAdapterFactory())
+        .addConverterFactory(Json.asConverterFactory(MediaType.get("application/json")))
+        .build()
     return retrofit.create(T::class.java)
 }

@@ -1,10 +1,8 @@
 package io.mochadwi.data.datasource.webservice.json.product
 
-import io.mochadwi.domain.product.Images
 import kotlinx.serialization.Optional
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.Transient
 
 @Serializable
 data class ProductsResponse(
@@ -27,8 +25,7 @@ data class ProductsResponse(
         @Serializable
         data class ProductResponse(
             val description: String,
-            @Transient
-            val images: Images = Images(),
+            val images: ImagesResponse,
             val price: Int,
             @Optional
             @SerialName("product_id")
@@ -37,6 +34,13 @@ data class ProductsResponse(
             @SerialName("product_name")
             val productName: String,
             val stock: Int
-        )
+        ) {
+
+            @Serializable
+            data class ImagesResponse(
+                val large: String,
+                val thumbnail: String
+            )
+        }
     }
 }

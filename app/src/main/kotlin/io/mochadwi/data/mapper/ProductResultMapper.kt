@@ -1,6 +1,8 @@
 package io.mochadwi.data.mapper
 
 import io.mochadwi.data.datasource.webservice.json.product.ProductsResponse
+import io.mochadwi.data.datasource.webservice.json.product.ProductsResponse.DataResponse.ProductResponse.ImagesResponse
+import io.mochadwi.domain.product.Images
 import io.mochadwi.domain.product.Product
 
 /**
@@ -12,7 +14,11 @@ object ProductResultMapper {
 
     fun from(products: ProductsResponse): List<Product> = products.data.products.map {
         with(it) {
-            Product(description, images, price, productId, productName, stock)
+            Product(description, from(images), price, productId, productName, stock)
         }
+    }
+
+    fun from(image: ImagesResponse): Images = with(image) {
+        Images(large, thumbnail)
     }
 }
