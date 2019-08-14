@@ -1,4 +1,4 @@
-package io.mochadwi.data.datasource.webservice.json.category
+package io.mochadwi.data.datasource.webservice.response.category
 
 import kotlinx.serialization.Serializable
 

@@ -1,4 +1,4 @@
-package io.mochadwi.data.datasource.webservice.local
+package io.mochadwi.data.datasource.webservice.jsonreader
 
 import android.app.Application
 import java.io.BufferedReader

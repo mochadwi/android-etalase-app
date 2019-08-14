@@ -1,7 +1,7 @@
 package io.mochadwi.domain.user
 
 import io.mochadwi.data.datasource.room.UserEntity
-import io.mochadwi.data.datasource.webservice.json.user.UsersResponse
+import io.mochadwi.data.datasource.webservice.response.user.UsersResponse
 
 data class UserModel(
         val login: String = "", // mojombo

@@ -1,9 +1,9 @@
 package io.mochadwi.di
 
 import io.mochadwi.data.datasource.webservice.AppWebDatasource
-import io.mochadwi.data.datasource.webservice.local.AndroidJsonReader
-import io.mochadwi.data.datasource.webservice.local.JsonReader
-import io.mochadwi.data.datasource.webservice.local.LocalFileDataSource
+import io.mochadwi.data.datasource.webservice.jsonreader.AndroidJsonReader
+import io.mochadwi.data.datasource.webservice.jsonreader.JsonReader
+import io.mochadwi.data.datasource.webservice.jsonreader.LocalFileDataSource
 import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module
 

@@ -1,4 +1,4 @@
-package io.mochadwi.data.datasource.webservice.json.user
+package io.mochadwi.data.datasource.webservice.response.user
 
 import kotlinx.serialization.Serializable
 

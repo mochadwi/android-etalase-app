@@ -1,6 +1,6 @@
-package io.mochadwi.data.datasource.webservice.local
+package io.mochadwi.data.datasource.webservice.jsonreader
 
-import io.mochadwi.data.datasource.webservice.json.post.PostResponse
+import io.mochadwi.data.datasource.webservice.response.post.PostResponse
 import io.mochadwi.util.ext.fromJson
 import kotlinx.serialization.list
 

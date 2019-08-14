@@ -2,7 +2,7 @@ package io.mochadwi.data.datasource.room
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import io.mochadwi.data.datasource.webservice.json.post.PostResponse
+import io.mochadwi.data.datasource.webservice.response.post.PostResponse
 
 @Entity(tableName = "tbl_post")
 data class PostEntity(

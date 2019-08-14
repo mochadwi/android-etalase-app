@@ -2,7 +2,7 @@ package io.mochadwi.data.datasource.room
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import io.mochadwi.data.datasource.webservice.json.user.UsersResponse
+import io.mochadwi.data.datasource.webservice.response.user.UsersResponse
 
 @Entity(tableName = "tbl_user")
 data class UserEntity(

@@ -1,7 +1,7 @@
 package io.mochadwi.domain.post
 
 import io.mochadwi.data.datasource.room.PostEntity
-import io.mochadwi.data.datasource.webservice.json.post.PostResponse
+import io.mochadwi.data.datasource.webservice.response.post.PostResponse
 
 data class PostModel(
         val userId: Int = 0, // 10

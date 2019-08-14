@@ -1,4 +1,4 @@
-package io.mochadwi.data.datasource.webservice.local
+package io.mochadwi.data.datasource.webservice.jsonreader
 
 import java.io.File
 

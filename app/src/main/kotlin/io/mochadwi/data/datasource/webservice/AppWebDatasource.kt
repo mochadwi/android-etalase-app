@@ -1,7 +1,7 @@
 package io.mochadwi.data.datasource.webservice
 
-import io.mochadwi.data.datasource.webservice.json.post.PostResponse
-import io.mochadwi.data.datasource.webservice.json.product.ProductsResponse
+import io.mochadwi.data.datasource.webservice.response.post.PostResponse
+import io.mochadwi.data.datasource.webservice.response.product.ProductsResponse
 import io.mochadwi.util.helper.AppHelper.Const.ENDPOINT_POSTS
 import io.mochadwi.util.helper.AppHelper.Const.ENDPOINT_PRODUCTS
 import kotlinx.coroutines.Deferred

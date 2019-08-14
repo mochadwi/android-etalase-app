@@ -1,7 +1,7 @@
 package io.mochadwi.domain.category
 
 import android.os.Parcelable
-import io.mochadwi.data.datasource.webservice.json.category.MasterResponse
+import io.mochadwi.data.datasource.webservice.response.category.MasterResponse
 import kotlinx.android.parcel.Parcelize
 
 /**

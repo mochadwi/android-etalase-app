@@ -6,9 +6,9 @@ import io.mochadwi.BuildConfig.BASE_URL
 import io.mochadwi.MainApplication
 import io.mochadwi.data.datasource.room.AppDatabase
 import io.mochadwi.data.datasource.webservice.AppWebDatasource
-import io.mochadwi.data.datasource.webservice.local.JavaReader
-import io.mochadwi.data.datasource.webservice.local.JsonReader
-import io.mochadwi.data.datasource.webservice.local.LocalFileDataSource
+import io.mochadwi.data.datasource.webservice.jsonreader.JavaReader
+import io.mochadwi.data.datasource.webservice.jsonreader.JsonReader
+import io.mochadwi.data.datasource.webservice.jsonreader.LocalFileDataSource
 import io.mochadwi.util.TestSchedulerProvider
 import io.mochadwi.util.mock
 import io.mochadwi.util.rx.SchedulerProvider

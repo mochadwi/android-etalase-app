@@ -1,4 +1,4 @@
-package io.mochadwi.data.datasource.webservice.json.product
+package io.mochadwi.data.datasource.webservice.response.product
 
 import kotlinx.serialization.Optional
 import kotlinx.serialization.SerialName

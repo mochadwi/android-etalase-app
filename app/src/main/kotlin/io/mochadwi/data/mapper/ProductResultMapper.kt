@@ -1,7 +1,7 @@
 package io.mochadwi.data.mapper
 
-import io.mochadwi.data.datasource.webservice.json.product.ProductsResponse
-import io.mochadwi.data.datasource.webservice.json.product.ProductsResponse.DataResponse.ProductResponse.ImagesResponse
+import io.mochadwi.data.datasource.webservice.response.product.ProductsResponse
+import io.mochadwi.data.datasource.webservice.response.product.ProductsResponse.DataResponse.ProductResponse.ImagesResponse
 import io.mochadwi.domain.product.Images
 import io.mochadwi.domain.product.Product
 
