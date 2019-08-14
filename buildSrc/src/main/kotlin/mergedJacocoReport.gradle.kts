@@ -14,8 +14,8 @@ jacoco {
 task<JacocoReport>("mergedJacocoReport") {
 
     // todo use variant.getFlavourName() instead?
-    dependsOn("testdevDebugUnitTest", "testprodDebugUnitTest",
-            "createdevDebugCoverageReport", "createprodDebugCoverageReport")
+    dependsOn("testDevDebugUnitTest", "testProdDebugUnitTest",
+        "createDevDebugCoverageReport", "createProdDebugCoverageReport")
 
     reports {
         xml.isEnabled = true
@@ -63,8 +63,8 @@ task<JacocoReport>("mergedJacocoReport") {
             fileTree(project.buildDir) {
                 //we use "debug" build type for test coverage (can be other)
                 include(
-                        "jacoco/testdevDebugUnitTest.exec",
-                        "jacoco/testprodDebugUnitTest.exec",
+                    "jacoco/testDevDebugUnitTest.exec",
+                    "jacoco/testProdDebugUnitTest.exec",
                         "outputs/code_coverage/debugAndroidTest/connected/*coverage.ec")
             }
     )

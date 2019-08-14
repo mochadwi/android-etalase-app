@@ -50,7 +50,7 @@ jobs:
     # Only run dev debug variant, to speed up build process
     - name: "Unit test dev debug variant"
 
-      script: "./gradlew testdevDebug"
+      script: "./gradlew testDevDebug"
 
       stage: "Unit Test"
 
@@ -91,14 +91,14 @@ jobs:
         - adb wait-for-device get-serialno
 
       script:
-        - "./gradlew mergedJacocoReport assembledevDebug assembledevDebugAndroidTest -PdisablePreDex"
-        - "./gradlew connecteddevDebugAndroidTest"
+        - "./gradlew mergedJacocoReport assembleDevDebug assembleDevDebugAndroidTest -PdisablePreDex"
+        - "./gradlew connectedDevDebugAndroidTest"
         # todo fix sonar-scanner sonar-project.properties to use gradle style instead
       #        - sonar-scanner
       stage: "UI Test"
 
-    # todo upload to fabric `crashlyticsUploadDistributiondev` or playstore publishdev
-    # e.g: ./gradlew --no-daemon --parallel --stacktrace clean assembledevDebug
+    # todo upload to fabric `crashlyticsUploadDistributionDev` or playstore publishDev
+    # e.g: ./gradlew --no-daemon --parallel --stacktrace clean assembleDevDebug
     - name: "Deploy to play store"
       script: "./gradlew clean"
       stage: deploy
