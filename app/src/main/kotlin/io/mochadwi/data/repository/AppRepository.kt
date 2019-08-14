@@ -12,6 +12,8 @@ import io.mochadwi.util.ext.default
 import io.mochadwi.util.ext.sameContentWith
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.async
+import kotlinx.coroutines.runBlocking
 
 /**
  *
@@ -53,13 +55,18 @@ class AppRepositoryImpl(
         }
     }
 
-    override fun getProductsAsync(): Deferred<List<Product>?> = coroutineAsync(IO) {
-        remoteGetProductsAsync().await() ?: emptyList()
+    // TODO(mochamadiqbaldwicahyo): 2019-08-14 implement local data source
+    override fun getProductsAsync(): List<Product>? = runBlocking {
+        val remote = async { remoteGetProductsAsync() }
+        val local = async { remoteGetProductsAsync() }
+
+        local.await() ?: remote.await()
     }
 
-    private fun remoteGetProductsAsync(): Deferred<List<Product>?> = coroutineAsync(IO) {
-        ProductResultMapper.from(appWebDatasource.getProductsAsync().await())
-    }
+    // TODO(mochamadiqbaldwicahyo): 2019-08-14 should we do something with deferred or just use suspend as well?
+    private suspend fun remoteGetProductsAsync(): List<Product>? = ProductResultMapper.from(
+        appWebDatasource.getProductsAsync().await()
+    )
 
     override fun searchPostsAsync(query: String): Deferred<List<PostModel>?> = coroutineAsync(IO) {
         postDao.searchPosts(query).map {

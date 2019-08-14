@@ -11,10 +11,13 @@ import kotlinx.coroutines.Deferred
 
 /**
  * App repository
+ *
  */
 interface AppRepository {
 
+    // TODO(mochamadiqbaldwicahyo): 2019-08-14 put external dependency in domain layer
     fun getPostsAsync(): Deferred<List<PostModel>?>
-    fun getProductsAsync(): Deferred<List<Product>?>
+
+    fun getProductsAsync(): List<Product>?
     fun searchPostsAsync(query: String): Deferred<List<PostModel>?>
 }
