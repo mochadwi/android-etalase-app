@@ -1,14 +1,10 @@
 package io.mochadwi
 
-import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import io.mochadwi.domain.repository.AppRepository
 import io.mochadwi.util.ext.default
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
-import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
 import org.koin.test.KoinTest
 import org.koin.test.inject
 
@@ -18,20 +14,8 @@ import org.koin.test.inject
  * On 2019-05-20 for etalase-app
  */
 
-@RunWith(AndroidJUnit4::class)
 class AppRepositoryTest : KoinTest {
     private val repository by inject<AppRepository>()
-
-    @get:Rule
-    val instantTaskExecutorRule = InstantTaskExecutorRule()
-
-    @Test
-    fun test_getPostsApi() {
-        runBlocking {
-            val result = repository.getPostsAsync().await()
-            result?.forEach(::println)
-        }
-    }
 
     @Test
     fun test_searchPostsApi() {
@@ -42,30 +26,16 @@ class AppRepositoryTest : KoinTest {
     }
 
     @Test
-    fun test_isNotEmptyPostsApi() {
-        runBlocking {
-            val result = repository.getPostsAsync().await()
-
-            assertEquals(true, result != null)
-            assertEquals(true, result?.isNotEmpty().default)
-        }
-    }
-
-    @Test
     fun test_getProductsApi() {
-        runBlocking {
-            val result = repository.getProductsAsync().await()
-            result?.forEach(::println)
-        }
+        val result = repository.getProductsAsync()
+        result?.forEach(::println)
     }
 
     @Test
     fun test_isNotEmptyProductsApi() {
-        runBlocking {
-            val result = repository.getProductsAsync().await()
+        val result = repository.getProductsAsync()
 
-            assertEquals(true, result != null)
-            assertEquals(true, result?.isNotEmpty().default)
-        }
+        assertEquals(true, result != null)
+        assertEquals(true, result?.isNotEmpty().default)
     }
 }
