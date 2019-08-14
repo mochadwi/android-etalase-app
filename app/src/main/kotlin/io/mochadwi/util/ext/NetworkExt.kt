@@ -11,7 +11,7 @@ import android.provider.Settings
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.location.LocationServices
-import io.mochadwi.data.datasource.webservice.param.QueryParam
+import io.mochadwi.data.datasource.network.kotlinx.param.QueryParam
 import io.mochadwi.util.helper.AppLocationManager
 import io.mochadwi.util.helper.FileUtils
 import kotlinx.coroutines.Dispatchers

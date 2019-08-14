@@ -37,7 +37,7 @@
         </provider>
 
         <activity
-            android:name="io.mochadwi.view.SplashActivity"
+            android:name="io.mochadwi.ui.SplashActivity"
             android:theme="@style/AppTheme.Launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -46,7 +46,7 @@
         </activity>
 
         <activity
-            android:name="io.mochadwi.view.HomeActivity"
+            android:name="io.mochadwi.ui.HomeActivity"
             android:configChanges="layoutDirection|orientation|screenSize"
             android:launchMode="singleTop">
             <intent-filter>

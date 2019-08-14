@@ -1,6 +1,6 @@
 package io.mochadwi.domain
 
-import io.mochadwi.domain.post.PostModel
+import io.mochadwi.domain.model.post.PostModel
 
 /**
  * Abstract State

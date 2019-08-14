@@ -4,18 +4,17 @@ import android.content.Context
 import androidx.room.Room
 import io.mochadwi.BuildConfig.BASE_URL
 import io.mochadwi.MainApplication
-import io.mochadwi.data.datasource.room.AppDatabase
-import io.mochadwi.data.datasource.webservice.AppWebDatasource
-import io.mochadwi.data.datasource.webservice.jsonreader.JavaReader
-import io.mochadwi.data.datasource.webservice.jsonreader.JsonReader
-import io.mochadwi.data.datasource.webservice.jsonreader.LocalFileDataSource
+import io.mochadwi.data.datasource.local.jsonreader.JavaReader
+import io.mochadwi.data.datasource.local.jsonreader.JsonReader
+import io.mochadwi.data.datasource.local.jsonreader.LocalFileDataSource
+import io.mochadwi.data.datasource.local.room.AppRoomDatabase
+import io.mochadwi.data.datasource.network.RetrofitEndpoint
 import io.mochadwi.util.TestSchedulerProvider
 import io.mochadwi.util.mock
 import io.mochadwi.util.rx.SchedulerProvider
 import io.mochadwi.util.singleton
 import org.koin.dsl.bind
 import org.koin.dsl.module
-
 
 val testAndroidModule =
         mock<MainApplication>().singleton(autoStart = true, override = true) +
@@ -26,7 +25,7 @@ val testAndroidModule =
  */
 val testLocalJavaDatasourceModule = module {
     single { JavaReader() } bind JsonReader::class
-    single { LocalFileDataSource(get(), false) as AppWebDatasource }
+    single { LocalFileDataSource(get(), false) as RetrofitEndpoint }
 }
 
 /**
@@ -36,7 +35,7 @@ val testRemoteDatasourceModule = module {
     single { createOkHttpClient() }
 
     // Fill property
-    single { createWebService<AppWebDatasource>(get(), BASE_URL) }
+    single { createWebService<RetrofitEndpoint>(get(), BASE_URL) }
 }
 
 /**
@@ -44,15 +43,15 @@ val testRemoteDatasourceModule = module {
  */
 val testRoomModule = module {
     single {
-        Room.inMemoryDatabaseBuilder(get(), AppDatabase::class.java)
+        Room.inMemoryDatabaseBuilder(get(), AppRoomDatabase::class.java)
                 .allowMainThreadQueries() // for test purpose
                 .fallbackToDestructiveMigration()
                 .build()
     }
 
     // Expose Dao directly
-    single { get<AppDatabase>().userDao() }
-    single { get<AppDatabase>().postDao() }
+    single { get<AppRoomDatabase>().userDao() }
+    single { get<AppRoomDatabase>().postDao() }
 }
 
 /**

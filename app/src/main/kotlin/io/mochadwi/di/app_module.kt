@@ -3,12 +3,12 @@ package io.mochadwi.di
 import androidx.room.Room
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
-import io.mochadwi.data.datasource.room.AppDatabase
-import io.mochadwi.data.repository.AppRepositoryImpl
+import io.mochadwi.data.datasource.local.room.AppRoomDatabase
+import io.mochadwi.data.repository.CoRepository
 import io.mochadwi.domain.repository.AppRepository
+import io.mochadwi.ui.post.PostViewModel
 import io.mochadwi.util.rx.ApplicationSchedulerProvider
 import io.mochadwi.util.rx.SchedulerProvider
-import io.mochadwi.view.post.PostViewModel
 import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -35,20 +35,20 @@ val roomModule = module {
                 // TODO: Do real migration anything here
             }
         }
-        Room.databaseBuilder(androidApplication(), AppDatabase::class.java, "db_app")
+        Room.databaseBuilder(androidApplication(), AppRoomDatabase::class.java, "db_app")
 //                .addMigrations(MIGRATION_1_2)
                 .fallbackToDestructiveMigration() // TODO: Don't use this on production, check room json scheme for migration
                 .build()
     }
 
     // Expose Dao directly
-    single { get<AppDatabase>().userDao() }
-    single { get<AppDatabase>().postDao() }
+    single { get<AppRoomDatabase>().userDao() }
+    single { get<AppRoomDatabase>().postDao() }
 }
 
 val repoModule = module {
     // App Data Repository
-    single { AppRepositoryImpl(get(), get()) as AppRepository }
+    single { CoRepository(get(), get()) as AppRepository }
 }
 
 // Gather all app modules

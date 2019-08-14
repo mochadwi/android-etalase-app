@@ -1,9 +1,9 @@
 package io.mochadwi.di
 
-import io.mochadwi.data.datasource.webservice.AppWebDatasource
-import io.mochadwi.data.datasource.webservice.jsonreader.AndroidJsonReader
-import io.mochadwi.data.datasource.webservice.jsonreader.JsonReader
-import io.mochadwi.data.datasource.webservice.jsonreader.LocalFileDataSource
+import io.mochadwi.data.datasource.local.jsonreader.AndroidJsonReader
+import io.mochadwi.data.datasource.local.jsonreader.JsonReader
+import io.mochadwi.data.datasource.local.jsonreader.LocalFileDataSource
+import io.mochadwi.data.datasource.network.RetrofitEndpoint
 import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module
 
@@ -12,5 +12,5 @@ import org.koin.dsl.module
  */
 val localAndroidDatasourceModule = module {
     single { AndroidJsonReader(androidApplication()) as JsonReader }
-    single { LocalFileDataSource(get(), true) as AppWebDatasource }
+    single { LocalFileDataSource(get(), true) as RetrofitEndpoint }
 }

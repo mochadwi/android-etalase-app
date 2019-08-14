@@ -1,9 +1,9 @@
 package io.mochadwi.data.mapper
 
-import io.mochadwi.data.datasource.webservice.response.product.ProductsResponse
-import io.mochadwi.data.datasource.webservice.response.product.ProductsResponse.DataResponse.ProductResponse.ImagesResponse
-import io.mochadwi.domain.product.Images
-import io.mochadwi.domain.product.Product
+import io.mochadwi.data.datasource.network.kotlinx.response.product.ProductsResponse
+import io.mochadwi.data.datasource.network.kotlinx.response.product.ProductsResponse.DataResponse.ProductResponse.ImagesResponse
+import io.mochadwi.domain.model.product.Images
+import io.mochadwi.domain.model.product.Product
 
 /**
  * @author Mochamad Iqbal Dwi Cahyo, (moch.iqbal@dana.id)

@@ -8,11 +8,11 @@ import io.mochadwi.domain.LoadingState
 import io.mochadwi.domain.PostListState
 import io.mochadwi.domain.State
 import io.mochadwi.domain.repository.AppRepository
+import io.mochadwi.ui.post.PostViewModel
 import io.mochadwi.util.MockitoHelper.argumentCaptor
 import io.mochadwi.util.TestSchedulerProvider
 import io.mochadwi.util.mock.MockedData.mockPostsModel
 import io.mochadwi.util.toDeferred
-import io.mochadwi.view.post.PostViewModel
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.After
 import org.junit.Assert.assertEquals

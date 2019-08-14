@@ -1,6 +1,6 @@
 package io.mochadwi.util.ext
 
-import io.mochadwi.view.post.list.PostItem
+import io.mochadwi.ui.post.list.PostItem
 
 /**
  *

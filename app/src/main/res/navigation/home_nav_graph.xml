@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/postFragment"
-        android:name="io.mochadwi.view.post.PostFragment"
+        android:name="io.mochadwi.ui.post.PostFragment"
         android:label="PostFragment"
         tools:layout="@layout/post_fragment">
 
@@ -24,7 +24,7 @@
 
     <fragment
         android:id="@+id/postDetailFragment"
-        android:name="io.mochadwi.view.post.PostDetailFragment"
+        android:name="io.mochadwi.ui.post.PostDetailFragment"
         android:label="PostDetailFragment"
         tools:layout="@layout/postdetail_fragment">
 

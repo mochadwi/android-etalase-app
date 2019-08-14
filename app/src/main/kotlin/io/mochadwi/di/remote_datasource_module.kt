@@ -5,7 +5,7 @@ import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFact
 import com.readystatesoftware.chuck.ChuckInterceptor
 import io.mochadwi.BuildConfig
 import io.mochadwi.BuildConfig.BASE_URL
-import io.mochadwi.data.datasource.webservice.AppWebDatasource
+import io.mochadwi.data.datasource.network.RetrofitEndpoint
 import kotlinx.serialization.json.Json
 import okhttp3.Interceptor
 import okhttp3.MediaType
@@ -31,23 +31,25 @@ val remoteDatasourceModule = module {
     single { createOkHttpClient(get<ChuckInterceptor>(), get<HttpLoggingInterceptor>()) }
 
     // Fill property
-    single { createWebService<AppWebDatasource>(get(), BASE_URL) }
+    single { createWebService<RetrofitEndpoint>(get(), BASE_URL) }
 }
 
+// TODO(mochamadiqbaldwicahyo): 2019-08-15 Move this to data layer instead, using e.g: GeneralNetworkFactory
 fun createOkHttpClient(vararg interceptors: Interceptor): OkHttpClient {
     return OkHttpClient.Builder()
-            .connectTimeout(60L, TimeUnit.SECONDS)
-            .readTimeout(60L, TimeUnit.SECONDS)
-            .apply {
-                if (BuildConfig.DEBUG) {
-                    for (intercept in interceptors) {
-                        addInterceptor(intercept)
-                    }
+        .connectTimeout(60L, TimeUnit.SECONDS)
+        .readTimeout(60L, TimeUnit.SECONDS)
+        .apply {
+            if (BuildConfig.DEBUG) {
+                for (intercept in interceptors) {
+                    addInterceptor(intercept)
                 }
             }
-            .build()
+        }
+        .build()
 }
 
+// TODO(mochamadiqbaldwicahyo): 2019-08-15 Move this to data layer instead, using e.g: GeneralNetworkFactory
 inline fun <reified T> createWebService(okHttpClient: OkHttpClient, url: String): T {
     val retrofit = Retrofit.Builder()
         .baseUrl(url)

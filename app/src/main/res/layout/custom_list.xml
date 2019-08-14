@@ -21,7 +21,7 @@
 
         <variable
             name="list"
-            type="io.mochadwi.util.mvvm.MutableSetObservableField&lt;io.mochadwi.view.post.list.PostItem>"/>
+            type="io.mochadwi.util.mvvm.MutableSetObservableField&lt;io.mochadwi.ui.post.list.PostItem>"/>
 
         <variable
             name="layoutId"

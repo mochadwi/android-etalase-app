@@ -13,7 +13,7 @@
 
         <variable
             name="vm"
-            type="io.mochadwi.view.post.PostViewModel"/>
+            type="io.mochadwi.ui.post.PostViewModel"/>
 
         <variable
             name="listener"

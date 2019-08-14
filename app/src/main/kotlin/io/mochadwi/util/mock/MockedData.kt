@@ -1,14 +1,14 @@
 package io.mochadwi.util.mock
 
-import io.mochadwi.data.datasource.room.PostEntity
-import io.mochadwi.data.datasource.room.UserEntity
-import io.mochadwi.data.datasource.webservice.param.QueryParam
-import io.mochadwi.data.datasource.webservice.response.category.MasterResponse
-import io.mochadwi.data.datasource.webservice.response.post.PostResponse
-import io.mochadwi.data.datasource.webservice.response.user.UsersResponse
-import io.mochadwi.domain.category.MasterModel
-import io.mochadwi.domain.post.PostModel
-import io.mochadwi.domain.user.UserModel
+import io.mochadwi.data.datasource.local.room.PostEntity
+import io.mochadwi.data.datasource.local.room.UserEntity
+import io.mochadwi.data.datasource.network.kotlinx.param.QueryParam
+import io.mochadwi.data.datasource.network.kotlinx.response.category.MasterResponse
+import io.mochadwi.data.datasource.network.kotlinx.response.post.PostResponse
+import io.mochadwi.data.datasource.network.kotlinx.response.user.UsersResponse
+import io.mochadwi.domain.model.category.MasterModel
+import io.mochadwi.domain.model.post.PostModel
+import io.mochadwi.domain.model.user.UserModel
 import io.mochadwi.util.ext.fromJson
 import io.mochadwi.util.ext.toQueryMap
 import kotlinx.serialization.list

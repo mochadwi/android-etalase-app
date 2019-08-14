@@ -2,7 +2,7 @@ package io.mochadwi
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import io.mochadwi.data.datasource.room.PostDao
+import io.mochadwi.data.datasource.local.room.PostDao
 import io.mochadwi.util.mock.MockedData.mockPostsEntity
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals

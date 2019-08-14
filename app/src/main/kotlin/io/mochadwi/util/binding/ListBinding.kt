@@ -5,10 +5,10 @@ import androidx.databinding.BindingAdapter
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import io.mochadwi.databinding.PostItemBinding
+import io.mochadwi.ui.post.list.PostViewHolder
 import io.mochadwi.util.ext.setupGridLayoutManager
 import io.mochadwi.util.ext.setupLinearLayoutManager
 import io.mochadwi.util.helper.GenericAdapter
-import io.mochadwi.view.post.list.PostViewHolder
 
 /**
  *
