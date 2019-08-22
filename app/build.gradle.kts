@@ -6,7 +6,7 @@ plugins {
     kotlin("android")
     kotlin("android.extensions")
     kotlin("kapt")
-    id("androidx.navigation.safeargs")
+    id("androidx.navigation.safeargs.kotlin")
     id("kotlinx-serialization") version "1.3.30"
     id("mergedJacocoReport")
 }

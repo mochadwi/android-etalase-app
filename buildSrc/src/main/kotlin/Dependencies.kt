@@ -53,10 +53,10 @@ object Versions {
     const val timber = "4.6.1"
     const val pageIndicatorView = "0.2.0"
     const val moshi = "1.6.0"
-    const val lifecycle = "2.0.0-rc01"
-    const val arch = "2.0.0-rc01"
+    const val lifecycle = "2.1.0-rc01"
+    const val arch = "2.1.0-rc01"
     const val room = "2.1.0-beta01"
-    const val navgraph = "2.1.0-alpha04"
+    const val navgraph = "2.1.0-rc01"
     const val paging = "2.1.0"
     const val dexter = "5.0.0"
     const val imagePickerVersion = "1.13.1"
@@ -90,10 +90,12 @@ object AndroidDependencies {
     const val androidSupportCardView = "androidx.cardview:cardview:${Versions.supportLibrary}"
     const val androidSupportMultidex = "androidx.multidex:multidex:${Versions.multiDex}"
     const val androidDatabindingCompiler = "androidx.databinding:databinding-compiler:${Versions.androidGradle}"
+
     const val dagger = "com.google.dagger:dagger:${Versions.dagger}"
     const val daggerCompiler = "com.google.dagger:dagger-compiler:${Versions.dagger}"
     const val daggerProcessor = "com.google.dagger:dagger-android-processor:${Versions.dagger}"
     const val daggerSupport = "com.google.dagger:dagger-android-support:${Versions.dagger}"
+
     const val kotlinGradle = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
     const val kotlin7 = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
     const val kotlin8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}"
@@ -101,29 +103,33 @@ object AndroidDependencies {
     const val kotlinCoroutineCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinCoroutine}"
     const val kotlinCoroutineAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.kotlinCoroutine}"
     const val kotlinxSerializationRuntime = "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$kotlinxSerialization"
+
     const val coreKtx = "androidx.core:core-ktx:1.0.0"
     const val retrofitCoroutineAdapter = "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2"
     const val gson = "com.google.code.gson:gson:${Versions.gson}"
+
     const val roomCompiler = "androidx.room:room-compiler:$room"
     const val roomRuntime = "androidx.room:room-runtime:$room"
     const val roomRxJava = "androidx.room:room-rxjava2:$room"
     const val roomKtx = "androidx.room:room-ktx:$room"
     const val roomCoroutine = "androidx.room:room-coroutines:$room"
+
     const val lifecycle = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle}"
     const val lifecycleLiveData = "androidx.lifecycle:lifecycle-livedata:${Versions.lifecycle}"
     const val lifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel:${Versions.lifecycle}"
     const val lifecycleViewModelKtx = "androidx.lifecycle:viemodel-ktx:${Versions.lifecycle}"
     const val lifecycleCompiler = "androidx.lifecycle:lifecycle-compiler:${Versions.lifecycle}"
+
     const val navigationFragment = "androidx.navigation:navigation-fragment:$navgraph"
     const val navigationFragmentKtx = "androidx.navigation:navigation-fragment-ktx:$navgraph"
     const val navigationUi = "androidx.navigation:navigation-ui:$navgraph"
     const val navigationUiKtx = "androidx.navigation:navigation-ui-ktx:$navgraph"
     const val navigationSafeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:$navgraph"
+
+    // alternatively - without Android dependencies for testing
     const val pagingRuntime = "androidx.paging:paging-runtime:$paging"
-    // alternatively - without Android dependencies for testing
-    const val pagingCommonTest = "androidx.paging:paging-common:$paging"
     const val pagingRuntimeKtx = "androidx.paging:paging-runtime-ktx:$paging"
-    // alternatively - without Android dependencies for testing
+    const val pagingCommonTest = "androidx.paging:paging-common:$paging"
     const val pagingCommonTestKtx = "androidx.paging:paging-common-ktx:$paging"
     const val playServiceLocation = "com.google.android.gms:play-services-location:$playService"
 }
