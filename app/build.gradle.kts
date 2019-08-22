@@ -1,3 +1,4 @@
+import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -87,6 +88,11 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        this as KotlinJvmOptions
+        jvmTarget = "1.8"
     }
 
     flavorDimensions("default")
@@ -215,9 +221,9 @@ dependencies {
 // Fix linting error
 tasks.withType<KotlinCompile>().all {
     kotlinOptions.freeCompilerArgs += listOf(
-            "-Xuse-experimental=kotlinx.serialization.ImplicitReflectionSerializer",
-            "-Xuse-experimental=kotlinx.serialization.UnstableDefault",
-            "-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi",
-            "-Xuse-experimental=kotlinx.coroutines.ObsoleteCoroutinesApi"
+        "-Xuse-experimental=kotlinx.serialization.ImplicitReflectionSerializer",
+        "-Xuse-experimental=kotlinx.serialization.UnstableDefault",
+        "-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi",
+        "-Xuse-experimental=kotlinx.coroutines.ObsoleteCoroutinesApi"
     )
 }
