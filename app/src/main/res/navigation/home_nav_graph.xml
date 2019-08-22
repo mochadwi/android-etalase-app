@@ -17,7 +17,7 @@
             app:destination="@id/postDetailFragment">
             <argument
                 android:name="postItem"
-                app:argType="io.mochadwi.view.post.list.PostItem"/>
+                app:argType="io.mochadwi.ui.post.list.PostItem" />
         </action>
 
     </fragment>
@@ -30,7 +30,7 @@
 
         <argument
             android:name="postItem"
-            app:argType="io.mochadwi.view.post.list.PostItem"
+            app:argType="io.mochadwi.ui.post.list.PostItem"
             app:nullable="true"
             />
     </fragment>
