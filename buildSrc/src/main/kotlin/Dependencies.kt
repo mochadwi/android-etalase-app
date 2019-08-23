@@ -45,7 +45,7 @@ object Versions {
     const val kotlinCoroutineTest = "1.2.1"
     const val leakCanary = "1.5.4"
     const val okHttp = "3.8.1"
-    const val retrofit = "2.4.0"
+    const val retrofit = "2.6.0"
     const val rxAndroid = "2.0.2"
     const val rxJava = "2.1.12"
     const val rxKotlin = "2.2.0"
