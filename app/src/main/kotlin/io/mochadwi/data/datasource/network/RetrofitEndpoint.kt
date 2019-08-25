@@ -1,11 +1,14 @@
 package io.mochadwi.data.datasource.network
 
+import io.mochadwi.data.datasource.network.kotlinx.response.BaseResponse
+import io.mochadwi.data.datasource.network.kotlinx.response.movie.MovieResponse
 import io.mochadwi.data.datasource.network.kotlinx.response.post.PostResponse
-import io.mochadwi.data.datasource.network.kotlinx.response.product.ProductsResponse
+import io.mochadwi.util.helper.AppHelper.Const.ENDPOINT_DISCOVER_MOVIES
 import io.mochadwi.util.helper.AppHelper.Const.ENDPOINT_POSTS
-import io.mochadwi.util.helper.AppHelper.Const.ENDPOINT_PRODUCTS
 import kotlinx.coroutines.Deferred
+import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 /**
  *
@@ -19,6 +22,8 @@ interface RetrofitEndpoint {
     @GET(ENDPOINT_POSTS)
     fun getPostsAsync(): Deferred<List<PostResponse>>
 
-    @GET(ENDPOINT_PRODUCTS)
-    fun getProductsAsync(): Deferred<ProductsResponse>
+    @GET(ENDPOINT_DISCOVER_MOVIES)
+    suspend fun getDiscoverMoviesAsync(
+        @Query("api_key") apiKey: String = "334879b2c8dc36a9f2c64f7bd4f0c91d"
+    ): Response<BaseResponse<MovieResponse>>
 }

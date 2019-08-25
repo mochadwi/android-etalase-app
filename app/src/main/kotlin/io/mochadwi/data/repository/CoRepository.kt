@@ -3,9 +3,9 @@ package io.mochadwi.data.repository
 import io.mochadwi.data.datasource.local.room.PostDao
 import io.mochadwi.data.datasource.local.room.PostEntity
 import io.mochadwi.data.datasource.network.RetrofitEndpoint
-import io.mochadwi.data.mapper.ProductResultMapper
+import io.mochadwi.data.mapper.MovieResultMapper
+import io.mochadwi.domain.model.movie.Movie
 import io.mochadwi.domain.model.post.PostModel
-import io.mochadwi.domain.model.product.Product
 import io.mochadwi.domain.repository.AppRepository
 import io.mochadwi.util.ext.coroutineAsync
 import io.mochadwi.util.ext.default
@@ -55,18 +55,30 @@ class CoRepository(
         }
     }
 
-    // TODO(mochamadiqbaldwicahyo): 2019-08-14 implement local data source
-    override fun getProductsAsync(): List<Product>? = runBlocking {
-        val remote = async { remoteGetProductsAsync() }
-        val local = async { remoteGetProductsAsync() }
+    override fun getDiscoverMovies(): List<Movie>? = runBlocking(IO) {
+        val remote = async { remoteGetDiscoverMoviesAsync() }
+        val local = async { remoteGetDiscoverMoviesAsync() }
 
-        local.await() ?: remote.await()
+        remote.await() ?: local.await()
     }
 
-    // TODO(mochamadiqbaldwicahyo): 2019-08-14 should we do something with deferred or just use suspend as well?
-    private suspend fun remoteGetProductsAsync(): List<Product>? = ProductResultMapper.from(
-        endpoint.getProductsAsync().await()
-    )
+    private suspend fun remoteGetDiscoverMoviesAsync(): List<Movie>? {
+        val response = endpoint.getDiscoverMoviesAsync()
+
+        return response.body()?.let {
+            if (response.isSuccessful) {
+                // TODO(mochamadiqbaldwicahyo): 2019-08-23 Ugly try catch change into better handling?
+//                try {
+                MovieResultMapper.from(it.results ?: emptyList())
+//                } catch (e: NullPointerException) {
+//                    // TODO(mochamadiqbaldwicahyo): 2019-08-23 Print the corresponding stacktrace?
+//                    null
+//                }
+            } else {
+                emptyList()
+            }
+        }
+    }
 
     override fun searchPostsAsync(query: String): Deferred<List<PostModel>?> = coroutineAsync(IO) {
         postDao.searchPosts(query).map {
