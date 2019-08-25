@@ -9,7 +9,7 @@ data class Movie(
     val originalLanguage: String = "",
     val originalTitle: String = "",
     val overview: String = "",
-    val movieerPath: String = "",
+    val posterPath: String = "",
     val popularity: Double = 0.0,
     val releaseDate: String = "",
     val video: Boolean = false,

@@ -1,6 +1,6 @@
 package io.mochadwi.domain
 
-import io.mochadwi.domain.model.movie.MovieModel
+import io.mochadwi.domain.model.movie.Movie
 
 /**
  * Abstract State
@@ -19,10 +19,10 @@ object LoadingState : State()
 data class ErrorState(val error: Throwable) : State()
 
 data class MovieListState(
-    val list: List<MovieModel>
+    val list: List<Movie>
 ) : State() {
     companion object {
-        fun from(list: List<MovieModel>): MovieListState {
+        fun from(list: List<Movie>): MovieListState {
             return with(list) {
                 when {
                     // TODO: @mochadwi Move this into strings instead

@@ -20,7 +20,7 @@ class AppRepositoryTest : KoinTest {
     @Test
     fun test_searchMoviesApi() {
         runBlocking {
-            val result = repository.searchMoviesAsync("foo").await()
+            val result = repository.searchMoviesAsync("foo")
             result?.forEach(::println)
         }
     }
