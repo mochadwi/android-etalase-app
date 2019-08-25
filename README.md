@@ -75,3 +75,6 @@ Etalase movie app
 
 ### Ref
 - [Still not used the 100% clean arch](https://proandroiddev.com/a-guided-tour-inside-a-clean-architecture-code-base-48bb5cc9fc97)
+
+### Known Issue
+- [ ] List overloading: [typealias](https://kotlinlang.org/docs/reference/type-aliases.html), [java list param 1](https://stackoverflow.com/q/2241514/3763032), [java list param 2](https://coderanch.com/t/384093/java/Overloading-List-Generic-Types-Argument). The code [here]()

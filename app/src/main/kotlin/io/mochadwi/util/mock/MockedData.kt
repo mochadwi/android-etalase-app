@@ -1,8 +1,11 @@
 package io.mochadwi.util.mock
 
 import io.mochadwi.data.datasource.local.room.MovieEntity
-import io.mochadwi.domain.model.movie.MovieModel
+import io.mochadwi.data.datasource.network.kotlinx.response.movie.MovieResponse
+import io.mochadwi.data.mapper.MovieEntityMapper
+import io.mochadwi.data.mapper.MovieResultMapper
 import io.mochadwi.util.ext.fromJson
+import kotlinx.serialization.list
 
 /**
  * Mock Github Data
@@ -614,10 +617,6 @@ object MockedData {
 ]
     """.trimIndent().fromJson(MovieResponse.serializer().list)
 
-    val mockMoviesModel = mockMoviesResponse.map {
-        MovieModel.from(it)
-    }
-    val mockMoviesEntity = mockMoviesResponse.map {
-        MovieEntity.from(it)
-    }
+    val mockMoviesModel = MovieResultMapper.from(mockMoviesResponse)
+    val mockMoviesEntity = MovieEntityMapper.from<MovieResponse, MovieEntity>(mockMoviesResponse)
 }
