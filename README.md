@@ -1,26 +1,26 @@
-Etalase app
+Etalase movie app
 
-[![Build Status](https://api.travis-ci.com/mochadwi/android-etalase-app.svg?token=MDmpsR9WdU6boPPrUjts&branch=master)](https://travis-ci.com/mochadwi/android-etalase-app) [![codecov](https://codecov.io/gh/mochadwi/android-etalase-app/branch/master/graph/badge.svg)](https://codecov.io/gh/mochadwi/android-etalase-app)
+[![Build Status](https://api.travis-ci.com/mochadwi/android-etalase-app.svg)](https://travis-ci.com/mochadwi/android-etalase-app) [![codecov](https://codecov.io/gh/mochadwi/android-etalase-app/branch/master/graph/badge.svg)](https://codecov.io/gh/mochadwi/android-etalase-app)
 
 ### Feature
 - [x] local-storage dengan Room
 - [x] menggunakan view-model dan live-data
 - [ ] Hit API di background process dengan work-manager
 - [x] Mengimplementasikan kotlin-coroutines
-- [x] arsitektur berbasis offline-first
+- [ ] arsitektur berbasis offline-first
 - [x] format commit dengan git-karma
 - [ ] Use modular approach [per-feature](https://github.com/mochadwi/android-news-app)
-- [ ] Add use case / interactor
-- [ ] Add mapper / transformation [prefer to this template](https://github.com/hipe-id/clean-arch-mvvm-template/tree/develop) I used to build
+- [x] Add use case / interactor
+- [x] Add mapper / transformation [prefer to this template](https://github.com/hipe-id/clean-arch-mvvm-template/tree/develop) I used to build
 
 ### Nice to have:
 - [x] mengimplementasikan navigation component dari jetpack
 - [x] menggunakan ~~dagger~~ koin
 
 ### Instruction
-- [x] Buat sebuah aplikasi untuk menampilkan list of post
-- [ ] Dan membuat post baru yang bersumber dari API: https://jsonplaceholder.typicode.com/.
-- [x] Aplikasi harus mengacu pada paradigma offline-first
+- [x] Buat sebuah aplikasi untuk menampilkan list of movie
+- [ ] Dan membuat movie baru yang bersumber dari API: https://api.themoviedb.org/3/.
+- [ ] Aplikasi harus mengacu pada paradigma offline-first
 
 ### Tech Stack
 - Git

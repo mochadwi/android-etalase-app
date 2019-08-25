@@ -1,4 +1,4 @@
-package io.mochadwi.ui.post
+package io.mochadwi.ui.movie
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
-import io.mochadwi.databinding.PostdetailFragmentBinding
+import io.mochadwi.databinding.MoviedetailFragmentBinding
 import io.mochadwi.util.base.ToolbarListener
 import io.mochadwi.util.ext.default
 
@@ -18,10 +18,10 @@ import io.mochadwi.util.ext.default
  * dedicated to build etalase-app
  *
  */
-class PostDetailFragment : Fragment() {
+class MovieDetailFragment : Fragment() {
 
-    private lateinit var viewBinding: PostdetailFragmentBinding
-    private val args by navArgs<PostDetailFragmentArgs>()
+    private lateinit var viewBinding: MoviedetailFragmentBinding
+    private val args by navArgs<MovieDetailFragmentArgs>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,10 +33,10 @@ class PostDetailFragment : Fragment() {
                               container: ViewGroup?,
                               savedInstanceState: Bundle?
     ): View {
-        viewBinding = PostdetailFragmentBinding
+        viewBinding = MoviedetailFragmentBinding
                 .inflate(inflater, container, false)
                 .apply {
-                    item = args.postItem
+                    item = args.movieItem
                 }
         return viewBinding.root
     }
@@ -44,6 +44,6 @@ class PostDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        (requireActivity() as ToolbarListener).updateTitleToolbar(args.postItem?.title.default)
+        (requireActivity() as ToolbarListener).updateTitleToolbar(args.movieItem?.title.default)
     }
 }

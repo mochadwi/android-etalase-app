@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="io.mochadwi.ui.post.list.PostItem"/>
+            type="io.mochadwi.ui.movie.list.MovieItem" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -23,7 +23,7 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/tvPostTitle"
+                android:id="@+id/tvMovieTitle"
                 style="@style/TextList"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -33,7 +33,7 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="@{item.title}"
-                app:layout_constraintBottom_toTopOf="@id/tvPostBody"
+                app:layout_constraintBottom_toTopOf="@id/tvMovieBody"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -43,7 +43,7 @@
                 />
 
             <TextView
-                android:id="@+id/tvPostBody"
+                android:id="@+id/tvMovieBody"
                 android:layout_width="0dp"
                 android:layout_height="200dp"
                 android:padding="@dimen/dimens_4dp"
@@ -51,7 +51,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvPostTitle"
+                app:layout_constraintTop_toBottomOf="@id/tvMovieTitle"
                 app:layout_constraintVertical_chainStyle="spread"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="io.mochadwi.ui.post.list.PostItem"/>
+            type="io.mochadwi.ui.movie.list.MovieItem" />
 
     </data>
 
@@ -18,7 +18,7 @@
         android:background="@color/mainWhiteDark">
 
         <TextView
-            android:id="@+id/tvPostBody"
+            android:id="@+id/tvMovieBody"
             android:layout_width="@dimen/dimens_0dp"
             android:layout_height="@dimen/dimens_200dp"
             android:text="@{item.body ?? `body_content`}"
@@ -36,7 +36,7 @@
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvPostBody"/>
+            app:layout_constraintTop_toBottomOf="@id/tvMovieBody" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

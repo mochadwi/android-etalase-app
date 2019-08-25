@@ -1,11 +1,11 @@
 package io.mochadwi.data.repository
 
-import io.mochadwi.data.datasource.local.room.PostDao
-import io.mochadwi.data.datasource.local.room.PostEntity
+import io.mochadwi.data.datasource.local.room.MovieDao
+import io.mochadwi.data.datasource.local.room.MovieEntity
 import io.mochadwi.data.datasource.network.RetrofitEndpoint
 import io.mochadwi.data.mapper.MovieResultMapper
 import io.mochadwi.domain.model.movie.Movie
-import io.mochadwi.domain.model.post.PostModel
+import io.mochadwi.domain.model.movie.MovieModel
 import io.mochadwi.domain.repository.AppRepository
 import io.mochadwi.util.ext.coroutineAsync
 import io.mochadwi.util.ext.default
@@ -29,29 +29,29 @@ import kotlinx.coroutines.runBlocking
  */
 class CoRepository(
     private val endpoint: RetrofitEndpoint,
-    private val postDao: PostDao
+    private val movieDao: MovieDao
 ) : AppRepository {
 
-    override fun getPostsAsync(): Deferred<List<PostModel>?> = coroutineAsync(IO) {
-        val local = localGetPostsAsync().await() ?: emptyList()
-        val remote = remoteGetPostsAsync().await() ?: emptyList()
+    override fun getMoviesAsync(): Deferred<List<MovieModel>?> = coroutineAsync(IO) {
+        val local = localGetMoviesAsync().await() ?: emptyList()
+        val remote = remoteGetMoviesAsync().await() ?: emptyList()
 
         if ((local sameContentWith remote).default) local
         else remote
     }
 
-    private fun localGetPostsAsync(): Deferred<List<PostModel>?> = coroutineAsync(IO) {
-        postDao.getAllPosts().map {
-            PostModel.from(it)
+    private fun localGetMoviesAsync(): Deferred<List<MovieModel>?> = coroutineAsync(IO) {
+        movieDao.getAllMovies().map {
+            MovieModel.from(it)
         }
     }
 
     // TODO(mochamadiqbaldwicahyo): 2019-08-13 Don't do transformation / mapper here in the repo
-    private fun remoteGetPostsAsync(): Deferred<List<PostModel>?> = coroutineAsync(IO) {
-        val result = endpoint.getPostsAsync().await()
+    private fun remoteGetMoviesAsync(): Deferred<List<MovieModel>?> = coroutineAsync(IO) {
+        val result = endpoint.getMoviesAsync().await()
         result.map {
-            postDao.upsert(PostEntity.from(it))
-            PostModel.from(it)
+            movieDao.upsert(MovieEntity.from(it))
+            MovieModel.from(it)
         }
     }
 
@@ -67,22 +67,17 @@ class CoRepository(
 
         return response.body()?.let {
             if (response.isSuccessful) {
-                // TODO(mochamadiqbaldwicahyo): 2019-08-23 Ugly try catch change into better handling?
-//                try {
                 MovieResultMapper.from(it.results ?: emptyList())
-//                } catch (e: NullPointerException) {
-//                    // TODO(mochamadiqbaldwicahyo): 2019-08-23 Print the corresponding stacktrace?
-//                    null
-//                }
             } else {
                 emptyList()
             }
         }
     }
 
-    override fun searchPostsAsync(query: String): Deferred<List<PostModel>?> = coroutineAsync(IO) {
-        postDao.searchPosts(query).map {
-            PostModel.from(it)
+    override fun searchMoviesAsync(query: String): Deferred<List<MovieModel>?> = coroutineAsync(
+        IO) {
+        movieDao.searchMovies(query).map {
+            MovieModel.from(it)
         }
     }
 }

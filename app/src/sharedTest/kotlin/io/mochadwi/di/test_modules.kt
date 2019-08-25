@@ -50,7 +50,7 @@ val testRoomModule = module {
     }
 
     // Expose Dao directly
-    single { get<AppRoomDatabase>().postDao() }
+    single { get<AppRoomDatabase>().movieDao() }
 }
 
 /**

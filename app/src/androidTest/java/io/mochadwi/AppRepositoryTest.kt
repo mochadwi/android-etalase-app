@@ -18,9 +18,9 @@ class AppRepositoryTest : KoinTest {
     private val repository by inject<AppRepository>()
 
     @Test
-    fun test_searchPostsApi() {
+    fun test_searchMoviesApi() {
         runBlocking {
-            val result = repository.searchPostsAsync("foo").await()
+            val result = repository.searchMoviesAsync("foo").await()
             result?.forEach(::println)
         }
     }

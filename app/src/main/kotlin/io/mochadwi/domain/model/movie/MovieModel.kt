@@ -1,9 +1,8 @@
-package io.mochadwi.domain.model.post
+package io.mochadwi.domain.model.movie
 
-import io.mochadwi.data.datasource.local.room.PostEntity
-import io.mochadwi.data.datasource.network.kotlinx.response.post.PostResponse
+import io.mochadwi.data.datasource.local.room.MovieEntity
 
-data class PostModel(
+data class MovieModel(
         val userId: Int = 0, // 10
         val id: Int = 0, // 100
         val title: String = "", // at nam consequatur ea labore ea harum
@@ -11,12 +10,12 @@ data class PostModel(
 ) {
     companion object {
         // TODO(mochamadiqbaldwicahyo): 2019-08-13 Don't do this on domain layer
-        fun from(post: PostResponse) = with(post) {
-            PostModel(userId, id, title, body)
+        fun from(movie: MovieResponse) = with(movie) {
+            MovieModel(userId, id, title, body)
         }
 
-        fun from(post: PostEntity) = with(post) {
-            PostModel(userId, id, title, body)
+        fun from(movie: MovieEntity) = with(movie) {
+            MovieModel(userId, id, title, body)
         }
     }
 }

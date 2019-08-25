@@ -308,23 +308,12 @@ class AppHelper {
         // Activity result / request code
         const val REQUEST_CODE_DIRECTORY = 99
         const val REQUEST_CODE_PHOTO = 100
-        const val REQUEST_CODE_KTP = 101
-        const val REQUEST_CODE_SIM = 102
-        const val REQUEST_CODE_STNK = 103
-        const val REQUEST_CODE_SKCK = 104
         const val REQUEST_LOCATION = 333
 
 
         const val VERSION_1 = "v1/"
-        const val VERSION_ANDROID_JSON = "Android/json/"
         const val ENDPOINT_SEARCH = "search/"
-        const val ENDPOINT_SEARCH_USERS = "${ENDPOINT_SEARCH}users"
-        const val ENDPOINT_MASTER = "master.json"
-        const val ENDPOINT_ALL = "all.json"
-        const val ENDPOINT_MEN = "men.json"
-        const val ENDPOINT_WOMEN = "women.json"
-        const val ENDPOINT_POSTS = "posts"
-        const val ENDPOINT_PRODUCTS = "gsq5w"
+        const val ENDPOINT_POSTS = "movies"
         const val ENDPOINT_DISCOVER_MOVIES = "discover/movie"
 
         const val ATTR_IMAGE_SOURCE = "img:src"

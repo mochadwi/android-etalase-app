@@ -24,8 +24,8 @@ data class MovieResponse(
     val overview: String = "",
     val popularity: Double = 0.0,
     @Optional
-    @SerialName("poster_path")
-    val posterPath: String? = null,
+    @SerialName("movieer_path")
+    val movieerPath: String? = null,
     @Optional
     @SerialName("release_date")
     val releaseDate: String = "",

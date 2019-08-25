@@ -1,7 +1,5 @@
 package io.mochadwi.data.datasource.network
 
-import io.mochadwi.data.datasource.network.kotlinx.response.post.PostResponse
-
 /**
  *
  * In syaa Allah created & modified
@@ -12,5 +10,5 @@ import io.mochadwi.data.datasource.network.kotlinx.response.post.PostResponse
 // TODO(mochamadiqbaldwicahyo): 2019-08-15 This only a replica to switching framework
 interface FastAndroidNetworkingEndpoint {
 
-    fun getPostsAsync(): List<PostResponse>
+    fun getMoviesAsync(): List<MovieResponse>
 }

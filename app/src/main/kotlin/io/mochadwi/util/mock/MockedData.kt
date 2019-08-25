@@ -1,17 +1,15 @@
 package io.mochadwi.util.mock
 
-import io.mochadwi.data.datasource.local.room.PostEntity
-import io.mochadwi.data.datasource.network.kotlinx.response.post.PostResponse
-import io.mochadwi.domain.model.post.PostModel
+import io.mochadwi.data.datasource.local.room.MovieEntity
+import io.mochadwi.domain.model.movie.MovieModel
 import io.mochadwi.util.ext.fromJson
-import kotlinx.serialization.list
 
 /**
  * Mock Github Data
  */
 object MockedData {
 
-    val mockPostsResponse = """
+    val mockMoviesResponse = """
 [
   {
     "userId": 1,
@@ -614,12 +612,12 @@ object MockedData {
     "body": "cupiditate quo est a modi nesciunt soluta\nipsa voluptas error itaque dicta in\nautem qui minus magnam et distinctio eum\naccusamus ratione error aut"
   }
 ]
-    """.trimIndent().fromJson(PostResponse.serializer().list)
+    """.trimIndent().fromJson(MovieResponse.serializer().list)
 
-    val mockPostsModel = mockPostsResponse.map {
-        PostModel.from(it)
+    val mockMoviesModel = mockMoviesResponse.map {
+        MovieModel.from(it)
     }
-    val mockPostsEntity = mockPostsResponse.map {
-        PostEntity.from(it)
+    val mockMoviesEntity = mockMoviesResponse.map {
+        MovieEntity.from(it)
     }
 }

@@ -1,9 +1,9 @@
-package io.mochadwi.ui.post.list
+package io.mochadwi.ui.movie.list
 
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import io.mochadwi.databinding.PostItemBinding
-import io.mochadwi.ui.post.PostFragmentDirections
+import io.mochadwi.databinding.MovieItemBinding
+import io.mochadwi.ui.movie.MovieFragmentDirections
 import io.mochadwi.util.base.BaseBindableAdapter
 
 /**
@@ -14,19 +14,19 @@ import io.mochadwi.util.base.BaseBindableAdapter
  *
  */
 
-class PostViewHolder(val binding: PostItemBinding) :
-        RecyclerView.ViewHolder(binding.root),
-        BaseBindableAdapter<PostItem> {
+class MovieViewHolder(val binding: MovieItemBinding) :
+    RecyclerView.ViewHolder(binding.root),
+    BaseBindableAdapter<MovieItem> {
 
-    override fun bind(data: PostItem) {
+    override fun bind(data: MovieItem) {
         binding.apply {
             item = data
             root.setOnClickListener {
-                val toPostDetail = PostFragmentDirections.toPostDetailAction(
+                val toMovieDetail = MovieFragmentDirections.toMovieDetailAction(
                         data
                 )
 
-                it.findNavController().navigate(toPostDetail)
+                it.findNavController().navigate(toMovieDetail)
             }
             executePendingBindings()
         }

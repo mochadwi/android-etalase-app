@@ -13,7 +13,7 @@
 
         <variable
             name="vm"
-            type="io.mochadwi.ui.post.PostViewModel"/>
+            type="io.mochadwi.ui.movie.MovieViewModel" />
 
         <variable
             name="listener"
@@ -43,8 +43,8 @@
                     android:id="@+id/list"
                     layout="@layout/custom_list"
                     bind:isGrid="@{true}"
-                    bind:layoutId="@{R.layout.post_item}"
-                    bind:list="@{vm.postListSet}"
+                    bind:layoutId="@{R.layout.movie_item}"
+                    bind:list="@{vm.movieListSet}"
                     bind:spanCount="@{2}"
                     bind:vm="@{vm}"
                     />

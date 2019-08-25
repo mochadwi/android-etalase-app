@@ -1,4 +1,4 @@
-package io.mochadwi.ui.post
+package io.mochadwi.ui.movie
 
 import android.app.SearchManager
 import android.content.ComponentName
@@ -10,12 +10,12 @@ import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import io.mochadwi.R
-import io.mochadwi.databinding.PostFragmentBinding
+import io.mochadwi.databinding.MovieFragmentBinding
 import io.mochadwi.domain.ErrorState
 import io.mochadwi.domain.LoadingState
-import io.mochadwi.domain.PostListState
+import io.mochadwi.domain.MovieListState
 import io.mochadwi.ui.HomeActivity
-import io.mochadwi.ui.post.list.PostItem
+import io.mochadwi.ui.movie.list.MovieItem
 import io.mochadwi.util.base.BaseApiModel
 import io.mochadwi.util.base.BaseUserActionListener
 import io.mochadwi.util.base.ToolbarListener
@@ -37,10 +37,10 @@ import retrofit2.HttpException
  * dedicated to build etalase-app
  *
  */
-class PostFragment : Fragment(), BaseUserActionListener {
+class MovieFragment : Fragment(), BaseUserActionListener {
 
-    private lateinit var viewBinding: PostFragmentBinding
-    private val viewModel by viewModel<PostViewModel>()
+    private lateinit var viewBinding: MovieFragmentBinding
+    private val viewModel by viewModel<MovieViewModel>()
     private lateinit var onLoadMore: EndlessRecyclerOnScrollListener
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,10 +53,10 @@ class PostFragment : Fragment(), BaseUserActionListener {
                               container: ViewGroup?,
                               savedInstanceState: Bundle?
     ): View {
-        viewBinding = PostFragmentBinding
+        viewBinding = MovieFragmentBinding
                 .inflate(inflater, container, false)
                 .apply {
-                    listener = this@PostFragment
+                    listener = this@MovieFragment
                     vm = viewModel
                 }
 
@@ -121,14 +121,14 @@ class PostFragment : Fragment(), BaseUserActionListener {
     }
 
     override fun onRefresh() {
-        Handler().postDelayed({
+        Handler().movieDelayed({
             pullToRefresh()
         }, 1000)
     }
 
     private fun setupData() {
         viewModel.apply {
-            getPosts()
+            getMovies()
         }
     }
 
@@ -138,9 +138,10 @@ class PostFragment : Fragment(), BaseUserActionListener {
             state?.let {
                 when (state) {
                     is LoadingState -> showIsLoading()
-                    is PostListState -> {
+
+                    is MovieListState -> {
                         showCategoryItemList(
-                                posts = state.list.map { PostItem.from(it) })
+                            movies = state.list.map { MovieItem.from(it) })
                     }
                     is ErrorState -> showError(state.error)
                 }
@@ -148,7 +149,7 @@ class PostFragment : Fragment(), BaseUserActionListener {
         })
 
         coroutineLaunch(Main) {
-            keywords.consumeEach { searchPosts(it) }
+            keywords.consumeEach { searchMovies(it) }
         }
     }
 
@@ -156,7 +157,7 @@ class PostFragment : Fragment(), BaseUserActionListener {
         viewModel.apply {
             isRefreshing.set(true)
             if (::onLoadMore.isInitialized) onLoadMore.resetState()
-            getPosts()
+            getMovies()
         }
     }
 
@@ -190,16 +191,16 @@ class PostFragment : Fragment(), BaseUserActionListener {
 
             error.btnRetry.setOnClickListener {
                 if (::onLoadMore.isInitialized) onLoadMore.resetState()
-                getPosts()
+                getMovies()
             }
         }
     }
 
-    private fun showCategoryItemList(posts: List<PostItem>) {
+    private fun showCategoryItemList(movies: List<MovieItem>) {
         viewModel.apply {
             // TODO: @mochadwi clearing list doesn't good for pagination?
-            postListSet.clear()
-            postListSet.addAll(posts.toMutableList())
+            movieListSet.clear()
+            movieListSet.addAll(movies.toMutableList())
             isRefreshing.set(false)
             progress.set(false)
             isError.set(false)

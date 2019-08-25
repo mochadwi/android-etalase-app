@@ -4,8 +4,8 @@ import android.annotation.SuppressLint
 import androidx.databinding.BindingAdapter
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
-import io.mochadwi.databinding.PostItemBinding
-import io.mochadwi.ui.post.list.PostViewHolder
+import io.mochadwi.databinding.MovieItemBinding
+import io.mochadwi.ui.movie.list.MovieViewHolder
 import io.mochadwi.util.ext.setupGridLayoutManager
 import io.mochadwi.util.ext.setupLinearLayoutManager
 import io.mochadwi.util.helper.GenericAdapter
@@ -53,7 +53,7 @@ object ListBinding {
 
                 // TODO: Refactor to generic instead of using when condition
                 override fun getViewHolder(viewBinding: ViewDataBinding): RecyclerView.ViewHolder {
-                    return PostViewHolder(viewBinding as PostItemBinding)
+                    return MovieViewHolder(viewBinding as MovieItemBinding)
                 }
             }
         } catch (e: Exception) {

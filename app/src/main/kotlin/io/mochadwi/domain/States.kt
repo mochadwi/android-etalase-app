@@ -1,6 +1,6 @@
 package io.mochadwi.domain
 
-import io.mochadwi.domain.model.post.PostModel
+import io.mochadwi.domain.model.movie.MovieModel
 
 /**
  * Abstract State
@@ -18,16 +18,16 @@ object LoadingState : State()
  */
 data class ErrorState(val error: Throwable) : State()
 
-data class PostListState(
-        val list: List<PostModel>
+data class MovieListState(
+    val list: List<MovieModel>
 ) : State() {
     companion object {
-        fun from(list: List<PostModel>): PostListState {
+        fun from(list: List<MovieModel>): MovieListState {
             return with(list) {
                 when {
                     // TODO: @mochadwi Move this into strings instead
-                    isEmpty() -> error("There's an empty post instead, please check your keyword")
-                    else -> PostListState(this)
+                    isEmpty() -> error("There's an empty movie instead, please check your keyword")
+                    else -> MovieListState(this)
                 }
             }
         }

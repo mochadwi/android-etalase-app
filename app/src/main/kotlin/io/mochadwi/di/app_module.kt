@@ -6,7 +6,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import io.mochadwi.data.datasource.local.room.AppRoomDatabase
 import io.mochadwi.data.repository.CoRepository
 import io.mochadwi.domain.repository.AppRepository
-import io.mochadwi.ui.post.PostViewModel
+import io.mochadwi.ui.movie.MovieViewModel
 import io.mochadwi.util.rx.ApplicationSchedulerProvider
 import io.mochadwi.util.rx.SchedulerProvider
 import org.koin.android.ext.koin.androidApplication
@@ -24,7 +24,7 @@ val rxModule = module {
 val viewModelModule = module {
 
     // ViewModel for Etalase app
-    viewModel { PostViewModel(get(), get()) }
+    viewModel { MovieViewModel(get(), get()) }
 }
 
 val roomModule = module {
@@ -42,7 +42,7 @@ val roomModule = module {
     }
 
     // Expose Dao directly
-    single { get<AppRoomDatabase>().postDao() }
+    single { get<AppRoomDatabase>().movieDao() }
 }
 
 val repoModule = module {

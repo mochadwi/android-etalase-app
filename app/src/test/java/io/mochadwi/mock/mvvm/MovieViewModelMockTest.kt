@@ -5,14 +5,13 @@ import androidx.lifecycle.Observer
 import io.mochadwi.di.testOnlineEtalaseApp
 import io.mochadwi.domain.ErrorState
 import io.mochadwi.domain.LoadingState
-import io.mochadwi.domain.PostListState
+import io.mochadwi.domain.MovieListState
 import io.mochadwi.domain.State
 import io.mochadwi.domain.repository.AppRepository
-import io.mochadwi.ui.post.PostViewModel
+import io.mochadwi.ui.movie.MovieViewModel
 import io.mochadwi.util.MockitoHelper.argumentCaptor
 import io.mochadwi.util.TestSchedulerProvider
-import io.mochadwi.util.mock.MockedData.mockPostsModel
-import io.mochadwi.util.toDeferred
+import io.mochadwi.util.mock.MockedData.mockMoviesModel
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.After
 import org.junit.Assert.assertEquals
@@ -35,12 +34,12 @@ import org.mockito.MockitoAnnotations
  * dedicated to build weather-app
  *
  */
-class PostViewModelMockTest : KoinTest {
+class MovieViewModelMockTest : KoinTest {
 
     @Mock
     lateinit var repository: AppRepository
-    val viewModel: PostViewModel by lazy {
-        PostViewModel(repository, TestSchedulerProvider())
+    val viewModel: MovieViewModel by lazy {
+        MovieViewModel(repository, TestSchedulerProvider())
     }
 
     @Mock
@@ -65,11 +64,11 @@ class PostViewModelMockTest : KoinTest {
     }
 
     @Test
-    fun `test PostViewModel getPosts Succeed`() = runBlockingTest {
+    fun `test MovieViewModel getMovies Succeed`() = runBlockingTest {
         val page = 1
-        given(repository.getPostsAsync()).willReturn(mockPostsModel.toDeferred())
+        given(repository.getMoviesAsync()).willReturn(mockMoviesModel.toDeferred())
 
-        viewModel.getPosts()
+        viewModel.getMovies()
 
         // setup ArgumentCaptor
         val arg = argumentCaptor<State>()
@@ -80,15 +79,15 @@ class PostViewModelMockTest : KoinTest {
         // Test obtained values in order
         assertEquals(2, values.size)
         assertEquals(LoadingState, values[0])
-        assertEquals(PostListState.from(mockPostsModel), values[1])
+        assertEquals(MovieListState.from(mockMoviesModel), values[1])
     }
 
     @Test
-    fun `test PostViewModel getPosts Failed`() = runBlockingTest {
+    fun `test MovieViewModel getMovies Failed`() = runBlockingTest {
         val error = Throwable("got an error")
-        given(repository.getPostsAsync()).will { throw error }
+        given(repository.getMoviesAsync()).will { throw error }
 
-        viewModel.getPosts()
+        viewModel.getMovies()
 
         // setup ArgumentCaptor
         val arg = argumentCaptor<State>()

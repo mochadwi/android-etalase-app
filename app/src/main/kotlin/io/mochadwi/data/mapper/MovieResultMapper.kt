@@ -1,8 +1,6 @@
 package io.mochadwi.data.mapper
 
-import io.mochadwi.data.datasource.network.kotlinx.response.movie.MovieResponse
 import io.mochadwi.domain.model.movie.Movie
-import io.mochadwi.util.ext.default
 
 /**
  * @author Mochamad Iqbal Dwi Cahyo, (moch.iqbal@dana.id)
@@ -23,7 +21,7 @@ class MovieResultMapper {
                     genreIds = genreIds,
                     originalLanguage = originalLanguage,
                     overview = overview,
-                    posterPath = posterPath.default,
+                    movieerPath = movieerPath.default,
                     popularity = popularity,
                     releaseDate = releaseDate,
                     video = video,

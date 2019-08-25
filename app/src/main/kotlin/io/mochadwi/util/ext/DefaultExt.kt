@@ -1,6 +1,6 @@
 package io.mochadwi.util.ext
 
-import io.mochadwi.ui.post.list.PostItem
+import io.mochadwi.ui.movie.list.MovieItem
 
 /**
  *
@@ -26,5 +26,5 @@ val String?.default: String
 val <T> ArrayList<T>?.default: ArrayList<T>
     get() = this ?: arrayListOf()
 
-val PostItem?.default: PostItem
-    get() = this ?: PostItem()
+val MovieItem?.default: MovieItem
+    get() = this ?: MovieItem()

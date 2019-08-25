@@ -1,6 +1,6 @@
 package io.mochadwi.data.repository
 
-import io.mochadwi.data.datasource.local.realm.PostDao
+import io.mochadwi.data.datasource.local.realm.MovieDao
 import io.mochadwi.data.datasource.network.FastAndroidNetworkingEndpoint
 
 /**
@@ -19,5 +19,5 @@ import io.mochadwi.data.datasource.network.FastAndroidNetworkingEndpoint
 // TODO(mochamadiqbaldwicahyo): 2019-08-15 This only a replica to switching framework
 class RxRepository(
     private val endpoint: FastAndroidNetworkingEndpoint,
-    private val postDao: PostDao
+    private val movieDao: MovieDao
 )

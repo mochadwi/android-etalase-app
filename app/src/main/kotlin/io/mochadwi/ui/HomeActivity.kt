@@ -68,7 +68,7 @@ class HomeActivity : BaseActivity() {
 
     private fun setupAppBar() {
         appBarConfiguration = AppBarConfiguration(
-                setOf(R.id.postFragment),
+            setOf(R.id.movieFragment),
                 null
         )
     }

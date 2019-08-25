@@ -9,7 +9,7 @@ package io.mochadwi.data.datasource.local.realm
  */
 
 // TODO(mochamadiqbaldwicahyo): 2019-08-15 This only a replica to switching framework
-abstract class PostDao {
+abstract class MovieDao {
 
-    abstract suspend fun getAllPosts(): List<String>
+    abstract suspend fun getAllMovies(): List<String>
 }

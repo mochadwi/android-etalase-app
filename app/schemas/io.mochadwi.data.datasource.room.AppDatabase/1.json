@@ -133,7 +133,7 @@
         "foreignKeys": []
       },
       {
-        "tableName": "tbl_post",
+        "tableName": "tbl_movie",
         "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `userId` INTEGER NOT NULL, `title` TEXT NOT NULL, `body` TEXT NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
           {
@@ -175,7 +175,7 @@
         "ftsOptions": {
           "tokenizer": "simple",
           "tokenizerArgs": [],
-          "contentTable": "tbl_post",
+          "contentTable": "tbl_movie",
           "languageIdColumnName": "",
           "matchInfo": "FTS4",
           "notIndexedColumns": [],
@@ -183,13 +183,13 @@
           "preferredOrder": "ASC"
         },
         "contentSyncTriggers": [
-          "CREATE TRIGGER IF NOT EXISTS room_fts_content_sync_tbl_post_fts_BEFORE_UPDATE BEFORE UPDATE ON `tbl_post` BEGIN DELETE FROM `tbl_post_fts` WHERE `docid`=OLD.`rowid`; END",
-          "CREATE TRIGGER IF NOT EXISTS room_fts_content_sync_tbl_post_fts_BEFORE_DELETE BEFORE DELETE ON `tbl_post` BEGIN DELETE FROM `tbl_post_fts` WHERE `docid`=OLD.`rowid`; END",
-          "CREATE TRIGGER IF NOT EXISTS room_fts_content_sync_tbl_post_fts_AFTER_UPDATE AFTER UPDATE ON `tbl_post` BEGIN INSERT INTO `tbl_post_fts`(`docid`, `title`, `body`) VALUES (NEW.`rowid`, NEW.`title`, NEW.`body`); END",
-          "CREATE TRIGGER IF NOT EXISTS room_fts_content_sync_tbl_post_fts_AFTER_INSERT AFTER INSERT ON `tbl_post` BEGIN INSERT INTO `tbl_post_fts`(`docid`, `title`, `body`) VALUES (NEW.`rowid`, NEW.`title`, NEW.`body`); END"
+          "CREATE TRIGGER IF NOT EXISTS room_fts_content_sync_tbl_movie_fts_BEFORE_UPDATE BEFORE UPDATE ON `tbl_movie` BEGIN DELETE FROM `tbl_movie_fts` WHERE `docid`=OLD.`rowid`; END",
+          "CREATE TRIGGER IF NOT EXISTS room_fts_content_sync_tbl_movie_fts_BEFORE_DELETE BEFORE DELETE ON `tbl_movie` BEGIN DELETE FROM `tbl_movie_fts` WHERE `docid`=OLD.`rowid`; END",
+          "CREATE TRIGGER IF NOT EXISTS room_fts_content_sync_tbl_movie_fts_AFTER_UPDATE AFTER UPDATE ON `tbl_movie` BEGIN INSERT INTO `tbl_movie_fts`(`docid`, `title`, `body`) VALUES (NEW.`rowid`, NEW.`title`, NEW.`body`); END",
+          "CREATE TRIGGER IF NOT EXISTS room_fts_content_sync_tbl_movie_fts_AFTER_INSERT AFTER INSERT ON `tbl_movie` BEGIN INSERT INTO `tbl_movie_fts`(`docid`, `title`, `body`) VALUES (NEW.`rowid`, NEW.`title`, NEW.`body`); END"
         ],
-        "tableName": "tbl_post_fts",
-        "createSql": "CREATE VIRTUAL TABLE IF NOT EXISTS `${TABLE_NAME}` USING FTS4(`title` TEXT NOT NULL, `body` TEXT NOT NULL, content=`tbl_post`)",
+        "tableName": "tbl_movie_fts",
+        "createSql": "CREATE VIRTUAL TABLE IF NOT EXISTS `${TABLE_NAME}` USING FTS4(`title` TEXT NOT NULL, `body` TEXT NOT NULL, content=`tbl_movie`)",
         "fields": [
           {
             "fieldPath": "title",

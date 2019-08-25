@@ -13,5 +13,5 @@ import androidx.room.RoomDatabase
 // TODO(mochamadiqbaldwicahyo): 2019-08-15 This only a replica to switching framework
 abstract class AppRealmDatabase : RoomDatabase() {
 
-    abstract fun postDao(): PostDao
+    abstract fun movieDao(): MovieDao
 }

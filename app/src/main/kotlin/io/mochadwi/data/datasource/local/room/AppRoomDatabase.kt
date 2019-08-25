@@ -12,8 +12,9 @@ import androidx.room.TypeConverters
  *
  */
 
-@Database(entities = [PostEntity::class, PostFts::class], version = 1)
+@Database(entities = [MovieEntity::class, MovieFts::class], version = 1)
 @TypeConverters(Converters::class)
 abstract class AppRoomDatabase : RoomDatabase() {
-    abstract fun postDao(): PostDao
+
+    abstract fun movieDao(): MovieDao
 }
