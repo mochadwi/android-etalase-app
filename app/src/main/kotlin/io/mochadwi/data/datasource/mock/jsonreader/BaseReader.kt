@@ -1,4 +1,4 @@
-package io.mochadwi.data.datasource.local.jsonreader
+package io.mochadwi.data.datasource.mock.jsonreader
 
 import io.mochadwi.data.datasource.network.kotlinx.response.post.PostResponse
 import io.mochadwi.util.ext.fromJson

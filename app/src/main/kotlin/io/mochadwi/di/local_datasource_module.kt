@@ -1,8 +1,8 @@
 package io.mochadwi.di
 
-import io.mochadwi.data.datasource.local.jsonreader.AndroidJsonReader
-import io.mochadwi.data.datasource.local.jsonreader.JsonReader
-import io.mochadwi.data.datasource.local.jsonreader.LocalFileDataSource
+import io.mochadwi.data.datasource.mock.jsonreader.AndroidJsonReader
+import io.mochadwi.data.datasource.mock.jsonreader.JsonReader
+import io.mochadwi.data.datasource.mock.jsonreader.LocalFileDataSource
 import io.mochadwi.data.datasource.network.RetrofitEndpoint
 import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module

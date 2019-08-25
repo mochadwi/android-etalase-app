@@ -1,4 +1,4 @@
-package io.mochadwi.data.datasource.local.jsonreader
+package io.mochadwi.data.datasource.mock.jsonreader
 
 import java.io.File
 

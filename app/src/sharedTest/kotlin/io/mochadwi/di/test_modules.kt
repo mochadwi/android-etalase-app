@@ -4,10 +4,10 @@ import android.content.Context
 import androidx.room.Room
 import io.mochadwi.BuildConfig.BASE_URL
 import io.mochadwi.MainApplication
-import io.mochadwi.data.datasource.local.jsonreader.JavaReader
-import io.mochadwi.data.datasource.local.jsonreader.JsonReader
-import io.mochadwi.data.datasource.local.jsonreader.LocalFileDataSource
 import io.mochadwi.data.datasource.local.room.AppRoomDatabase
+import io.mochadwi.data.datasource.mock.jsonreader.JavaReader
+import io.mochadwi.data.datasource.mock.jsonreader.JsonReader
+import io.mochadwi.data.datasource.mock.jsonreader.LocalFileDataSource
 import io.mochadwi.data.datasource.network.RetrofitEndpoint
 import io.mochadwi.util.TestSchedulerProvider
 import io.mochadwi.util.mock
