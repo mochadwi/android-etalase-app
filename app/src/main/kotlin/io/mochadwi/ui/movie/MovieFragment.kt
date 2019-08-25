@@ -16,6 +16,7 @@ import io.mochadwi.domain.LoadingState
 import io.mochadwi.domain.MovieListState
 import io.mochadwi.ui.HomeActivity
 import io.mochadwi.ui.movie.list.MovieItem
+import io.mochadwi.ui.movie.mapper.MovieModelMapper
 import io.mochadwi.util.base.BaseApiModel
 import io.mochadwi.util.base.BaseUserActionListener
 import io.mochadwi.util.base.ToolbarListener
@@ -121,7 +122,7 @@ class MovieFragment : Fragment(), BaseUserActionListener {
     }
 
     override fun onRefresh() {
-        Handler().movieDelayed({
+        Handler().postDelayed({
             pullToRefresh()
         }, 1000)
     }
@@ -141,7 +142,7 @@ class MovieFragment : Fragment(), BaseUserActionListener {
 
                     is MovieListState -> {
                         showCategoryItemList(
-                            movies = state.list.map { MovieItem.from(it) })
+                            movies = state.list.map { MovieModelMapper.from(it) })
                     }
                     is ErrorState -> showError(state.error)
                 }

@@ -44,7 +44,7 @@ class CoRepository(
         }
     }
 
-    override fun searchMoviesAsync(query: String): List<Movie>? = runBlocking {
+    override fun searchMovies(query: String): List<Movie>? = runBlocking {
         MovieEntityMapper.from<MovieEntity, Movie>(movieDao.searchMovies(query))
     }
 }

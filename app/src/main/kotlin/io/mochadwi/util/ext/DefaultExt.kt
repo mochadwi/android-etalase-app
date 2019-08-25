@@ -27,4 +27,4 @@ val <T> ArrayList<T>?.default: ArrayList<T>
     get() = this ?: arrayListOf()
 
 val MovieItem?.default: MovieItem
-    get() = this ?: MovieItem()
+    get() = this ?: MovieItem(id = 0, title = "")

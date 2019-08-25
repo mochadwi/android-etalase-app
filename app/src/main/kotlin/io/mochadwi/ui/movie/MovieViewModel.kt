@@ -24,8 +24,8 @@ import kotlinx.coroutines.channels.Channel.Factory.UNLIMITED
  */
 
 class MovieViewModel(
-        private val appRepository: AppRepository,
-        schedulerProvider: SchedulerProvider
+    private val repo: AppRepository,
+    schedulerProvider: SchedulerProvider
 ) : BaseViewModel(schedulerProvider) {
 
     val keywords = Channel<String>(UNLIMITED)
@@ -44,7 +44,7 @@ class MovieViewModel(
 
         launch {
             try {
-                val movies = appRepository.getMoviesAsync().await()
+                val movies = repo.getDiscoverMovies()
 
                 _states.value = MovieListState.from(movies!!)
             } catch (error: Throwable) {
@@ -59,7 +59,7 @@ class MovieViewModel(
 
             launch {
                 try {
-                    val movies = appRepository.searchMoviesAsync(query).await()
+                    val movies = repo.searchMovies(query)
 
                     _states.value = MovieListState.from(movies!!)
                 } catch (error: Throwable) {
