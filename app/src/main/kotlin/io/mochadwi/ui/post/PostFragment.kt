@@ -210,7 +210,7 @@ class PostFragment : Fragment(), BaseUserActionListener {
     private inline fun <reified T : Any> converter(error: HttpException): BaseApiModel<T>? {
         var baseDao: BaseApiModel<T>? = null
         try {
-            val body = error.response().errorBody()
+            val body = error.response()?.errorBody()
             baseDao = body?.string()?.fromJson(BaseApiModel.serializer(T::class.serializer()))
         } catch (exception: Exception) {
 
