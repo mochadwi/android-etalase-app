@@ -1,6 +1,8 @@
 package io.mochadwi.data.datasource.mock.jsonreader
 
+import io.mochadwi.data.datasource.network.kotlinx.response.movie.MovieResponse
 import io.mochadwi.util.ext.fromJson
+import kotlinx.serialization.list
 
 /**
  * Common parts for Json reader

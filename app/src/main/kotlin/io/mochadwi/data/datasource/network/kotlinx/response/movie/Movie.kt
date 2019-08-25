@@ -4,7 +4,7 @@ import kotlinx.serialization.Optional
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
-// // TODO(mochamadiqbaldwicahyo): 2019-08-23 Dont use default value?, value will be mapped from network instead
+// TODO(mochamadiqbaldwicahyo): 2019-08-23 Dont use default value?, value will be mapped from network instead
 @Serializable
 data class MovieResponse(
     val adult: Boolean = false,
@@ -24,8 +24,8 @@ data class MovieResponse(
     val overview: String = "",
     val popularity: Double = 0.0,
     @Optional
-    @SerialName("movieer_path")
-    val movieerPath: String? = null,
+    @SerialName("poster_path")
+    val posterPath: String? = null,
     @Optional
     @SerialName("release_date")
     val releaseDate: String = "",

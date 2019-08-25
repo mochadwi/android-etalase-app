@@ -1,5 +1,7 @@
 package io.mochadwi.data.datasource.network
 
+import io.mochadwi.data.datasource.network.kotlinx.response.movie.MovieResponse
+
 /**
  *
  * In syaa Allah created & modified
