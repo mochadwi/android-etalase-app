@@ -7,9 +7,11 @@ import io.mochadwi.data.mapper.MovieEntityMapper
 import io.mochadwi.data.mapper.MovieResultMapper
 import io.mochadwi.domain.model.movie.Movie
 import io.mochadwi.domain.repository.AppRepository
+import io.mochadwi.util.ext.default
+import io.mochadwi.util.ext.sameContentWith
 import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.async
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 
 /**
  *
@@ -28,11 +30,19 @@ class CoRepository(
     private val movieDao: MovieDao
 ) : AppRepository {
 
-    override fun getDiscoverMovies(): List<Movie>? = runBlocking(IO) {
-        val remote = async { remoteGetDiscoverMoviesAsync() }
-        val local = async { remoteGetDiscoverMoviesAsync() }
+    override fun getDiscoverMovies(): List<Movie>? = runBlocking {
+        val local = withContext(IO) { localGetDiscoverMoviesAsync() }
+        val remote = withContext(IO) { remoteGetDiscoverMoviesAsync() }
 
-        remote.await() ?: local.await()
+        if ((local sameContentWith remote).default) local
+        else remote
+    }
+
+    private suspend fun localGetDiscoverMoviesAsync(): List<Movie>? {
+        val source = movieDao.getAllMovies()
+
+        return if (source.isNotEmpty()) MovieEntityMapper.from(source)
+        else emptyList()
     }
 
     private suspend fun remoteGetDiscoverMoviesAsync(): List<Movie>? {

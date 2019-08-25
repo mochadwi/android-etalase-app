@@ -40,5 +40,5 @@ fun <T> Array<T>.leftShift(d: Int) {
     System.arraycopy(left, 0, this, right.size, left.size)
 }
 
-infix fun <T> Collection<T>.sameContentWith(collection: Collection<T>?) =
-        collection?.let { this.size == it.size && this.containsAll(it) }
+infix fun <T> Collection<T>?.sameContentWith(collection: Collection<T>?) =
+    collection?.let { this?.size == it.size && this.containsAll(it) }

@@ -26,5 +26,8 @@ val String?.default: String
 val <T> ArrayList<T>?.default: ArrayList<T>
     get() = this ?: arrayListOf()
 
+val <T> List<T>?.default: List<T>
+    get() = this ?: listOf()
+
 val MovieItem?.default: MovieItem
     get() = this ?: MovieItem(id = 0, title = "")
