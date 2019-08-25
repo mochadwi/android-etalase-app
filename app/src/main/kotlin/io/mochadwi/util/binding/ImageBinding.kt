@@ -14,6 +14,7 @@ import io.mochadwi.R
 import io.mochadwi.util.ext.gone
 import io.mochadwi.util.ext.loadImage
 import io.mochadwi.util.helper.AppHelper.Const.ATTR_IMAGE_SOURCE
+import io.mochadwi.util.helper.AppHelper.Const.BASE_IMAGE_URL_MOVIE_DB
 import io.mochadwi.util.helper.AppHelper.Const.TAG_IMAGE_URL
 import io.mochadwi.util.helper.GlideApp
 
@@ -39,7 +40,7 @@ object ImageBinding {
             e.printStackTrace()
         }
 
-        loadImage(imageUrl)
+        loadImage("$BASE_IMAGE_URL_MOVIE_DB$imageUrl")
     }
 
     @SuppressLint("PrivateResource")

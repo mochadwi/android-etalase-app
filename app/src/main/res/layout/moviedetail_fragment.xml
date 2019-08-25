@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:img="http://schemas.android.com/tools">
 
     <data>
 
@@ -17,16 +17,18 @@
         android:layout_height="match_parent"
         android:background="@color/mainWhiteDark">
 
-        <TextView
-            android:id="@+id/tvMovieBody"
-            android:layout_width="@dimen/dimens_0dp"
-            android:layout_height="@dimen/dimens_200dp"
-            android:text="@{item.overview ?? `body_content`}"
+        <ImageView
+            android:id="@+id/ivMoviePoster"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerInside"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"
+            img:src="@{item.posterPath}" />
 
         <TextView
+            android:id="@+id/tvMovieTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
@@ -36,7 +38,17 @@
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvMovieBody" />
+            app:layout_constraintTop_toBottomOf="@id/ivMoviePoster" />
+
+        <TextView
+            android:id="@+id/tvMovieBody"
+            android:layout_width="@dimen/dimens_0dp"
+            android:layout_height="@dimen/dimens_200dp"
+            android:text="@{item.overview ?? `body_content`}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvMovieTitle" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

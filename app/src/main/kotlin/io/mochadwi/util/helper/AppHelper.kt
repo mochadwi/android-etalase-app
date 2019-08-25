@@ -288,7 +288,7 @@ class AppHelper {
         // Server side constanta
         const val SERVER_CODE_404 = 404
         const val SERVER_ERROR_MESSAGE_DEFAULT = "Data not found"
-        const val BASE_IMAGE_URL_MOVIE_DB = BuildConfig.DEFAULT_IMAGE_URL
+        const val BASE_IMAGE_URL_MOVIE_DB = BuildConfig.BASE_IMAGE_URL
 
         // Date format style
         // If you want convert to indonesia please using Locale("id", "ID") put into SimpleDateFormat

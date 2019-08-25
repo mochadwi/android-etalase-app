@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:img="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -20,7 +21,19 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/categoryItemLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/ivMoviePoster"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:scaleType="centerInside"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintLeft_toRightOf="@id/tvMovieTitle"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                img:src="@{item.posterPath}" />
 
             <TextView
                 android:id="@+id/tvMovieTitle"
@@ -33,24 +46,25 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="@{item.title}"
-                app:layout_constraintBottom_toTopOf="@id/tvMovieBody"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/ivMoviePoster"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_chainStyle="spread"
-                tools:hint="Module A Module A Module A Module A Module A"
-                tools:text="Tuesday"
+                tools:text="Tuesday sdfTuesday sdfTuesday sdfTuesday sdfTuesday sdfTuesday sdfTuesday sdfTuesday sdfTuesday sdf"
                 />
 
             <TextView
                 android:id="@+id/tvMovieBody"
                 android:layout_width="0dp"
                 android:layout_height="200dp"
+                android:layout_marginTop="4dp"
                 android:padding="@dimen/dimens_4dp"
                 android:text="@{item.overview ?? `body_content`}"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_chainStyle="spread"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/ivMoviePoster"
                 app:layout_constraintTop_toBottomOf="@id/tvMovieTitle"
                 app:layout_constraintVertical_chainStyle="spread"/>
 
