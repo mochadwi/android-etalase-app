@@ -66,7 +66,7 @@ class MovieViewModelMockTest : KoinTest {
     @Test
     fun `test MovieViewModel getMovies Succeed`() = runBlockingTest {
         val page = 1
-        given(repository.getMoviesAsync()).willReturn(mockMoviesModel.toDeferred())
+        given(repository.getDiscoverMovies()).willReturn(mockMoviesModel)
 
         viewModel.getMovies()
 
@@ -85,7 +85,7 @@ class MovieViewModelMockTest : KoinTest {
     @Test
     fun `test MovieViewModel getMovies Failed`() = runBlockingTest {
         val error = Throwable("got an error")
-        given(repository.getMoviesAsync()).will { throw error }
+        given(repository.getDiscoverMovies()).will { throw error }
 
         viewModel.getMovies()
 
