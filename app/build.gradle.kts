@@ -116,7 +116,7 @@ android {
             applicationIdSuffix = ".dev"
 
             // Env dev server
-            buildConfigField("String", "BASE_URL", "\"https://api.myjson.com/bins/\"")
+            buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3/\"")
             buildConfigField("String", "BASE_IMAGE_URL", "\"https://paper.dropboxstatic.com/static/img/\"")
             buildConfigField("String", "DEFAULT_IMAGE_URL", "\"https://paper.dropboxstatic.com/static/img/favicon/apple-touch-icon.png\"")
 

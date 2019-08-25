@@ -1,7 +1,7 @@
 package io.mochadwi.domain.repository
 
+import io.mochadwi.domain.model.movie.Movie
 import io.mochadwi.domain.model.post.PostModel
-import io.mochadwi.domain.model.product.Product
 import kotlinx.coroutines.Deferred
 
 /**
@@ -18,6 +18,6 @@ interface AppRepository {
     // TODO(mochamadiqbaldwicahyo): 2019-08-14 don't put external dependency e.g (Deferred) in domain layer
     fun getPostsAsync(): Deferred<List<PostModel>?>
 
-    fun getProductsAsync(): List<Product>?
+    fun getDiscoverMovies(): List<Movie>?
     fun searchPostsAsync(query: String): Deferred<List<PostModel>?>
 }
