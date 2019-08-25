@@ -78,3 +78,5 @@ Etalase movie app
 
 ### Known Issue
 - [ ] List overloading: [typealias](https://kotlinlang.org/docs/reference/type-aliases.html), [java list param 1](https://stackoverflow.com/q/2241514/3763032), [java list param 2](https://coderanch.com/t/384093/java/Overloading-List-Generic-Types-Argument). The code [here]()
+- [ ] [Concrete implementation from generic class](https://stackoverflow.com/a/47796513/3763032)
+- [ ] Loading animation issue
