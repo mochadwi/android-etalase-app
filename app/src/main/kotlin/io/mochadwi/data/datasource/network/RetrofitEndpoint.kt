@@ -17,7 +17,7 @@ import retrofit2.http.Query
 
 interface RetrofitEndpoint {
     @GET(ENDPOINT_DISCOVER_MOVIES)
-    suspend fun getDiscoverMoviesAsync(
+    suspend fun getDiscoverMovies(
         @Query("api_key") apiKey: String = "334879b2c8dc36a9f2c64f7bd4f0c91d"
     ): Response<BaseResponse<MovieResponse>>
 }

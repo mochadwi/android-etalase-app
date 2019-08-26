@@ -30,7 +30,7 @@ class CoRepository(
     private val movieDao: MovieDao
 ) : AppRepository {
 
-    override fun getDiscoverMovies(): List<Movie>? = runBlocking {
+    override fun getDiscoverMovies(): List<Movie>? = runBlocking(IO) {
         val local = withContext(IO) { localGetDiscoverMoviesAsync() }
         val remote = withContext(IO) { remoteGetDiscoverMoviesAsync() }
 
@@ -46,7 +46,7 @@ class CoRepository(
     }
 
     private suspend fun remoteGetDiscoverMoviesAsync(): List<Movie>? {
-        val response = endpoint.getDiscoverMoviesAsync()
+        val response = endpoint.getDiscoverMovies()
 
         return response.body()?.let {
             if (response.isSuccessful) MovieResultMapper.from(it.results ?: emptyList())

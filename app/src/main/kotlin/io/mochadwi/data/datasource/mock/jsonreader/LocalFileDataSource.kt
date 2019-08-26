@@ -10,7 +10,7 @@ import retrofit2.Response
  */
 class LocalFileDataSource(val jsonReader: JsonReader, val delayed: Boolean) : RetrofitEndpoint {
 
-    override suspend fun getDiscoverMoviesAsync(
+    override suspend fun getDiscoverMovies(
         apiKey: String
     ): Response<BaseResponse<MovieResponse>> {
         TODO(
