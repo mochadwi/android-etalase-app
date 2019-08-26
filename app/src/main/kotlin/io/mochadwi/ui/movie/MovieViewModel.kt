@@ -42,13 +42,13 @@ class MovieViewModel(
     fun getMovies() {
         _states.value = LoadingState
 
-        launch {
+        launchIo {
             try {
                 val movies = repo.getDiscoverMovies()
 
-                _states.value = MovieListState.from(movies!!)
+                _states.postValue(MovieListState.from(movies!!))
             } catch (error: Throwable) {
-                _states.value = ErrorState(error)
+                _states.postValue(ErrorState(error))
             }
         }
     }
@@ -57,13 +57,13 @@ class MovieViewModel(
         if (query.isNotBlank()) {
             _states.value = LoadingState
 
-            launch {
+            launchIo {
                 try {
                     val movies = repo.searchMovies(query)
 
-                    _states.value = MovieListState.from(movies!!)
+                    _states.postValue(MovieListState.from(movies!!))
                 } catch (error: Throwable) {
-                    _states.value = ErrorState(error)
+                    _states.postValue(ErrorState(error))
                 }
             }
         }
