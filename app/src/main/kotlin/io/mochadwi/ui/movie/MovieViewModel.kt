@@ -29,7 +29,7 @@ class MovieViewModel(
 ) : BaseViewModel(schedulerProvider) {
 
     val keywords = Channel<String>(UNLIMITED)
-    var movieListSet = MutableSetObservableField<MovieItem>()
+    val movieListSet = MutableSetObservableField<MovieItem>()
 
     /*
      * We use LiveEvent to publish "states"

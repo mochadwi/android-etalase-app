@@ -59,7 +59,9 @@ class MovieFragment : Fragment(), BaseUserActionListener {
                 .apply {
                     listener = this@MovieFragment
                     vm = viewModel
+                    lifecycleOwner = this@MovieFragment
                 }
+        setupObserver()
 
         return viewBinding.root
     }
@@ -73,7 +75,7 @@ class MovieFragment : Fragment(), BaseUserActionListener {
         super.onActivityCreated(savedInstanceState)
 
         (requireActivity() as ToolbarListener).updateTitleToolbar(newTitle = getString(R.string.app_name))
-        setupObserver()
+
         if (savedInstanceState == null) {
             setupData()
         }
@@ -122,9 +124,7 @@ class MovieFragment : Fragment(), BaseUserActionListener {
     }
 
     override fun onRefresh() {
-        Handler().postDelayed({
-            pullToRefresh()
-        }, 1000)
+        Handler().postDelayed({ pullToRefresh() }, 1000)
     }
 
     private fun setupData() {
@@ -141,9 +141,10 @@ class MovieFragment : Fragment(), BaseUserActionListener {
                     is LoadingState -> showIsLoading()
 
                     is MovieListState -> {
-                        showCategoryItemList(
+                        showItemList(
                             movies = state.list.map { MovieModelMapper.from(it) })
                     }
+
                     is ErrorState -> showError(state.error)
                 }
             }
@@ -157,8 +158,7 @@ class MovieFragment : Fragment(), BaseUserActionListener {
     private fun pullToRefresh() {
         viewModel.apply {
             isRefreshing.set(true)
-            if (::onLoadMore.isInitialized) onLoadMore.resetState()
-            getMovies()
+            refreshItemList()
         }
     }
 
@@ -183,21 +183,17 @@ class MovieFragment : Fragment(), BaseUserActionListener {
                         else -> converter<Any>(err)?.message
                     }
                 }
-                else -> {
-                    err.localizedMessage
-                }
+
+                else -> err.localizedMessage
             }
 
             errMsg.set(humanizedMsg)
 
-            error.btnRetry.setOnClickListener {
-                if (::onLoadMore.isInitialized) onLoadMore.resetState()
-                getMovies()
-            }
+            error.btnRetry.setOnClickListener { refreshItemList() }
         }
     }
 
-    private fun showCategoryItemList(movies: List<MovieItem>) {
+    private fun showItemList(movies: List<MovieItem>) {
         viewModel.apply {
             // TODO: @mochadwi clearing list doesn't good for pagination?
             movieListSet.clear()
@@ -208,6 +204,13 @@ class MovieFragment : Fragment(), BaseUserActionListener {
         }
     }
 
+    private fun refreshItemList() {
+        viewModel.apply {
+            if (::onLoadMore.isInitialized) onLoadMore.resetState()
+            getMovies()
+        }
+    }
+
     // TODO: Move this into utils class
     private inline fun <reified T : Any> converter(error: HttpException): BaseApiModel<T>? {
         var baseDao: BaseApiModel<T>? = null
@@ -215,7 +218,7 @@ class MovieFragment : Fragment(), BaseUserActionListener {
             val body = error.response()?.errorBody()
             baseDao = body?.string()?.fromJson(BaseApiModel.serializer(T::class.serializer()))
         } catch (exception: Exception) {
-
+            // no-op
         }
 
         return baseDao
