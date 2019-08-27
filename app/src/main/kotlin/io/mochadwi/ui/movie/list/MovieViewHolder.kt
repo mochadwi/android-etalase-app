@@ -1,5 +1,6 @@
 package io.mochadwi.ui.movie.list
 
+import android.view.View
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import io.mochadwi.databinding.MovieItemBinding
@@ -21,14 +22,11 @@ class MovieViewHolder(val binding: MovieItemBinding) :
     override fun bind(data: MovieItem) {
         binding.apply {
             item = data
-            root.setOnClickListener {
-                val toMovieDetail = MovieFragmentDirections.toMovieDetailAction(
-                        data
-                )
-
-                it.findNavController().navigate(toMovieDetail)
-            }
             executePendingBindings()
         }
+    }
+
+    override fun onClick(v: View, data: MovieItem) {
+        v.findNavController().navigate(MovieFragmentDirections.toMovieDetailAction(data))
     }
 }

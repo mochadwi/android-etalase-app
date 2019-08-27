@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.NO_POSITION
 import io.mochadwi.util.base.BaseBindableAdapter
 
 abstract class GenericAdapter<DATA> :
@@ -43,10 +44,18 @@ abstract class GenericAdapter<DATA> :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return getViewHolder(
-                DataBindingUtil.inflate(LayoutInflater.from(parent.context)
-                        , viewType
-                        , parent
-                        , false)!!)
+            DataBindingUtil.inflate(LayoutInflater.from(parent.context)
+                , viewType
+                , parent
+                , false)!!).apply {
+
+            itemView.setOnClickListener {
+                val pos = adapterPosition
+                if (pos != NO_POSITION) {
+                    (this as? BaseBindableAdapter<DATA>)?.onClick(it, listItems[pos])
+                }
+            }
+        }
     }
 
     @SuppressWarnings("Unchecked cast")
