@@ -54,31 +54,30 @@ class MovieFragment : Fragment(), BaseUserActionListener {
                               container: ViewGroup?,
                               savedInstanceState: Bundle?
     ): View {
-        viewBinding = MovieFragmentBinding
+        return if (::viewBinding.isInitialized) viewBinding.root
+        else {
+            viewBinding = MovieFragmentBinding
                 .inflate(inflater, container, false)
                 .apply {
                     listener = this@MovieFragment
                     vm = viewModel
                     lifecycleOwner = this@MovieFragment
                 }
-        setupObserver()
 
-        return viewBinding.root
+            (requireActivity() as ToolbarListener).updateTitleToolbar(
+                newTitle = getString(R.string.app_name)
+            )
+
+            setupObserver()
+            setupData()
+
+            viewBinding.root
+        }
     }
 
     override fun onResume() {
         super.onResume()
         if (::onLoadMore.isInitialized) onLoadMore.resetState()
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-        (requireActivity() as ToolbarListener).updateTitleToolbar(newTitle = getString(R.string.app_name))
-
-        if (savedInstanceState == null) {
-            setupData()
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -129,6 +128,8 @@ class MovieFragment : Fragment(), BaseUserActionListener {
 
     private fun setupData() {
         viewModel.apply {
+            if (::onLoadMore.isInitialized) onLoadMore.resetState()
+            movieListSet.clear()
             getMovies()
         }
     }
@@ -136,17 +137,15 @@ class MovieFragment : Fragment(), BaseUserActionListener {
     private fun setupObserver() = with(viewModel) {
         // Observe ComposeState
         states.observe(viewLifecycleOwner, Observer { state ->
-            state?.let {
-                when (state) {
-                    is LoadingState -> showIsLoading()
+            when (state) {
+                is LoadingState -> showIsLoading()
 
-                    is MovieListState -> {
-                        showItemList(
-                            movies = state.list.map { MovieModelMapper.from(it) })
-                    }
-
-                    is ErrorState -> showError(state.error)
+                is MovieListState -> {
+                    showItemList(
+                        movies = state.list.map { MovieModelMapper.from(it) })
                 }
+
+                is ErrorState -> showError(state.error)
             }
         })
 
@@ -158,7 +157,7 @@ class MovieFragment : Fragment(), BaseUserActionListener {
     private fun pullToRefresh() {
         viewModel.apply {
             isRefreshing.set(true)
-            refreshItemList()
+            setupData()
         }
     }
 
@@ -189,25 +188,17 @@ class MovieFragment : Fragment(), BaseUserActionListener {
 
             errMsg.set(humanizedMsg)
 
-            error.btnRetry.setOnClickListener { refreshItemList() }
+            error.btnRetry.setOnClickListener { setupData() }
         }
     }
 
     private fun showItemList(movies: List<MovieItem>) {
         viewModel.apply {
             // TODO: @mochadwi clearing list doesn't good for pagination?
-            movieListSet.clear()
             movieListSet.addAll(movies.toMutableList())
             isRefreshing.set(false)
             progress.set(false)
             isError.set(false)
-        }
-    }
-
-    private fun refreshItemList() {
-        viewModel.apply {
-            if (::onLoadMore.isInitialized) onLoadMore.resetState()
-            getMovies()
         }
     }
 

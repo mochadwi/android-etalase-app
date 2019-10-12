@@ -26,13 +26,12 @@
             <ImageView
                 android:id="@+id/ivMoviePoster"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:scaleType="centerInside"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintHorizontal_chainStyle="spread"
-                app:layout_constraintLeft_toRightOf="@id/tvMovieTitle"
+                android:layout_height="300dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/launch_screen"
+                app:layout_constraintTop_toBottomOf="@id/tvMovieTitle"
                 img:src="@{item.posterPath}" />
 
             <TextView
@@ -48,9 +47,8 @@
                 android:text="@{item.title}"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/ivMoviePoster"
+                app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_chainStyle="spread"
                 tools:text="Tuesday sdfTuesday sdfTuesday sdfTuesday sdfTuesday sdfTuesday sdfTuesday sdfTuesday sdfTuesday sdf"
                 />
 
@@ -58,6 +56,7 @@
                 android:id="@+id/tvMovieBody"
                 android:layout_width="0dp"
                 android:layout_height="200dp"
+                android:visibility="gone"
                 android:layout_marginTop="4dp"
                 android:padding="@dimen/dimens_4dp"
                 android:text="@{item.overview ?? `body_content`}"

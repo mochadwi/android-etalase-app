@@ -1,6 +1,7 @@
 package io.mochadwi.ui.movie
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import io.mochadwi.domain.ErrorState
 import io.mochadwi.domain.LoadingState
 import io.mochadwi.domain.MovieListState
@@ -8,8 +9,6 @@ import io.mochadwi.domain.State
 import io.mochadwi.domain.repository.AppRepository
 import io.mochadwi.ui.movie.list.MovieItem
 import io.mochadwi.util.base.BaseViewModel
-import io.mochadwi.util.ext.toSingleEvent
-import io.mochadwi.util.mvvm.LiveEvent
 import io.mochadwi.util.mvvm.MutableSetObservableField
 import io.mochadwi.util.rx.SchedulerProvider
 import kotlinx.coroutines.channels.Channel
@@ -35,7 +34,7 @@ class MovieViewModel(
      * We use LiveEvent to publish "states"
      * No need to publish and retain any view state
      */
-    private val _states = LiveEvent<State>()
+    private val _states = MutableLiveData<State>()
     val states: LiveData<State>
         get() = _states
 

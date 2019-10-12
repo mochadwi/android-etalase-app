@@ -37,7 +37,9 @@ class MovieDetailFragment : Fragment() {
                 .inflate(inflater, container, false)
                 .apply {
                     item = args.movieItem
+                    lifecycleOwner = this@MovieDetailFragment
                 }
+
         return viewBinding.root
     }
 
