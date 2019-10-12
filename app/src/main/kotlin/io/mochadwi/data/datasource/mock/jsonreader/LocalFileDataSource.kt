@@ -17,6 +17,11 @@ class LocalFileDataSource(val jsonReader: JsonReader, val delayed: Boolean) : Re
             "not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
+    override suspend fun getTvShows(apiKey: String): Response<BaseResponse<MovieResponse>> {
+        TODO(
+            "not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
     companion object {
         const val DEFAULT_CITY = "toulouse"
     }

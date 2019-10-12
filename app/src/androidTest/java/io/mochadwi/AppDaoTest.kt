@@ -45,7 +45,7 @@ class AppDaoTest : KoinTest {
 
         assertEquals(true, result.isNotEmpty())
         assertEquals(mockMoviesEntity.count(), movies.count())
-        assertEquals(mockMoviesEntity[0].id, movies[0].id)
+        assertEquals(mockMoviesEntity.sortedBy { it.id }[0].id, movies[0].id)
     }
 
     @Test

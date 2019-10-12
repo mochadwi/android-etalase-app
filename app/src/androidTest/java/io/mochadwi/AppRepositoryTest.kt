@@ -38,4 +38,20 @@ class AppRepositoryTest : KoinTest {
         assertEquals(true, result != null)
         assertEquals(true, result?.isNotEmpty().default)
     }
+
+    @Test
+    fun test_getTvApi() {
+        // why we need this? to check, if there's error on the framework/library side.
+        // let's see this. Im using kotlinx serialization.
+        val result = repository.getTvShows()
+        result?.forEach(::println)
+    }
+
+    @Test
+    fun test_isNotEmptyTvApi() {
+        val result = repository.getTvShows()
+
+        assertEquals(true, result != null)
+        assertEquals(true, result?.isNotEmpty().default)
+    }
 }

@@ -79,10 +79,10 @@ Etalase movie app
 ### Known Issue
 - [ ] List overloading: [typealias](https://kotlinlang.org/docs/reference/type-aliases.html), [java list param 1](https://stackoverflow.com/q/2241514/3763032), [java list param 2](https://coderanch.com/t/384093/java/Overloading-List-Generic-Types-Argument). The code [here]()
 - [ ] [Concrete implementation from generic class](https://stackoverflow.com/a/47796513/3763032)
-- [x] Loading animation issue: fix with coroutine in IO thread
+- [x] Loading animation issue: move network/database fetching in IO thread
 - [x] Implement click listener RV onCreateViewHolder: implement an onClick(View, Int) callback
 - [ ] Remove hardcoded strings
 - [ ] Remove unused resources
-- [ ] Don't refresh on user back from detail screen
+- [ ] Don't refresh on user back from detail screen: [SavedState](https://medium.com/androiddevelopers/viewmodels-persistence-onsaveinstancestate-restoring-ui-state-and-loaders-fc7cc4a6c090)
 - [ ] Overview text truncated on the CardView
-- [x] Polish the UI screen to be more nicer
+- [ ] Polish the UI screen to be more nicer

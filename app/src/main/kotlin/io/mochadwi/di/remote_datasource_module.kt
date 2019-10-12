@@ -7,6 +7,7 @@ import io.mochadwi.BuildConfig
 import io.mochadwi.BuildConfig.BASE_URL
 import io.mochadwi.data.datasource.network.RetrofitEndpoint
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonConfiguration
 import okhttp3.Interceptor
 import okhttp3.MediaType
 import okhttp3.OkHttpClient
@@ -56,7 +57,9 @@ inline fun <reified T> createWebService(okHttpClient: OkHttpClient, url: String)
         .client(okHttpClient)
         .addConverterFactory(ScalarsConverterFactory.create())
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
-        .addConverterFactory(Json.asConverterFactory(MediaType.get("application/json")))
+        .addConverterFactory(
+            Json(configuration = JsonConfiguration(strictMode = false))
+                .asConverterFactory(MediaType.get("application/json")))
         .build()
     return retrofit.create(T::class.java)
 }

@@ -315,6 +315,7 @@ class AppHelper {
         const val ENDPOINT_SEARCH = "search/"
         const val ENDPOINT_POSTS = "movies"
         const val ENDPOINT_DISCOVER_MOVIES = "discover/movie"
+        const val ENDPOINT_DISCOVER_TV = "discover/tv"
 
         const val ATTR_IMAGE_SOURCE = "img:src"
         const val TAG_IMAGE_URL = "IMG-URL"

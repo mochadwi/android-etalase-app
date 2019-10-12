@@ -37,7 +37,21 @@ class MovieViewModel(
      */
     private val _states = LiveEvent<State>()
     val states: LiveData<State>
-        get() = _states.toSingleEvent()
+        get() = _states
+
+    fun getTvShows() {
+        _states.value = LoadingState
+
+        launchIo {
+            try {
+                val movies = repo.getTvShows()
+
+                _states.postValue(MovieListState.from(movies!!))
+            } catch (error: Throwable) {
+                _states.postValue(ErrorState(error))
+            }
+        }
+    }
 
     fun getMovies() {
         _states.value = LoadingState

@@ -38,6 +38,10 @@ class CoRepository(
         else remote
     }
 
+    override fun getTvShows(): List<Movie>? = runBlocking {
+        withContext(IO) { remoteGetTvShowsAsync() }
+    }
+
     private suspend fun localGetDiscoverMoviesAsync(): List<Movie>? {
         val source = movieDao.getAllMovies()
 
@@ -49,6 +53,17 @@ class CoRepository(
         val response = endpoint.getDiscoverMovies()
 
         return response.body()?.let {
+            //            movieDao.upsert(MovieEntityMapper.from<MovieResponse, MovieEntity>(it.results ?: emptyList()))
+            if (response.isSuccessful) MovieResultMapper.from(it.results ?: emptyList())
+            else emptyList()
+        }
+    }
+
+    private suspend fun remoteGetTvShowsAsync(): List<Movie>? {
+        val response = endpoint.getTvShows()
+
+        return response.body()?.let {
+            //            movieDao.upsert(MovieEntityMapper.from<MovieResponse, MovieEntity>(it.results ?: emptyList()))
             if (response.isSuccessful) MovieResultMapper.from(it.results ?: emptyList())
             else emptyList()
         }
