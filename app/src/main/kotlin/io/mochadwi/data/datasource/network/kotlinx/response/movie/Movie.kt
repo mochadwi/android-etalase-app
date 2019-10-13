@@ -21,6 +21,8 @@ data class MovieResponse(
     @Optional
     @SerialName("original_title")
     val originalTitle: String = "",
+    @SerialName("original_name")
+    val originalName: String = "",
     val overview: String = "",
     val popularity: Double = 0.0,
     @Optional
@@ -30,6 +32,7 @@ data class MovieResponse(
     @SerialName("release_date")
     val releaseDate: String = "",
     val title: String = "",
+    val name: String = "",
     val video: Boolean = false,
     @Optional
     @SerialName("vote_average")

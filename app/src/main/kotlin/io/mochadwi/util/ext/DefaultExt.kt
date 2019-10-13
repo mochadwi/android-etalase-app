@@ -30,4 +30,4 @@ val <T> List<T>?.default: List<T>
     get() = this ?: listOf()
 
 val MovieItem?.default: MovieItem
-    get() = this ?: MovieItem(id = 0, title = "")
+    get() = this ?: MovieItem(id = 0, title = "", name = "")

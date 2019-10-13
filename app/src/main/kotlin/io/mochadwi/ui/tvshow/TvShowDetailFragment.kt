@@ -47,6 +47,6 @@ class TvShowDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        (requireActivity() as ToolbarListener).updateTitleToolbar(args.movieItem?.title.default)
+        (requireActivity() as ToolbarListener).updateTitleToolbar(args.movieItem?.name.default)
     }
 }

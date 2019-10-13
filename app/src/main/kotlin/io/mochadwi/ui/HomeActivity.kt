@@ -7,6 +7,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
+import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import io.mochadwi.R
 import io.mochadwi.databinding.HomeActivityBinding
@@ -33,9 +34,11 @@ class HomeActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
 
         viewBinding.executePendingBindings()
-        setupToolbar(viewBinding.toolbar.tbCustom)
         setupNavController()
-        if (::mNavController.isInitialized) {
+        setupAppBar()
+        if (::mNavController.isInitialized && ::appBarConfiguration.isInitialized) {
+//            NavigationUI.setupActionBarWithNavController(this, mNavController)
+            setupActionBar(mNavController, appBarConfiguration)
             setupBottomNav(mNavController)
         }
     }
@@ -64,6 +67,21 @@ class HomeActivity : BaseActivity() {
         mNavHost = supportFragmentManager
                 .findFragmentById(R.id.navHostFragment) as NavHostFragment? ?: return
         mNavController = mNavHost.navController
+    }
+
+    private fun setupAppBar() {
+        appBarConfiguration = AppBarConfiguration(
+            setOf(R.id.movieFragmentDest, R.id.tvFragmentDest),
+            null
+        )
+    }
+
+    private fun setupActionBar(
+        navController: NavController,
+        appBarConfig: AppBarConfiguration
+    ) {
+        setupToolbar(viewBinding.toolbar.tbCustom)
+        setupActionBarWithNavController(navController, appBarConfig)
     }
 
     private fun setupBottomNav(navController: NavController) {

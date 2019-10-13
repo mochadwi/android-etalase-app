@@ -34,7 +34,7 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:padding="@dimen/dimens_16dp"
-            android:text="@{item.title ?? `Product Name`}"
+            android:text="@{item.title ?? item.name}"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
