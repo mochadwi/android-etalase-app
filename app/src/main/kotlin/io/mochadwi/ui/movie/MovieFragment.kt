@@ -65,7 +65,7 @@ class MovieFragment : Fragment(), BaseUserActionListener {
                 }
 
             (requireActivity() as ToolbarListener).updateTitleToolbar(
-                newTitle = getString(R.string.app_name)
+                newTitle = "Movie"
             )
 
             setupObserver()

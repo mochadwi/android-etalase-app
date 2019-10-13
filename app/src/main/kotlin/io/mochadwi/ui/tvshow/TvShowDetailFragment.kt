@@ -1,4 +1,4 @@
-package io.mochadwi.ui.movie
+package io.mochadwi.ui.tvshow
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import io.mochadwi.databinding.MoviedetailFragmentBinding
+import io.mochadwi.ui.movie.MovieDetailFragmentArgs
 import io.mochadwi.util.base.ToolbarListener
 import io.mochadwi.util.ext.default
 

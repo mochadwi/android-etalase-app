@@ -1,4 +1,4 @@
-package io.mochadwi.ui.movie
+package io.mochadwi.ui.tvshow
 
 import android.app.SearchManager
 import android.content.ComponentName
@@ -15,6 +15,7 @@ import io.mochadwi.domain.ErrorState
 import io.mochadwi.domain.LoadingState
 import io.mochadwi.domain.MovieListState
 import io.mochadwi.ui.HomeActivity
+import io.mochadwi.ui.movie.MovieViewModel
 import io.mochadwi.ui.movie.list.MovieItem
 import io.mochadwi.ui.movie.mapper.MovieModelMapper
 import io.mochadwi.util.base.BaseApiModel
@@ -28,7 +29,7 @@ import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.channels.consumeEach
 import kotlinx.coroutines.delay
 import kotlinx.serialization.serializer
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import retrofit2.HttpException
 
 /**
@@ -41,7 +42,7 @@ import retrofit2.HttpException
 class TvShowFragment : Fragment(), BaseUserActionListener {
 
     private lateinit var viewBinding: MovieFragmentBinding
-    private val viewModel by viewModel<MovieViewModel>()
+    private val viewModel by sharedViewModel<MovieViewModel>()
     private lateinit var onLoadMore: EndlessRecyclerOnScrollListener
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,7 +67,7 @@ class TvShowFragment : Fragment(), BaseUserActionListener {
                 }
 
             (requireActivity() as ToolbarListener).updateTitleToolbar(
-                newTitle = getString(R.string.app_name)
+                newTitle = "Tv Show"
             )
 
             setupObserver()

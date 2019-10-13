@@ -3,11 +3,11 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/homeNavGraph"
-    app:startDestination="@id/movieFragment"
+    app:startDestination="@id/movieFragmentDest"
     >
 
     <fragment
-        android:id="@+id/movieFragment"
+        android:id="@+id/movieFragmentDest"
         android:name="io.mochadwi.ui.movie.MovieFragment"
         android:label="MovieFragment"
         tools:layout="@layout/movie_fragment">
@@ -17,7 +17,23 @@
             app:destination="@id/movieDetailFragment">
             <argument
                 android:name="movieItem"
-                app:argType="io.mochadwi.ui.movie.list.MovieItem" />
+                app:argType="io.mochadwi.ui.movie.list.MovieItem"/>
+        </action>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/tvFragmentDest"
+        android:name="io.mochadwi.ui.tvshow.TvShowFragment"
+        android:label="TvShowFragment"
+        tools:layout="@layout/movie_fragment">
+
+        <action
+            android:id="@+id/toMovieDetailAction"
+            app:destination="@id/movieDetailFragment">
+            <argument
+                android:name="movieItem"
+                app:argType="io.mochadwi.ui.movie.list.MovieItem"/>
         </action>
 
     </fragment>
