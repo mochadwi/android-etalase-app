@@ -1,16 +1,23 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:shrinkMode="strict">
-    <string name="app_folder">App_DIR</string>
-    <string name="transition_name">transition_name</string>
+    <string name="app_folder" translatable="false">App_DIR</string>
+    <string name="transition_name" translatable="false">transition_name</string>
     <string name="retry">Retry</string>
     <string name="error_backend">Something went wrong at our end!</string>
 
     <!-- API KEY -->
-    <string name="message_cameratitle">Izin akses kamera</string>
-    <string name="message_cameramessage">Izin kamera diperlukan untuk mengunggah gambar</string>
-    <string name="message_directorytitle">Izin akses direktori</string>
-    <string name="message_directorymessage">Izin direktori diperlukan untuk menyimpan berkas</string>
-    <string name="message_defaulttitle">Izin akses</string>
-    <string name="message_defaultmessage">Izin diperlukan untuk melanjutkan aktifitasnya</string>
-    <string name="message_celcius">%1$s C</string>
-    <string name="message_celcius_symbol">%1$s°</string>
+    <string name="message_cameramessage">Camera permission needed</string>
+    <string name="message_directorytitle">Directory permission access</string>
+    <string name="message_directorymessage">Directory permission is needed to store file</string>
+    <string name="message_defaulttitle">Permission access</string>
+    <string name="message_defaultmessage">Permission is needed to continue the process</string>
+    <string name="message_celcius" translatable="false">%1$s C</string>
+    <string name="message_celcius_symbol" translatable="false">%1$s°</string>
+    <string name="message_cameratitle">Camera access permission</string>
+    <string name="language">Language</string>
+    <string name="search">Search</string>
+    <string name="movie">Movie</string>
+    <string name="tv">Tv Show</string>
+    <string name="error_unknown">Got an error</string>
+    <string name="error_emptysearch">There\'s an empty movie instead, please check your keyword
+    </string>
 </resources>

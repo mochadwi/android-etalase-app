@@ -4,16 +4,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     >
     <item
-        android:icon="@drawable/ic_account_box_white_24dp"
-        android:title="Profile"
-        android:visible="false"
+        android:id="@+id/actLanguage"
+        android:icon="@android:drawable/ic_menu_info_details"
+        android:title="@string/language"
         app:showAsAction="ifRoom|withText"
         />
 
     <item
         android:id="@+id/actSearch"
         android:icon="@drawable/ic_search_white_24dp"
-        android:title="Search"
+        android:title="@string/search"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         app:showAsAction="ifRoom|collapseActionView"
         />

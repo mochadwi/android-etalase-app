@@ -1,5 +1,7 @@
 package io.mochadwi.domain
 
+import android.content.res.Resources
+import io.mochadwi.R
 import io.mochadwi.domain.model.movie.Movie
 
 /**
@@ -26,7 +28,7 @@ data class MovieListState(
             return with(list) {
                 when {
                     // TODO: @mochadwi Move this into strings instead
-                    isEmpty() -> error("There's an empty movie instead, please check your keyword")
+                    isEmpty() -> error(Resources.getSystem().getString(R.string.error_emptysearch))
                     else -> MovieListState(this)
                 }
             }

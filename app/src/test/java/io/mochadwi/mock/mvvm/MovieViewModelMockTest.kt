@@ -1,7 +1,9 @@
 package io.mochadwi.mock.mvvm
 
+import android.content.res.Resources
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
+import io.mochadwi.R
 import io.mochadwi.di.testOnlineEtalaseApp
 import io.mochadwi.domain.ErrorState
 import io.mochadwi.domain.LoadingState
@@ -84,7 +86,7 @@ class MovieViewModelMockTest : KoinTest {
 
     @Test
     fun `test MovieViewModel getMovies Failed`() = runBlockingTest {
-        val error = Throwable("got an error")
+        val error = Throwable(Resources.getSystem().getString(R.string.error_unknown))
         given(repository.getDiscoverMovies()).will { throw error }
 
         viewModel.getMovies()

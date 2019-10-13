@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="error_backend">Terjadi sesuatu pada sistem kami!</string>
+    <string name="message_cameramessage">Izin kamera diperlukan untuk mengunggah gambar</string>
+    <string name="message_cameratitle">Izin akses kamera</string>
+    <string name="retry">Coba Lagi</string>
+    <string name="message_directorytitle">Izin akses direktori</string>
+    <string name="message_directorymessage">Izin direktori diperlukan untuk menyimpan berkas
+    </string>
+    <string name="message_defaulttitle">Izin akses</string>
+    <string name="message_defaultmessage">Izin diperlukan untuk melanjutkan aktifitasnya</string>
+    <string name="language">Bahasa</string>
+    <string name="search">Cari</string>
+    <string name="movie">Film</string>
+    <string name="tv">Acara Tv</string>
+    <string name="error_unknown">Terdapat kesalahan</string>
+    <string name="error_emptysearch">Film tidak ditemukan, periksa kata yang dicari
+    </string>
+</resources>

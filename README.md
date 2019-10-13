@@ -81,8 +81,9 @@ Etalase movie app
 - [ ] [Concrete implementation from generic class](https://stackoverflow.com/a/47796513/3763032)
 - [x] Loading animation issue: move network/database fetching in IO thread
 - [x] Implement click listener RV onCreateViewHolder: implement an onClick(View, Int) callback
-- [ ] Remove hardcoded strings
-- [ ] Remove unused resources
-- [ ] Don't refresh on user back from detail screen: [SavedState](https://medium.com/androiddevelopers/viewmodels-persistence-onsaveinstancestate-restoring-ui-state-and-loaders-fc7cc4a6c090)
-- [ ] Overview text truncated on the CardView
-- [ ] Polish the UI screen to be more nicer
+- [x] Remove hardcoded strings
+- [x] Remove unused resources
+- [x] Don't refresh on user back from detail screen: [SavedState](https://medium.com/androiddevelopers/viewmodels-persistence-onsaveinstancestate-restoring-ui-state-and-loaders-fc7cc4a6c090)
+- [x] Overview text truncated on the CardView
+- [x] Polish the UI screen to be more nicer
+- [x] Localisation
