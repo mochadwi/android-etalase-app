@@ -6,13 +6,13 @@
     <item
         android:id="@+id/movieFragmentDest"
         android:icon="@android:drawable/ic_media_play"
-        android:title="Movie"
+        android:title="@string/movie"
     />
 
     <item
         android:id="@+id/tvFragmentDest"
         android:icon="@android:drawable/ic_btn_speak_now"
-        android:title="Tv Show"
+        android:title="@string/tv"
     />
 
 </menu>
