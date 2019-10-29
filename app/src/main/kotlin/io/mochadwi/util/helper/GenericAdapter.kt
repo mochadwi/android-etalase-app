@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.NO_POSITION
 import io.mochadwi.util.base.BaseBindableAdapter
 
+// TODO(mochadwi): 2019-10-29 Refactor to use DiffUtil instead
 abstract class GenericAdapter<DATA> :
         RecyclerView.Adapter<RecyclerView.ViewHolder>,
         BaseBindableAdapter<DATA> {
@@ -44,10 +45,10 @@ abstract class GenericAdapter<DATA> :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return getViewHolder(
-            DataBindingUtil.inflate(LayoutInflater.from(parent.context)
-                , viewType
-                , parent
-                , false)!!).apply {
+                DataBindingUtil.inflate(LayoutInflater.from(parent.context)
+                        , viewType
+                        , parent
+                        , false)!!).apply {
 
             itemView.setOnClickListener {
                 val pos = adapterPosition

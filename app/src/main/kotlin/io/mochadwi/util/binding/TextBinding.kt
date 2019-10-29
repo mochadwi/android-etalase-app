@@ -10,6 +10,7 @@ import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import io.mochadwi.R
+import io.mochadwi.ui.movie.list.MovieItem
 import io.mochadwi.util.ext.default
 import io.mochadwi.util.ext.putSpans
 import kotlin.math.ceil
@@ -125,4 +126,9 @@ object TextBinding {
         }
     }
 
+    @BindingAdapter("text:title")
+    @JvmStatic
+    fun TextView.setTitle(obj: MovieItem?) {
+        text = obj?.title ?: obj?.name
+    }
 }

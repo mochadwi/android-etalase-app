@@ -12,7 +12,7 @@ import androidx.room.TypeConverters
  *
  */
 
-@Database(entities = [MovieEntity::class, MovieFts::class], version = 1)
+@Database(entities = [MovieEntity::class, MovieFts::class], version = 2)
 @TypeConverters(Converters::class)
 abstract class AppRoomDatabase : RoomDatabase() {
 
