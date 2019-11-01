@@ -1,5 +1,7 @@
 package io.mochadwi
 
+import io.mochadwi.data.datasource.local.room.FavouriteEntity
+import io.mochadwi.data.mapper.FavouriteResultMapper
 import io.mochadwi.domain.repository.AppRepository
 import io.mochadwi.util.ext.default
 import kotlinx.coroutines.runBlocking
@@ -53,5 +55,31 @@ class AppRepositoryTest : KoinTest {
 
         assertEquals(true, result != null)
         assertEquals(true, result?.isNotEmpty().default)
+    }
+
+    @Test
+    fun test_isNotEmptyFavourites() {
+        val result = repository.getLocalFavourites {
+            it.map { entity ->
+                FavouriteResultMapper.from(entity)
+            }
+        }
+
+        assertEquals(true, result != null)
+        assertEquals(true, result?.isNotEmpty().default)
+    }
+
+    @Test
+    fun test_addFavourite() {
+        val isAdded = repository.addToLocalFavourite(FavouriteEntity.empty())
+
+        assertEquals(true, isAdded)
+    }
+
+    @Test
+    fun test_deleteFavourite() {
+        val isDeleted = repository.deleteFromLocalFavouriteById(0)
+
+        assertEquals(true, isDeleted)
     }
 }
