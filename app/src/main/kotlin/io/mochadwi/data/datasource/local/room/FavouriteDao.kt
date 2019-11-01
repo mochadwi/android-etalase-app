@@ -12,9 +12,12 @@ import androidx.room.Query
 abstract class FavouriteDao : BaseDao<FavouriteEntity> {
 
     // TODO(mochadwi): 2019-11-01 AND tbl_favourite.name IS NULL
-    @Query("SELECT * FROM tbl_favourite WHERE tbl_favourite.isDeleted IS NULL")
+    @Query("SELECT * FROM tbl_favourite WHERE isFavourite = 1")
     abstract suspend fun getFavourites(): List<FavouriteEntity>
 
-    @Query("UPDATE tbl_favourite SET isDeleted = 'true' WHERE id = :id")
+    @Query("SELECT * FROM tbl_favourite WHERE id = :id")
+    abstract suspend fun getFavouriteById(id: Int): FavouriteEntity
+
+    @Query("UPDATE tbl_favourite SET isFavourite = 0 WHERE id = :id")
     abstract suspend fun deleteFavouriteById(id: Int): Int
 }

@@ -43,9 +43,9 @@ class MovieViewModel(
 
         launchIo {
             try {
-                val movies = repo.getTvShows()
+                val tv = repo.getTvShows()!!
 
-                _states.postValue(MovieListState.from(movies!!))
+                _states.postValue(MovieListState.from(tv))
             } catch (error: Throwable) {
                 _states.postValue(ErrorState(error))
             }
@@ -57,9 +57,9 @@ class MovieViewModel(
 
         launchIo {
             try {
-                val movies = repo.getDiscoverMovies()
+                val movies = repo.getDiscoverMovies()!!
 
-                _states.postValue(MovieListState.from(movies!!))
+                _states.postValue(MovieListState.from(movies))
             } catch (error: Throwable) {
                 _states.postValue(ErrorState(error))
             }
@@ -82,6 +82,20 @@ class MovieViewModel(
         }
     }
 
+    fun getMovieById(id: Int) {
+        _states.value = LoadingState
+
+        launchIo {
+            try {
+                val movie = repo.getLocalMovieById(id)!!
+
+                _states.postValue(FavouriteListState(movie))
+            } catch (error: Throwable) {
+                _states.postValue(ErrorState(error))
+            }
+        }
+    }
+
     fun getMovieFavourites() {
         _states.value = LoadingState
 
@@ -89,7 +103,7 @@ class MovieViewModel(
             try {
                 val movieFavourites = repo.getLocalFavouriteMovies()
 
-                _states.postValue(FavouriteListState(movieFavourites ?: emptyList()))
+                _states.postValue(FavouriteListState(list = movieFavourites!!))
             } catch (error: Throwable) {
                 _states.postValue(ErrorState(error))
             }
@@ -103,7 +117,7 @@ class MovieViewModel(
             try {
                 val movieFavourites = repo.getLocalFavouriteTv()
 
-                _states.postValue(FavouriteListState(movieFavourites ?: emptyList()))
+                _states.postValue(FavouriteListState(list = movieFavourites!!))
             } catch (error: Throwable) {
                 _states.postValue(ErrorState(error))
             }
@@ -113,7 +127,9 @@ class MovieViewModel(
     fun addToFavourite(data: FavouriteItem) {
         launchIo {
             try {
-                isMovieFavourite = repo.addToLocalFavourite(FavouriteItemMapper.from(data))
+                isMovieFavourite = repo.addToLocalFavourite(
+                        FavouriteItemMapper.from(data.copy(isFavourite = true))
+                )
 
                 _states.postValue(FavouriteState(isMovieFavourite))
             } catch (error: Throwable) {

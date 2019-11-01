@@ -13,13 +13,13 @@ class FavouriteItemMapper {
     companion object {
         fun from(item: FavouriteItem) = with(item) {
             Favourite(
-                    id, title, name, adult, backdropPath, genreIds, originalLanguage, originalTitle, originalName, overview, posterPath, popularity, releaseDate, video, voteAverage, voteCount
+                    id, title, name, adult, backdropPath, genreIds, originalLanguage, originalTitle, originalName, overview, posterPath, popularity, releaseDate, video, voteAverage, voteCount, isFavourite
             )
         }
 
         fun from(item: MovieItem) = with(item) {
             FavouriteItem(
-                    id, title, name, adult, backdropPath, genreIds, originalLanguage, originalTitle, originalName, overview, posterPath, popularity, releaseDate, video, voteAverage, voteCount
+                    id, title, name, adult, backdropPath, genreIds, originalLanguage, originalTitle, originalName, overview, posterPath, popularity, releaseDate, video, voteAverage, voteCount, isFavourite
             )
         }
     }

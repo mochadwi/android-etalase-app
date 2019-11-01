@@ -41,14 +41,15 @@ data class FavouriteState(
 ) : State()
 
 data class FavouriteListState(
-        val list: List<Favourite>
+        val single: Favourite = Favourite.empty(),
+        val list: List<Favourite> = emptyList()
 ) : State() {
     companion object {
         fun from(list: List<Favourite>): FavouriteListState {
             return with(list) {
                 when {
                     isEmpty() -> error(Resources.getSystem().getString(R.string.error_emptysearch))
-                    else -> FavouriteListState(this)
+                    else -> FavouriteListState(this.single(), this)
                 }
             }
         }

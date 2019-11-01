@@ -2,6 +2,7 @@ package io.mochadwi.data.mapper
 
 import io.mochadwi.data.datasource.local.room.MovieEntity
 import io.mochadwi.data.datasource.network.kotlinx.response.movie.MovieResponse
+import io.mochadwi.domain.model.favourite.Favourite
 import io.mochadwi.domain.model.movie.Movie
 import io.mochadwi.util.ext.default
 
@@ -18,6 +19,10 @@ typealias ListMovieResponse = List<MovieResponse>
 class MovieEntityMapper {
 
     companion object {
+        fun from(favourite: Favourite) = with(favourite) {
+            Movie(id, title, name, adult, backdropPath, genreIds, originalLanguage, originalTitle, originalName, overview, posterPath, popularity, releaseDate, video, voteAverage, voteCount, isFavourite)
+        }
+
         // TODO(mochadwi): 2019-08-25 This is either known issue or due to type erasure at compile time, that detect different List<A> & List<B> as clashes
         fun <S : Any, D : Any> from(movies: ListMovie<S>): List<D> = movies.map {
             with(it) {

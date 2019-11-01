@@ -21,7 +21,8 @@ data class Favourite(
         val releaseDate: String,
         val video: Boolean,
         val voteAverage: Double,
-        val voteCount: Int
+        val voteCount: Int,
+        val isFavourite: Boolean?
 ) {
     companion object {
         fun empty() = Favourite(
@@ -40,7 +41,8 @@ data class Favourite(
                 "",
                 false,
                 0.0,
-                0
+                0,
+                false
         )
     }
 }

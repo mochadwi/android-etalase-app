@@ -8,6 +8,7 @@ import androidx.navigation.fragment.navArgs
 import io.mochadwi.R
 import io.mochadwi.databinding.MoviedetailFragmentBinding
 import io.mochadwi.domain.ErrorState
+import io.mochadwi.domain.FavouriteListState
 import io.mochadwi.domain.FavouriteState
 import io.mochadwi.ui.favourite.mapper.FavouriteItemMapper
 import io.mochadwi.ui.movie.list.MovieItem
@@ -49,7 +50,7 @@ class MovieDetailFragment : Fragment() {
                         deleteFromFavourite(args.movieItem?.id ?: -1)
                     } else {
                         addToFavourite(FavouriteItemMapper.from(args.movieItem
-                                ?: MovieItem(id = -1)))
+                                ?: MovieItem(id = -1, isFavourite = false)))
                     }
                 }
                 true
@@ -70,6 +71,7 @@ class MovieDetailFragment : Fragment() {
                 }
 
         setupObserver()
+        vm.getMovieById(args.movieItem?.id.default)
 
         return viewBinding.root
     }
@@ -85,6 +87,9 @@ class MovieDetailFragment : Fragment() {
             // Observe ComposeState
             states.observe(viewLifecycleOwner, Observer { state ->
                 when (state) {
+                    is FavouriteListState -> {
+                        isMovieFavourite = state.single.isFavourite.default
+                    }
                     is FavouriteState -> showSuccess(state.isFavourite)
                     is ErrorState -> showError(state.error)
                 }

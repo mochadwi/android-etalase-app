@@ -28,5 +28,6 @@ data class MovieItem(
         val releaseDate: String = "",
         val video: Boolean = false,
         val voteAverage: Double = 0.0,
-        val voteCount: Int = 0
+        val voteCount: Int = 0,
+        val isFavourite: Boolean?
 ) : Parcelable

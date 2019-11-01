@@ -26,5 +26,5 @@ data class FavouriteItem(
         val video: Boolean,
         val voteAverage: Double,
         val voteCount: Int,
-        val deletedAt: String? = null
+        val isFavourite: Boolean?
 ) : Parcelable

@@ -94,7 +94,7 @@ class TvShowFragment : Fragment(), BaseUserActionListener {
         viewModel.apply {
             if (::onLoadMore.isInitialized) onLoadMore.resetState()
             movieListSet.clear()
-            if (arguments?.getBoolean(IS_FAVOURITE) == false) getTvFavourites() else getTvShows()
+            if (arguments?.getBoolean(IS_FAVOURITE) == true) getTvFavourites() else getTvShows()
         }
     }
 

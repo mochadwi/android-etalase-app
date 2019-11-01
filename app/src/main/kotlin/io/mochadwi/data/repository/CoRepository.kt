@@ -98,6 +98,10 @@ class CoRepository(
         }
     }
 
+    override fun getLocalMovieById(id: Int): Favourite? = runBlocking {
+        FavouriteDataMapper.from(favouriteDao.getFavouriteById(id))
+    }
+
     override fun addToLocalFavourite(model: Favourite): Boolean = runBlocking {
         try {
             favouriteDao.upsert(FavouriteDataMapper.from(model))
