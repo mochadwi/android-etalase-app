@@ -39,6 +39,22 @@
     </fragment>
 
     <fragment
+        android:id="@+id/favFragmentDest"
+        android:name="io.mochadwi.ui.tvshow.TvShowFragment"
+        android:label="@string/tv"
+        tools:layout="@layout/movie_fragment">
+
+        <action
+            android:id="@+id/toMovieDetailAction"
+            app:destination="@id/movieDetailFragment">
+            <argument
+                android:name="movieItem"
+                app:argType="io.mochadwi.ui.movie.list.MovieItem" />
+        </action>
+
+    </fragment>
+
+    <fragment
         android:id="@+id/movieDetailFragment"
         android:name="io.mochadwi.ui.movie.MovieDetailFragment"
         android:label="MovieDetailFragment"

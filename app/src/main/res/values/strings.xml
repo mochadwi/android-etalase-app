@@ -20,4 +20,5 @@
     <string name="error_unknown">Got an error</string>
     <string name="error_emptysearch">There\'s an empty movie instead, please check your keyword
     </string>
+    <string name="favourite">Favourite</string>
 </resources>

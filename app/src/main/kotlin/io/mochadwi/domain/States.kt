@@ -35,3 +35,7 @@ data class MovieListState(
         }
     }
 }
+
+data class FavouriteState(
+        val isFavourite: Boolean
+) : State()

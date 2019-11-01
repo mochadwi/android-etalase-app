@@ -16,4 +16,5 @@
     <string name="error_unknown">Terdapat kesalahan</string>
     <string name="error_emptysearch">Film tidak ditemukan, periksa kata yang dicari
     </string>
+    <string name="favourite">Disukai</string>
 </resources>

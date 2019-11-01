@@ -2,11 +2,10 @@ package io.mochadwi.ui.movie
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import io.mochadwi.domain.ErrorState
-import io.mochadwi.domain.LoadingState
-import io.mochadwi.domain.MovieListState
-import io.mochadwi.domain.State
+import io.mochadwi.domain.*
 import io.mochadwi.domain.repository.AppRepository
+import io.mochadwi.ui.favourite.item.FavouriteItem
+import io.mochadwi.ui.favourite.mapper.FavouriteItemMapper
 import io.mochadwi.ui.movie.list.MovieItem
 import io.mochadwi.util.base.BaseViewModel
 import io.mochadwi.util.mvvm.MutableSetObservableField
@@ -78,6 +77,20 @@ class MovieViewModel(
                 } catch (error: Throwable) {
                     _states.postValue(ErrorState(error))
                 }
+            }
+        }
+    }
+
+    fun addToFavourite(data: FavouriteItem) {
+        _states.value = LoadingState
+
+        launchIo {
+            try {
+                val isFavourite = repo.addToLocalFavourite(FavouriteItemMapper.from(data))
+
+                _states.postValue(FavouriteState(isFavourite))
+            } catch (error: Throwable) {
+                _states.postValue(ErrorState(error))
             }
         }
     }

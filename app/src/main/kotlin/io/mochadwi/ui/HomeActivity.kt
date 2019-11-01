@@ -138,7 +138,7 @@ class HomeActivity : BaseActivity() {
 
     private fun setupAppBar() {
         appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.movieFragmentDest, R.id.tvFragmentDest),
+                setOf(R.id.movieFragmentDest, R.id.tvFragmentDest, R.id.favFragmentDest),
             null
         )
     }

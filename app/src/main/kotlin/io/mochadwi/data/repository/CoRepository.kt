@@ -5,6 +5,7 @@ import io.mochadwi.data.datasource.local.room.FavouriteEntity
 import io.mochadwi.data.datasource.local.room.MovieDao
 import io.mochadwi.data.datasource.local.room.MovieEntity
 import io.mochadwi.data.datasource.network.RetrofitEndpoint
+import io.mochadwi.data.mapper.FavouriteDataMapper
 import io.mochadwi.data.mapper.MovieEntityMapper
 import io.mochadwi.data.mapper.MovieResultMapper
 import io.mochadwi.domain.model.favourite.Favourite
@@ -76,6 +77,8 @@ class CoRepository(
         MovieEntityMapper.from<MovieEntity, Movie>(movieDao.searchMovies(query))
     }
 
+    // TODO(mochadwi): 2019-11-01 Repository is exist in domain, therefore doesn't know the Entity
+//        should be refactored so it doesn't violates clean architecture
     override fun getLocalFavourites(
             transform: (List<FavouriteEntity>) -> List<Favourite>
     ): List<Favourite>? = runBlocking {
@@ -86,9 +89,9 @@ class CoRepository(
         }
     }
 
-    override fun addToLocalFavourite(entity: FavouriteEntity): Boolean = runBlocking {
+    override fun addToLocalFavourite(model: Favourite): Boolean = runBlocking {
         try {
-            favouriteDao.upsert(entity)
+            favouriteDao.upsert(FavouriteDataMapper.from(model))
             true
         } catch (e: IllegalAccessException) {
             false

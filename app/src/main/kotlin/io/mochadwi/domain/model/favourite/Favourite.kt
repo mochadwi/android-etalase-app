@@ -22,4 +22,25 @@ data class Favourite(
         val video: Boolean,
         val voteAverage: Double,
         val voteCount: Int
-)
+) {
+    companion object {
+        fun empty() = Favourite(
+                0,
+                "",
+                "",
+                false,
+                "",
+                emptyList(),
+                "",
+                "",
+                "",
+                "",
+                "",
+                0.0,
+                "",
+                false,
+                0.0,
+                0
+        )
+    }
+}

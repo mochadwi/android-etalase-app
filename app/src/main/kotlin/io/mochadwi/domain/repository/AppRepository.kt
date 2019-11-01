@@ -21,6 +21,6 @@ interface AppRepository {
             transform: (List<FavouriteEntity>) -> List<Favourite>
     ): List<Favourite>?
 
-    fun addToLocalFavourite(entity: FavouriteEntity): Boolean
+    fun addToLocalFavourite(model: Favourite): Boolean
     fun deleteFromLocalFavouriteById(id: Int): Boolean
 }

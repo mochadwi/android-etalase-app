@@ -15,4 +15,9 @@
         android:title="@string/tv"
     />
 
+    <item
+        android:id="@+id/favFragmentDest"
+        android:icon="@android:drawable/ic_menu_save"
+        android:title="@string/favourite" />
+
 </menu>
