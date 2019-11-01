@@ -20,6 +20,7 @@ import io.mochadwi.util.base.BaseUserActionListener
 import io.mochadwi.util.base.ToolbarListener
 import io.mochadwi.util.ext.coroutineLaunch
 import io.mochadwi.util.ext.fromJson
+import io.mochadwi.util.ext.putArgs
 import io.mochadwi.util.list.EndlessRecyclerOnScrollListener
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.channels.consumeEach
@@ -39,6 +40,13 @@ class TvShowFragment : Fragment(), BaseUserActionListener {
     private lateinit var viewBinding: MovieFragmentBinding
     private val viewModel by sharedViewModel<MovieViewModel>()
     private lateinit var onLoadMore: EndlessRecyclerOnScrollListener
+
+    companion object {
+        private const val IS_FAVOURITE = "is_favourite"
+        fun newInstance(isFavourite: Boolean) = TvShowFragment().putArgs {
+            putBoolean(IS_FAVOURITE, isFavourite)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -85,7 +93,7 @@ class TvShowFragment : Fragment(), BaseUserActionListener {
         viewModel.apply {
             if (::onLoadMore.isInitialized) onLoadMore.resetState()
             movieListSet.clear()
-            getTvShows()
+            if (arguments?.getBoolean(IS_FAVOURITE) == false) getTvShows() else getTvFavourites()
         }
     }
 

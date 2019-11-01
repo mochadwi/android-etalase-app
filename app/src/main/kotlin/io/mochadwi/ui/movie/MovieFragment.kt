@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import io.mochadwi.R
 import io.mochadwi.databinding.MovieFragmentBinding
 import io.mochadwi.domain.ErrorState
+import io.mochadwi.domain.FavouriteListState
 import io.mochadwi.domain.LoadingState
 import io.mochadwi.domain.MovieListState
 import io.mochadwi.ui.movie.list.MovieItem
@@ -19,6 +20,7 @@ import io.mochadwi.util.base.BaseUserActionListener
 import io.mochadwi.util.base.ToolbarListener
 import io.mochadwi.util.ext.coroutineLaunch
 import io.mochadwi.util.ext.fromJson
+import io.mochadwi.util.ext.putArgs
 import io.mochadwi.util.list.EndlessRecyclerOnScrollListener
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.channels.consumeEach
@@ -37,7 +39,16 @@ class MovieFragment : Fragment(), BaseUserActionListener {
 
     private lateinit var viewBinding: MovieFragmentBinding
     private val viewModel by sharedViewModel<MovieViewModel>()
+
+    private var isFavourite = false
     private lateinit var onLoadMore: EndlessRecyclerOnScrollListener
+
+    companion object {
+        private const val IS_FAVOURITE = "is_favourite"
+        fun newInstance(isFavourite: Boolean) = MovieFragment().putArgs {
+            putBoolean(IS_FAVOURITE, isFavourite)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +60,8 @@ class MovieFragment : Fragment(), BaseUserActionListener {
                               container: ViewGroup?,
                               savedInstanceState: Bundle?
     ): View {
+        isFavourite = arguments?.getBoolean(IS_FAVOURITE) == true
+
         return if (::viewBinding.isInitialized) viewBinding.root
         else {
             viewBinding = MovieFragmentBinding
@@ -60,7 +73,8 @@ class MovieFragment : Fragment(), BaseUserActionListener {
                 }
 
             (requireActivity() as ToolbarListener).updateTitleToolbar(
-                newTitle = getString(R.string.movie)
+                    newTitle = if (isFavourite) getString(R.string.favourite)
+                    else getString(R.string.movie)
             )
 
             setupObserver()
@@ -83,7 +97,7 @@ class MovieFragment : Fragment(), BaseUserActionListener {
         viewModel.apply {
             if (::onLoadMore.isInitialized) onLoadMore.resetState()
             movieListSet.clear()
-            getMovies()
+            if (isFavourite) getMovieFavourites() else getMovies()
         }
     }
 
@@ -92,6 +106,11 @@ class MovieFragment : Fragment(), BaseUserActionListener {
         states.observe(viewLifecycleOwner, Observer { state ->
             when (state) {
                 is LoadingState -> showIsLoading()
+
+                is FavouriteListState -> {
+                    showItemList(
+                            movies = state.list.map { MovieModelMapper.from(it) })
+                }
 
                 is MovieListState -> {
                     showItemList(

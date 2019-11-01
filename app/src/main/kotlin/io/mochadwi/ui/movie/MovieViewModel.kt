@@ -96,6 +96,20 @@ class MovieViewModel(
         }
     }
 
+    fun getTvFavourites() {
+        _states.value = LoadingState
+
+        launchIo {
+            try {
+                val movieFavourites = repo.getLocalFavouriteMovies()
+
+                _states.postValue(FavouriteListState(movieFavourites ?: emptyList()))
+            } catch (error: Throwable) {
+                _states.postValue(ErrorState(error))
+            }
+        }
+    }
+
     fun addToFavourite(data: FavouriteItem) {
         launchIo {
             try {
