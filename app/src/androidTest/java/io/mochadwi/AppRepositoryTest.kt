@@ -1,6 +1,5 @@
 package io.mochadwi
 
-import io.mochadwi.data.mapper.FavouriteDataMapper
 import io.mochadwi.domain.model.favourite.Favourite
 import io.mochadwi.domain.repository.AppRepository
 import io.mochadwi.util.ext.default
@@ -59,11 +58,7 @@ class AppRepositoryTest : KoinTest {
 
     @Test
     fun test_isNotEmptyFavourites() {
-        val result = repository.getLocalFavourites {
-            it.map { entity ->
-                FavouriteDataMapper.from(entity)
-            }
-        }
+        val result = repository.getLocalFavouriteMovies()
 
         assertEquals(true, result != null)
         assertEquals(true, result?.isNotEmpty().default)

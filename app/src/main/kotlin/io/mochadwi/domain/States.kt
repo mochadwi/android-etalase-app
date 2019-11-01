@@ -2,6 +2,7 @@ package io.mochadwi.domain
 
 import android.content.res.Resources
 import io.mochadwi.R
+import io.mochadwi.domain.model.favourite.Favourite
 import io.mochadwi.domain.model.movie.Movie
 
 /**
@@ -27,7 +28,6 @@ data class MovieListState(
         fun from(list: List<Movie>): MovieListState {
             return with(list) {
                 when {
-                    // TODO: @mochadwi Move this into strings instead
                     isEmpty() -> error(Resources.getSystem().getString(R.string.error_emptysearch))
                     else -> MovieListState(this)
                 }
@@ -39,3 +39,18 @@ data class MovieListState(
 data class FavouriteState(
         val isFavourite: Boolean
 ) : State()
+
+data class FavouriteListState(
+        val list: List<Favourite>
+) : State() {
+    companion object {
+        fun from(list: List<Favourite>): FavouriteListState {
+            return with(list) {
+                when {
+                    isEmpty() -> error(Resources.getSystem().getString(R.string.error_emptysearch))
+                    else -> FavouriteListState(this)
+                }
+            }
+        }
+    }
+}

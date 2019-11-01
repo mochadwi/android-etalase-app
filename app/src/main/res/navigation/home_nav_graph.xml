@@ -40,8 +40,8 @@
 
     <fragment
         android:id="@+id/favFragmentDest"
-        android:name="io.mochadwi.ui.tvshow.TvShowFragment"
-        android:label="@string/tv"
+        android:name="io.mochadwi.ui.favourite.FavouriteFragment"
+        android:label="@string/favourite"
         tools:layout="@layout/movie_fragment">
 
         <action

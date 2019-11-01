@@ -1,6 +1,7 @@
 package io.mochadwi.ui.movie.mapper
 
 import io.mochadwi.data.datasource.local.room.MovieEntity
+import io.mochadwi.domain.model.favourite.Favourite
 import io.mochadwi.domain.model.movie.Movie
 import io.mochadwi.ui.movie.list.MovieItem
 
@@ -24,6 +25,13 @@ class MovieModelMapper {
                 originalTitle, originalName, overview, posterPath, popularity, releaseDate, video,
                 voteAverage,
                 voteCount)
+        }
+
+        fun from(model: Favourite) = with(model) {
+            MovieItem(id, title, name, adult, backdropPath, genreIds, originalLanguage,
+                    originalTitle, originalName, overview, posterPath, popularity, releaseDate, video,
+                    voteAverage,
+                    voteCount)
         }
     }
 }

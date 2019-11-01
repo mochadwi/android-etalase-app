@@ -11,7 +11,8 @@ import androidx.room.Query
 @Dao
 abstract class FavouriteDao : BaseDao<FavouriteEntity> {
 
-    @Query("SELECT * FROM tbl_favourite WHERE tbl_favourite.isDeleted = NULL")
+    // TODO(mochadwi): 2019-11-01 AND tbl_favourite.name IS NULL
+    @Query("SELECT * FROM tbl_favourite WHERE tbl_favourite.isDeleted IS NULL")
     abstract suspend fun getFavourites(): List<FavouriteEntity>
 
     @Query("UPDATE tbl_favourite SET isDeleted = 'true' WHERE id = :id")

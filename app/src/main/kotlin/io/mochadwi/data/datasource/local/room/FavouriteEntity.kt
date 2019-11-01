@@ -12,8 +12,8 @@ import androidx.room.PrimaryKey
 data class FavouriteEntity(
         @PrimaryKey
         val id: Int,
-        val title: String,
-        val name: String,
+        val title: String?,
+        val name: String?,
         val adult: Boolean,
         val backdropPath: String,
         val genreIds: List<Int>,
@@ -27,7 +27,7 @@ data class FavouriteEntity(
         val video: Boolean,
         val voteAverage: Double,
         val voteCount: Int,
-        val isDeleted: Boolean? = null
+        val isDeleted: Boolean?
 ) {
     companion object {
         fun empty() = FavouriteEntity(
@@ -46,7 +46,8 @@ data class FavouriteEntity(
                 "",
                 false,
                 0.0,
-                0
+                0,
+                false
         )
     }
 }

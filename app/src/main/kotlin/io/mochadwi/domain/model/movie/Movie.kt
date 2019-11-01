@@ -17,4 +17,25 @@ data class Movie(
     val video: Boolean = false,
     val voteAverage: Double = 0.0,
     val voteCount: Int = 0
-)
+) {
+    companion object {
+        fun empty() = Movie(
+                0,
+                "",
+                "",
+                false,
+                "",
+                emptyList(),
+                "",
+                "",
+                "",
+                "",
+                "",
+                0.0,
+                "",
+                false,
+                0.0,
+                0
+        )
+    }
+}

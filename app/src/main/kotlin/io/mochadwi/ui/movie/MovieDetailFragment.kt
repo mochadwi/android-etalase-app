@@ -85,17 +85,18 @@ class MovieDetailFragment : Fragment() {
             // Observe ComposeState
             states.observe(viewLifecycleOwner, Observer { state ->
                 when (state) {
-                    is FavouriteState -> showSuccess(state)
+                    is FavouriteState -> showSuccess(state.isFavourite)
                     is ErrorState -> showError(state.error)
                 }
             })
         }
     }
 
-    private fun showSuccess(state: FavouriteState) {
-        toastSpammable(
-                getString(if (state.isFavourite) R.string.favourite else R.string.not_favourite)
-        )
+    private fun showSuccess(isFavourite: Boolean) {
+        toastSpammable(getString(
+                if (isFavourite) R.string.favourite
+                else R.string.not_favourite
+        ))
     }
 
     private fun showError(err: Throwable) {
