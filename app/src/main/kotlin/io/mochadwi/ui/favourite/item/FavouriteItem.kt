@@ -11,8 +11,8 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class FavouriteItem(
         val id: Int,
-        val title: String,
-        val name: String,
+        val title: String?,
+        val name: String?,
         val adult: Boolean,
         val backdropPath: String,
         val genreIds: List<Int>,

@@ -101,7 +101,7 @@ class MovieViewModel(
 
         launchIo {
             try {
-                val movieFavourites = repo.getLocalFavouriteMovies()
+                val movieFavourites = repo.getLocalFavouriteTv()
 
                 _states.postValue(FavouriteListState(movieFavourites ?: emptyList()))
             } catch (error: Throwable) {

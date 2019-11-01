@@ -12,6 +12,7 @@ import io.mochadwi.R
 import io.mochadwi.databinding.FavouriteFragmentBinding
 import io.mochadwi.ui.movie.MovieFragment
 import io.mochadwi.ui.tvshow.TvShowFragment
+import io.mochadwi.util.base.ToolbarListener
 
 /**
  * Created by mochadwi on 2019-11-01
@@ -28,13 +29,22 @@ class FavouriteFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        vb = FavouriteFragmentBinding.inflate(inflater, container, false)
-        vb.pager.apply {
-            adapter = ScreenSlidePagerAdapter(childFragmentManager)
-            setPageTransformer(true, ZoomOutPageTransformer())
+        vb = FavouriteFragmentBinding.inflate(inflater, container, false).apply {
+            pager.apply {
+                adapter = ScreenSlidePagerAdapter(childFragmentManager)
+                setPageTransformer(true, ZoomOutPageTransformer())
+            }
+
+            tabLayout.setupWithViewPager(pager)
         }
 
         return vb.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        (requireActivity() as ToolbarListener).updateTitleToolbar(
+                newTitle = getString(R.string.favourite)
+        )
     }
 
     private inner class ScreenSlidePagerAdapter(fm: FragmentManager) :
@@ -47,7 +57,7 @@ class FavouriteFragment : Fragment() {
         }
 
         override fun getPageTitle(position: Int): CharSequence? = when (position) {
-            1 -> getString(R.string.movie)
+            0 -> getString(R.string.movie)
             else -> getString(R.string.tv)
         }
     }

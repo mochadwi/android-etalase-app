@@ -87,8 +87,15 @@ class CoRepository(
         }
     }
 
-    override fun getLocalFavouriteTv(): List<Favourite>? {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun getLocalFavouriteTv(): List<Favourite>? = runBlocking {
+        try {
+            // TODO(mochadwi): 2019-11-01 Don't use mapper here
+            favouriteDao.getFavourites()
+                    .filter { it.title.isNullOrBlank() }
+                    .map { FavouriteDataMapper.from(it) }
+        } catch (e: IllegalStateException) {
+            emptyList<Favourite>()
+        }
     }
 
     override fun addToLocalFavourite(model: Favourite): Boolean = runBlocking {

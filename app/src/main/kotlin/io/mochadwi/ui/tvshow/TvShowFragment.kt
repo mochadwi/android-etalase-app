@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import io.mochadwi.R
 import io.mochadwi.databinding.MovieFragmentBinding
 import io.mochadwi.domain.ErrorState
+import io.mochadwi.domain.FavouriteListState
 import io.mochadwi.domain.LoadingState
 import io.mochadwi.domain.MovieListState
 import io.mochadwi.ui.movie.MovieViewModel
@@ -25,7 +26,7 @@ import io.mochadwi.util.list.EndlessRecyclerOnScrollListener
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.channels.consumeEach
 import kotlinx.serialization.serializer
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import retrofit2.HttpException
 
 /**
@@ -38,7 +39,7 @@ import retrofit2.HttpException
 class TvShowFragment : Fragment(), BaseUserActionListener {
 
     private lateinit var viewBinding: MovieFragmentBinding
-    private val viewModel by sharedViewModel<MovieViewModel>()
+    private val viewModel by viewModel<MovieViewModel>()
     private lateinit var onLoadMore: EndlessRecyclerOnScrollListener
 
     companion object {
@@ -93,7 +94,7 @@ class TvShowFragment : Fragment(), BaseUserActionListener {
         viewModel.apply {
             if (::onLoadMore.isInitialized) onLoadMore.resetState()
             movieListSet.clear()
-            if (arguments?.getBoolean(IS_FAVOURITE) == false) getTvShows() else getTvFavourites()
+            if (arguments?.getBoolean(IS_FAVOURITE) == false) getTvFavourites() else getTvShows()
         }
     }
 
@@ -102,6 +103,11 @@ class TvShowFragment : Fragment(), BaseUserActionListener {
         states.observe(viewLifecycleOwner, Observer { state ->
             when (state) {
                 is LoadingState -> showIsLoading()
+
+                is FavouriteListState -> {
+                    showItemList(
+                            movies = state.list.map { MovieModelMapper.from(it) })
+                }
 
                 is MovieListState -> {
                     showItemList(

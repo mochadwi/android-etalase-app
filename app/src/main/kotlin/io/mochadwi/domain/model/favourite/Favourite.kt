@@ -7,8 +7,8 @@ package io.mochadwi.domain.model.favourite
 
 data class Favourite(
         val id: Int,
-        val title: String,
-        val name: String,
+        val title: String?,
+        val name: String?,
         val adult: Boolean,
         val backdropPath: String,
         val genreIds: List<Int>,

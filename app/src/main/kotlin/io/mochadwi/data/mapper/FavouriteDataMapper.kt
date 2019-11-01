@@ -2,7 +2,6 @@ package io.mochadwi.data.mapper
 
 import io.mochadwi.data.datasource.local.room.FavouriteEntity
 import io.mochadwi.domain.model.favourite.Favourite
-import io.mochadwi.util.ext.default
 
 /**
  * Created by mochadwi on 2019-11-01
@@ -11,7 +10,7 @@ import io.mochadwi.util.ext.default
 class FavouriteDataMapper {
     companion object {
         fun from(entity: FavouriteEntity) = with(entity) {
-            Favourite(id, title.default, name.default, adult, backdropPath, genreIds, originalLanguage, originalTitle, originalName, overview, posterPath, popularity, releaseDate, video, voteAverage, voteCount)
+            Favourite(id, title, name, adult, backdropPath, genreIds, originalLanguage, originalTitle, originalName, overview, posterPath, popularity, releaseDate, video, voteAverage, voteCount)
         }
 
         fun from(model: Favourite) = with(model) {

@@ -42,7 +42,7 @@
         android:id="@+id/favFragmentDest"
         android:name="io.mochadwi.ui.favourite.FavouriteFragment"
         android:label="@string/favourite"
-        tools:layout="@layout/movie_fragment">
+        tools:layout="@layout/favourite_fragment">
 
         <action
             android:id="@+id/toMovieDetailAction"

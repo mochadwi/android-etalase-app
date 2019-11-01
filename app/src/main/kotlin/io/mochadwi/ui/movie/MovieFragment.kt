@@ -25,7 +25,7 @@ import io.mochadwi.util.list.EndlessRecyclerOnScrollListener
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.channels.consumeEach
 import kotlinx.serialization.serializer
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import retrofit2.HttpException
 
 /**
@@ -38,7 +38,7 @@ import retrofit2.HttpException
 class MovieFragment : Fragment(), BaseUserActionListener {
 
     private lateinit var viewBinding: MovieFragmentBinding
-    private val viewModel by sharedViewModel<MovieViewModel>()
+    private val viewModel by viewModel<MovieViewModel>()
 
     private var isFavourite = false
     private lateinit var onLoadMore: EndlessRecyclerOnScrollListener
@@ -73,8 +73,7 @@ class MovieFragment : Fragment(), BaseUserActionListener {
                 }
 
             (requireActivity() as ToolbarListener).updateTitleToolbar(
-                    newTitle = if (isFavourite) getString(R.string.favourite)
-                    else getString(R.string.movie)
+                    newTitle = getString(R.string.movie)
             )
 
             setupObserver()
