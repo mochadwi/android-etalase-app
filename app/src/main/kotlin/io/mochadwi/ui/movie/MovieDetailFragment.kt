@@ -44,9 +44,14 @@ class MovieDetailFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.actFavourite -> {
-                vm.addToFavourite(FavouriteItemMapper.from(
-                        args.movieItem ?: MovieItem(id = -1)
-                ))
+                vm.run {
+                    if (isMovieFavourite) {
+                        deleteFromFavourite(args.movieItem?.id ?: -1)
+                    } else {
+                        addToFavourite(FavouriteItemMapper.from(args.movieItem
+                                ?: MovieItem(id = -1)))
+                    }
+                }
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -89,7 +94,7 @@ class MovieDetailFragment : Fragment() {
 
     private fun showSuccess(state: FavouriteState) {
         toastSpammable(
-                getString(if (state.isFavourite) R.string.favourite else R.string.error_unknown)
+                getString(if (state.isFavourite) R.string.favourite else R.string.not_favourite)
         )
     }
 

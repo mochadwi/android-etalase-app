@@ -27,7 +27,7 @@ data class FavouriteEntity(
         val video: Boolean,
         val voteAverage: Double,
         val voteCount: Int,
-        val deletedAt: String? = null
+        val isDeleted: Boolean? = null
 ) {
     companion object {
         fun empty() = FavouriteEntity(

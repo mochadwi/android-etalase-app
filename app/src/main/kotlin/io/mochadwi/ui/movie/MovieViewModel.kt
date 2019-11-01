@@ -28,6 +28,7 @@ class MovieViewModel(
 
     val keywords = Channel<String>(UNLIMITED)
     val movieListSet = MutableSetObservableField<MovieItem>()
+    var isMovieFavourite = false
 
     /*
      * We use LiveEvent to publish "states"
@@ -82,13 +83,25 @@ class MovieViewModel(
     }
 
     fun addToFavourite(data: FavouriteItem) {
-        _states.value = LoadingState
-
         launchIo {
             try {
-                val isFavourite = repo.addToLocalFavourite(FavouriteItemMapper.from(data))
+                isMovieFavourite = repo.addToLocalFavourite(FavouriteItemMapper.from(data))
 
-                _states.postValue(FavouriteState(isFavourite))
+                _states.postValue(FavouriteState(isMovieFavourite))
+            } catch (error: Throwable) {
+                _states.postValue(ErrorState(error))
+            }
+        }
+    }
+
+    fun deleteFromFavourite(id: Int) {
+        launchIo {
+            try {
+                val isDeleted = repo.deleteFromLocalFavouriteById(id)
+
+                isMovieFavourite = !isDeleted
+
+                _states.postValue(FavouriteState(isMovieFavourite))
             } catch (error: Throwable) {
                 _states.postValue(ErrorState(error))
             }

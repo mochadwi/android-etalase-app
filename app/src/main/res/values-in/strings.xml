@@ -17,4 +17,5 @@
     <string name="error_emptysearch">Film tidak ditemukan, periksa kata yang dicari
     </string>
     <string name="favourite">Disukai</string>
+    <string name="not_favourite">Tidak disukai</string>
 </resources>
