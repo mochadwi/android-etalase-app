@@ -43,11 +43,12 @@ val roomModule = module {
 
     // Expose Dao directly
     single { get<AppRoomDatabase>().movieDao() }
+    single { get<AppRoomDatabase>().favouriteDao() }
 }
 
 val repoModule = module {
     // App Data Repository
-    single { CoRepository(get(), get()) as AppRepository }
+    single { CoRepository(get(), get(), get()) as AppRepository }
 }
 
 // Gather all app modules

@@ -1,5 +1,7 @@
 package io.mochadwi.domain.repository
 
+import io.mochadwi.data.datasource.local.room.FavouriteEntity
+import io.mochadwi.domain.model.favourite.Favourite
 import io.mochadwi.domain.model.movie.Movie
 
 /**
@@ -15,4 +17,10 @@ interface AppRepository {
     fun getDiscoverMovies(): List<Movie>?
     fun getTvShows(): List<Movie>?
     fun searchMovies(query: String): List<Movie>?
+    fun getLocalFavourites(
+            transform: (List<FavouriteEntity>) -> List<Favourite>
+    ): List<Favourite>?
+
+    fun addToLocalFavourite(entity: FavouriteEntity): Boolean
+    fun deleteFromLocalFavouriteById(id: Int): Boolean
 }
