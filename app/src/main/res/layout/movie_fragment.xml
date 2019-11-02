@@ -45,6 +45,7 @@
                     bind:isGrid="@{true}"
                     bind:layoutId="@{R.layout.movie_item}"
                     bind:list="@{vm.movieListSet}"
+                    bind:fromFavourite="@{vm.movieFavourite.get()}"
                     bind:spanCount="@{2}"
                     bind:vm="@{vm}"
                     />

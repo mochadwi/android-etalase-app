@@ -26,7 +26,8 @@ class MovieViewHolder(val binding: MovieItemBinding) :
         }
     }
 
-    override fun onClick(v: View, data: MovieItem) {
-        v.findNavController().navigate(MovieFragmentDirections.toMovieDetailAction(data))
+    override fun onClick(v: View, data: MovieItem, fromFavourite: Boolean) {
+        if (!fromFavourite)
+            v.findNavController().navigate(MovieFragmentDirections.toMovieDetailAction(data))
     }
 }

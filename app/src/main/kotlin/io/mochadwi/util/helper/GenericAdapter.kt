@@ -13,8 +13,8 @@ abstract class GenericAdapter<DATA> :
         RecyclerView.Adapter<RecyclerView.ViewHolder>,
         BaseBindableAdapter<DATA> {
 
-
-    var listItems: List<DATA>
+    private var listItems: List<DATA>
+    private var fromFavouriteFragment: Boolean = false
 
     constructor(listItems: List<DATA>) {
         this.listItems = listItems
@@ -24,6 +24,10 @@ abstract class GenericAdapter<DATA> :
     constructor() {
         listItems = emptyList()
         notifyDataSetChanged()
+    }
+
+    fun isFromFavourite(favourite: Boolean) {
+        fromFavouriteFragment = favourite
     }
 
     override fun setData(items: List<DATA>) {
@@ -53,7 +57,7 @@ abstract class GenericAdapter<DATA> :
             itemView.setOnClickListener {
                 val pos = adapterPosition
                 if (pos != NO_POSITION) {
-                    (this as? BaseBindableAdapter<DATA>)?.onClick(it, listItems[pos])
+                    (this as? BaseBindableAdapter<DATA>)?.onClick(it, listItems[pos], fromFavouriteFragment)
                 }
             }
         }

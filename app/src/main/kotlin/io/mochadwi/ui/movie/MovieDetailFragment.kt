@@ -46,7 +46,7 @@ class MovieDetailFragment : Fragment() {
         return when (item.itemId) {
             R.id.actFavourite -> {
                 vm.run {
-                    if (isMovieFavourite) {
+                    if (isMovieFavourite.get().default) {
                         deleteFromFavourite(args.movieItem?.id ?: -1)
                     } else {
                         addToFavourite(FavouriteItemMapper.from(args.movieItem
@@ -88,7 +88,7 @@ class MovieDetailFragment : Fragment() {
             states.observe(viewLifecycleOwner, Observer { state ->
                 when (state) {
                     is FavouriteListState -> {
-                        isMovieFavourite = state.single.isFavourite.default
+                        isMovieFavourite.set(state.single.isFavourite.default)
                     }
                     is FavouriteState -> showSuccess(state.isFavourite)
                     is ErrorState -> showError(state.error)

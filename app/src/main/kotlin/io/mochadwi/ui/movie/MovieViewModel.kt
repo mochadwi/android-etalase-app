@@ -1,5 +1,6 @@
 package io.mochadwi.ui.movie
 
+import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import io.mochadwi.domain.*
@@ -8,6 +9,7 @@ import io.mochadwi.ui.favourite.item.FavouriteItem
 import io.mochadwi.ui.favourite.mapper.FavouriteItemMapper
 import io.mochadwi.ui.movie.list.MovieItem
 import io.mochadwi.util.base.BaseViewModel
+import io.mochadwi.util.ext.default
 import io.mochadwi.util.mvvm.MutableSetObservableField
 import io.mochadwi.util.rx.SchedulerProvider
 import kotlinx.coroutines.channels.Channel
@@ -28,7 +30,7 @@ class MovieViewModel(
 
     val keywords = Channel<String>(UNLIMITED)
     val movieListSet = MutableSetObservableField<MovieItem>()
-    var isMovieFavourite = false
+    val isMovieFavourite = ObservableField<Boolean>()
 
     /*
      * We use LiveEvent to publish "states"
@@ -127,11 +129,11 @@ class MovieViewModel(
     fun addToFavourite(data: FavouriteItem) {
         launchIo {
             try {
-                isMovieFavourite = repo.addToLocalFavourite(
+                isMovieFavourite.set(repo.addToLocalFavourite(
                         FavouriteItemMapper.from(data.copy(isFavourite = true))
-                )
+                ))
 
-                _states.postValue(FavouriteState(isMovieFavourite))
+                _states.postValue(FavouriteState(isMovieFavourite.get().default))
             } catch (error: Throwable) {
                 _states.postValue(ErrorState(error))
             }
@@ -143,9 +145,9 @@ class MovieViewModel(
             try {
                 val isDeleted = repo.deleteFromLocalFavouriteById(id)
 
-                isMovieFavourite = !isDeleted
+                isMovieFavourite.set(!isDeleted)
 
-                _states.postValue(FavouriteState(isMovieFavourite))
+                _states.postValue(FavouriteState(isMovieFavourite.get().default))
             } catch (error: Throwable) {
                 _states.postValue(ErrorState(error))
             }

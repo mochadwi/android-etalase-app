@@ -61,6 +61,7 @@ class MovieFragment : Fragment(), BaseUserActionListener {
                               savedInstanceState: Bundle?
     ): View {
         isFavourite = arguments?.getBoolean(IS_FAVOURITE) == true
+        viewModel.isMovieFavourite.set(isFavourite)
 
         return if (::viewBinding.isInitialized) viewBinding.root
         else {

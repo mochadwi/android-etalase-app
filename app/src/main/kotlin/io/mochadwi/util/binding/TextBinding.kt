@@ -12,7 +12,9 @@ import androidx.databinding.BindingAdapter
 import io.mochadwi.R
 import io.mochadwi.ui.movie.list.MovieItem
 import io.mochadwi.util.ext.default
+import io.mochadwi.util.ext.gone
 import io.mochadwi.util.ext.putSpans
+import io.mochadwi.util.ext.visible
 import kotlin.math.ceil
 
 /**
@@ -130,5 +132,14 @@ object TextBinding {
     @JvmStatic
     fun TextView.setTitle(obj: MovieItem?) {
         text = obj?.title ?: obj?.name
+    }
+
+    @BindingAdapter(value = ["text:fromFavourite", "text:list"], requireAll = false)
+    @JvmStatic
+    fun <DATA> TextView.handleList(isFavourite: Boolean?, list: Set<DATA>?) {
+        if (list.isNullOrEmpty()) visible else gone
+
+        text = if (isFavourite.default) context.getString(R.string.error_emptyfavourites)
+        else context.getString(R.string.error_emptymovie)
     }
 }

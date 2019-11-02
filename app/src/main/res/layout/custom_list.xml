@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:card="http://schemas.android.com/apk/res-auto"
-        xmlns:list="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card="http://schemas.android.com/apk/res-auto"
+    xmlns:list="http://schemas.android.com/apk/res-auto"
+    xmlns:text="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -18,6 +18,10 @@
         <variable
             name="vm"
             type="io.mochadwi.util.base.BaseViewModel"/>
+
+        <variable
+            name="fromFavourite"
+            type="Boolean" />
 
         <variable
             name="list"
@@ -61,6 +65,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             card:isError="@{vm.isError}"
+            card:list="@{list}"
             card:isProgress="@{vm.progress}">
 
             <androidx.recyclerview.widget.RecyclerView
@@ -69,6 +74,7 @@
                 android:layout_height="match_parent"
                 list:isGrid="@{isGrid ?? false}"
                 list:items="@{list}"
+                list:fromFavourite="@{fromFavourite}"
                 list:layoutId="@{layoutId}"
                 list:orientation="@{orientation ?? 0}"
                 list:spanCount="@{spanCount ?? 0}"
@@ -77,5 +83,17 @@
                 />
 
         </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            text:fromFavourite="@{fromFavourite}"
+            text:list="@{list}" />
+
     </merge>
 </layout>

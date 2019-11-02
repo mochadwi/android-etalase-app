@@ -18,4 +18,5 @@
     </string>
     <string name="favourite">Disukai</string>
     <string name="not_favourite">Tidak disukai</string>
+    <string name="error_emptyfavourites">Anda tidak memiliki favorit</string>
 </resources>

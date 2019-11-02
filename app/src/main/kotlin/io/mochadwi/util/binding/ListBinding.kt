@@ -6,6 +6,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import io.mochadwi.databinding.MovieItemBinding
 import io.mochadwi.ui.movie.list.MovieViewHolder
+import io.mochadwi.util.ext.default
 import io.mochadwi.util.ext.setupGridLayoutManager
 import io.mochadwi.util.ext.setupLinearLayoutManager
 import io.mochadwi.util.helper.GenericAdapter
@@ -75,16 +76,16 @@ object ListBinding {
     }
 
     @SuppressLint(value = ["PrivateResource", "UNCHECKED_CAST"])
-    @BindingAdapter(value = ["list:items"], requireAll = false)
+    @BindingAdapter(value = ["list:items", "list:fromFavourite"], requireAll = false)
     @JvmStatic
-    fun <DATA> RecyclerView.initData(items: Set<DATA>?) {
+    fun <DATA> RecyclerView.initData(items: Set<DATA>?, fromFavourite: Boolean?) {
         try {
             if (adapter is GenericAdapter<*>) {
+                (adapter as GenericAdapter<DATA>).isFromFavourite(fromFavourite.default)
                 (adapter as GenericAdapter<DATA>).setData(items?.toList() ?: emptyList())
             }
         } catch (e: Exception) {
             e.printStackTrace()
         }
     }
-
 }

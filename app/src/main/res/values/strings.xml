@@ -22,4 +22,6 @@
     </string>
     <string name="favourite">Favourite</string>
     <string name="not_favourite">Unfavourite</string>
+    <string name="error_emptyfavourites">You have no favourites</string>
+    <string name="error_emptymovie">The Movie DB does not have any updates</string>
 </resources>

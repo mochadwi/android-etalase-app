@@ -16,9 +16,14 @@ import io.mochadwi.util.ext.*
 
 object CardViewBinding {
     @SuppressLint(value = ["PrivateResource", "UNCHECKED_CAST"])
-    @BindingAdapter(value = ["card:isError", "card:isProgress"], requireAll = false)
+    @BindingAdapter(value = ["card:isError", "card:isProgress", "card:list"], requireAll = false)
     @JvmStatic
-    fun CardView.isVisible(isError: Boolean?, isProgress: Boolean?) {
+    fun <DATA> CardView.isVisible(isError: Boolean?, isProgress: Boolean?, list: Set<DATA>?) {
+        if (list.isNullOrEmpty()) {
+            gone
+            return
+        } else visible
+
         if (!isError.default && !isProgress.default) {
             visible
             slideTop()

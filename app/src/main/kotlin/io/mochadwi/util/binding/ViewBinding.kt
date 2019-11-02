@@ -27,4 +27,11 @@ object ViewBinding {
             stopAnim()
         }
     }
+
+    @SuppressLint(value = ["PrivateResource", "UNCHECKED_CAST"])
+    @BindingAdapter(value = ["view:show"], requireAll = false)
+    @JvmStatic
+    fun View.show(isShown: Boolean?) {
+        if (isShown.default) visible else gone
+    }
 }
