@@ -47,7 +47,8 @@ class MainActivity : AppCompatActivity(), LoaderManager.LoaderCallbacks<Cursor> 
         }
     }
 
-    override fun onLoadFinished(loader: Loader<Cursor>, data: Cursor) {
+
+    override fun onLoadFinished(loader: Loader<Cursor>, data: Cursor?) {
         mAdapter!!.swapCursor(data)
     }
 
