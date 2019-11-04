@@ -25,6 +25,6 @@ interface RetrofitEndpoint {
 
     @GET(ENDPOINT_DISCOVER_TV)
     suspend fun getTvShows(
-            @Query("api_key") apiKey: BuildConfig = BuildConfig.API_KEY
+            @Query("api_key") apiKey: String = BuildConfig.API_KEY
     ): Response<BaseResponse<MovieResponse>>
 }
