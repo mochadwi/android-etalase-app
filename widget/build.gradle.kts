@@ -10,6 +10,10 @@ android {
     compileSdkVersion(Versions.androidCompileSdk)
     buildToolsVersion(Versions.androidBuildTools)
 
+    androidExtensions {
+        isExperimental = true
+    }
+
     defaultConfig {
         minSdkVersion(Versions.androidMinSdk)
         targetSdkVersion(Versions.androidTargetSdk)
