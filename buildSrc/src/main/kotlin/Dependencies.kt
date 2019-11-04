@@ -1,4 +1,5 @@
 import Versions.chuck
+import Versions.kotlin
 import Versions.kotlinxSerialization
 import Versions.navgraph
 import Versions.paging
@@ -39,8 +40,8 @@ object Versions {
     const val gson = "2.8.2"
     const val javaxAnnotation = "1.0"
     const val javaxInject = "1"
-    const val kotlin = "1.3.41"
-    const val kotlinxSerialization = "0.11.0"
+    const val kotlin = "1.3.50"
+    const val kotlinxSerialization = "0.13.0"
     const val kotlinCoroutine = "1.2.1"
     const val kotlinCoroutineTest = "1.2.1"
     const val leakCanary = "1.5.4"
@@ -96,7 +97,8 @@ object AndroidDependencies {
     const val daggerProcessor = "com.google.dagger:dagger-android-processor:${Versions.dagger}"
     const val daggerSupport = "com.google.dagger:dagger-android-support:${Versions.dagger}"
 
-    const val kotlinGradle = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
+    const val kotlinGradle = "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin"
+    const val kotlinSerialization = "org.jetbrains.kotlin:kotlin-serialization:$kotlin"
     const val kotlin7 = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
     const val kotlin8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}"
     const val kotlinReflect = "org.jetbrains.kotlin:kotlin-reflect:${Versions.kotlin}"

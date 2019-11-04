@@ -7,7 +7,7 @@ plugins {
     kotlin("android.extensions")
     kotlin("kapt")
     id("androidx.navigation.safeargs.kotlin")
-    id("kotlinx-serialization") version "1.3.30"
+    id("kotlinx-serialization")
     id("mergedJacocoReport")
 }
 
@@ -119,6 +119,9 @@ android {
             buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3/\"")
             buildConfigField("String", "BASE_IMAGE_URL", "\"https://image.tmdb.org/t/p/original\"")
             buildConfigField("String", "DEFAULT_IMAGE_URL", "\"https://paper.dropboxstatic.com/static/img/favicon/apple-touch-icon.png\"")
+
+            buildConfigField("String", "IMAGE_URL", "\"http://image.tmdb.org/t/p/w780/\"")
+            buildConfigField("String", "API_KEY", "\"334879b2c8dc36a9f2c64f7bd4f0c91d\"")
 
             // Inject app name for dev
             resValue("string", "app_name", "Etalase App")

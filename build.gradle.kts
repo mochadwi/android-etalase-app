@@ -9,6 +9,7 @@ buildscript {
     dependencies {
         classpath(AndroidDependencies.androidGradle)
         classpath(AndroidDependencies.kotlinGradle)
+        classpath(AndroidDependencies.kotlinSerialization)
         classpath(AndroidDependencies.navigationSafeArgs)
         classpath(TestDependencies.jacocoReport)
     }

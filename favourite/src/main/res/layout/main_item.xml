@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cl_item_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/iv_item_moviephoto"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        app:srcCompat="@drawable/ic_launcher_background" />
+
+    <TextView
+        android:id="@+id/tv_item_movietitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_16dp"
+        android:layout_marginLeft="@dimen/margin_16dp"
+        android:layout_marginTop="@dimen/margin_10dp"
+        android:text="Captain America"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toRightOf="@+id/iv_item_moviephoto"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- TODO: Make this text trimmed when too long using "..." -->
+    <TextView
+        android:id="@+id/tv_item_moviedescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:minLines="1"
+        android:text="Following the arc"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_item_movietitle"
+        app:layout_constraintTop_toBottomOf="@+id/tv_item_movietitle" />
+
+    <TextView
+        android:id="@+id/tv_item_movierelease"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_10dp"
+        android:text="Thursday, Jul 22, 2018"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_item_moviephoto"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_item_moviedescription" />
+
+</android.support.constraint.ConstraintLayout>
