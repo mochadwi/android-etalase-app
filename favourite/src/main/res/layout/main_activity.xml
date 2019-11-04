@@ -29,7 +29,7 @@
         android:scrollbars="vertical"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:context="id.mochadwi.cataloguefavourite.MainActivity" />
+        tools:context="io.mochadwi.cataloguefavourite.MainActivity" />
 
     <TextView
         android:id="@+id/tv_favourite_empty"

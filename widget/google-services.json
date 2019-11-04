@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "207993954294",
+    "firebase_url": "https://made-dicoding.firebaseio.com",
+    "project_id": "made-dicoding",
+    "storage_bucket": "made-dicoding.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:207993954294:android:3e98a09572e6f3ff1971d7",
+        "android_client_info": {
+          "package_name": "io.mochadwi.widget.debug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "207993954294-ro582312ioijev16s412c96gc81rhvfm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPA3wVS_HyHov5LBD14hErL8sObwDLrKI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "207993954294-ro582312ioijev16s412c96gc81rhvfm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

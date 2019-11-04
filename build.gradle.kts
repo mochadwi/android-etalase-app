@@ -8,6 +8,7 @@ buildscript {
     }
     dependencies {
         classpath(AndroidDependencies.androidGradle)
+        classpath("com.google.gms:google-services:4.0.1")
         classpath(AndroidDependencies.kotlinGradle)
         classpath(AndroidDependencies.kotlinSerialization)
         classpath(AndroidDependencies.navigationSafeArgs)

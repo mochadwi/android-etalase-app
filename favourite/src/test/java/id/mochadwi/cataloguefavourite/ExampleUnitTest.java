@@ -1,4 +1,4 @@
-package id.mochadwi.cataloguefavourite;
+package io.mochadwi.cataloguefavourite;
 
 import org.junit.Test;
 

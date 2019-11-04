@@ -3,6 +3,7 @@ import Versions.butterKnifeVersion
 import Versions.chuck
 import Versions.constraintLayoutVersion
 import Versions.espressoCoreVersion
+import Versions.firebaseMessagingVersion
 import Versions.glideVersion
 import Versions.kotlin
 import Versions.kotlinxSerialization
@@ -36,9 +37,12 @@ object Versions {
     const val glideVersion = "4.7.1"
     const val espressoCoreVersion = "2.2.2"
     const val butterKnifeVersion = "8.8.1"
+    const val firebaseMessagingVersion = "17.3.0"
 
     // Android
     const val applicationId = "io.mochadwi.etalase"
+    const val applicationIdFavourite = "io.mochadwi.favourite"
+    const val applicationIdWidget = "io.mochadwi.widget"
     const val androidGradle = "3.4.1"
     const val androidBuildTools = "28.0.3"
     const val androidCompileSdk = 28
@@ -127,6 +131,8 @@ object AndroidSupports {
 
     const val localization = "com.akexorcist:localizationactivity:1.2.2"
     const val stetho = "com.facebook.stetho:stetho:1.5.0"
+
+    const val fcm = "com.google.firebase:firebase-messaging:${firebaseMessagingVersion}"
 
     const val junit = "junit:junit:4.12"
     const val junitRunner = "com.android.support.test:runner:1.0.1"

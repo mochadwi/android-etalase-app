@@ -1,4 +1,4 @@
-package id.mochadwi.cataloguefavourite.model;
+package io.mochadwi.cataloguefavourite.model;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;

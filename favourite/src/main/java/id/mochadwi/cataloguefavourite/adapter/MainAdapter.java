@@ -1,4 +1,4 @@
-package id.mochadwi.cataloguefavourite.adapter;
+package io.mochadwi.cataloguefavourite.adapter;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -12,12 +12,12 @@ import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import id.mochadwi.cataloguefavourite.BuildConfig;
-import id.mochadwi.cataloguefavourite.GlideApp;
-import id.mochadwi.cataloguefavourite.R;
-import id.mochadwi.cataloguefavourite.model.MovieModel;
+import io.mochadwi.cataloguefavourite.BuildConfig;
+import io.mochadwi.cataloguefavourite.GlideApp;
+import io.mochadwi.cataloguefavourite.R;
+import io.mochadwi.cataloguefavourite.model.MovieModel;
 
-import static id.mochadwi.cataloguefavourite.model.MovieProvider.fromCursorValues;
+import static io.mochadwi.cataloguefavourite.model.MovieProvider.fromCursorValues;
 
 /**
  * Created by mochadwi on 8/6/18.

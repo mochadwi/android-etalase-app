@@ -1,4 +1,4 @@
-package id.mochadwi.cataloguefavourite.model;
+package io.mochadwi.cataloguefavourite.model;
 
 /**
  * Created by mochadwi on 8/24/18.

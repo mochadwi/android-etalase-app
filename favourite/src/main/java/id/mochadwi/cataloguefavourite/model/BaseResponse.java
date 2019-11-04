@@ -1,4 +1,4 @@
-package id.mochadwi.cataloguefavourite.model;
+package io.mochadwi.cataloguefavourite.model;
 
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;

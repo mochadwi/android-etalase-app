@@ -1,4 +1,4 @@
-package id.mochadwi.cataloguefavourite;
+package io.mochadwi.cataloguefavourite;
 
 import android.content.Context;
 import android.content.res.Configuration;

@@ -1,4 +1,4 @@
-package id.mochadwi.cataloguefavourite.model;
+package io.mochadwi.cataloguefavourite.model;
 
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -12,7 +12,7 @@ public class MovieProvider {
     /**
      * The authority of this content provider.
      */
-    public static final String AUTHORITY = "id.mochadwi.cataloguemovie.data.provider";
+    public static final String AUTHORITY = "io.mochadwi.cataloguemovie.data.provider";
 
     /**
      * The URI for the MovieModel table.

@@ -1,4 +1,4 @@
-package id.mochadwi.cataloguefavourite;
+package io.mochadwi.cataloguefavourite;
 
 import android.database.Cursor;
 import android.os.Bundle;
@@ -14,9 +14,9 @@ import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import id.mochadwi.cataloguefavourite.adapter.MainAdapter;
+import io.mochadwi.cataloguefavourite.adapter.MainAdapter;
 
-import static id.mochadwi.cataloguefavourite.model.MovieProvider.URI_MOVIE;
+import static io.mochadwi.cataloguefavourite.model.MovieProvider.URI_MOVIE;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 

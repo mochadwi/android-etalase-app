@@ -1,1 +1,1 @@
-include ':app',':favourite'
+include ':app', ':favourite', ':widget'

@@ -1,4 +1,4 @@
-package id.mochadwi.cataloguefavourite;
+package io.mochadwi.cataloguefavourite;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("id.mochadwi.cataloguefavourite", appContext.getPackageName());
+        assertEquals("io.mochadwi.cataloguefavourite", appContext.getPackageName());
     }
 }

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="id.mochadwi.cataloguefavourite">
+    package="io.mochadwi.cataloguefavourite">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
-    <uses-permission android:name="id.punyakakset.cataloguemovie.data.provider.READ_DATABASE" />
-    <uses-permission android:name="id.punyakakset.cataloguemovie.data.provider.WRITE_DATABASE" />
+    <uses-permission android:name="io.mochadwi.cataloguemovie.data.provider.READ_DATABASE" />
+    <uses-permission android:name="io.mochadwi.cataloguemovie.data.provider.WRITE_DATABASE" />
 
     <application
         android:allowBackup="true"
@@ -18,7 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name="id.mochadwi.cataloguefavourite.MainActivity">
+        <activity android:name="io.mochadwi.cataloguefavourite.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -13,7 +13,7 @@ android {
         vectorDrawables.useSupportLibrary = true
         minSdkVersion(Versions.androidMinSdk)
         targetSdkVersion(Versions.androidTargetSdk)
-        applicationId = Versions.applicationId
+        applicationId = Versions.applicationIdFavourite
         // TODO: Use semantic versioning, use ribot guideliens
         // ref: https://medium.com/@IlyaEremin/npm-version-for-gradle-android-9137a7dc273c
         versionCode = 1000000
