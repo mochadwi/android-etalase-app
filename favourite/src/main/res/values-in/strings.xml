@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Favorit Katalog</string>
+    <string name="app_name">Favorit Etalase</string>
     <string name="message_search">Cari</string>
     <string name="message_upcoming">Akan Datang</string>
     <string name="message_now_playing">Sedang diputar</string>
