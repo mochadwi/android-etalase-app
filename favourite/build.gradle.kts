@@ -40,12 +40,21 @@ android {
             isPseudoLocalesEnabled = false
             isZipAlignEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
+
+            buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3/\"")
+            buildConfigField("String", "IMAGE_URL", "\"http://image.tmdb.org/t/p/w780/\"")
+            buildConfigField("String", "API_KEY", "\"334879b2c8dc36a9f2c64f7bd4f0c91d\"")
         }
 
         getByName("debug") {
+            applicationIdSuffix = ".debug"
             isMinifyEnabled = false
             isDebuggable = true
             isTestCoverageEnabled = true
+
+            buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3/\"")
+            buildConfigField("String", "IMAGE_URL", "\"http://image.tmdb.org/t/p/w780/\"")
+            buildConfigField("String", "API_KEY", "\"334879b2c8dc36a9f2c64f7bd4f0c91d\"")
         }
     }
 
@@ -60,40 +69,37 @@ dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
     // support
-    implementation(AndroidDependencies.androidSupportAppCompatV7)
-    implementation(AndroidDependencies.androidSupportDesign)
-    implementation(AndroidDependencies.androidSupportCardView)
-    implementation(AndroidDependencies.androidSupportRecyclerView)
-    implementation(AndroidDependencies.androidSupportConstraintLayout)
-    implementation(AndroidDependencies.androidSupportMultidex)
+    implementation(AndroidSupports.appCompat)
+    implementation(AndroidSupports.support)
+    implementation(AndroidSupports.design)
+    implementation(AndroidSupports.recyclerView)
+    implementation(AndroidSupports.cardView)
+    implementation(AndroidSupports.constraintLayout)
+    implementation(AndroidSupports.multiDex)
 
     // google
-    implementation(AndroidDependencies.roomRuntime)
-    implementation(AndroidDependencies.roomKtx)
-    kapt(AndroidDependencies.roomCompiler)
+    implementation(AndroidSupports.archRoomRuntime)
+    kapt(AndroidSupports.archRoomComp)
 
 
     // libs
-    implementation(AppDependencies.retrofit)
-    implementation(AppDependencies.retrofitConverterKotlinSerialization)
-    implementation(AppDependencies.retrofitConverterGson)
-    implementation(AppDependencies.retrofitConverterScalar)
-    implementation(AppDependencies.okHttp)
-    implementation(AppDependencies.okHttpLogger)
-    implementation(AppDependencies.glide)
-    kapt(AppDependencies.glideCompiler)
-    implementation(AppDependencies.stetho)
+    implementation(AndroidSupports.okhttp)
+    debugImplementation(AndroidSupports.okhttpLogging)
+    implementation(AndroidSupports.glide) {
+        exclude(group = "com.android.support")
+    }
+    kapt(AndroidSupports.glideCompiler)
+    implementation(AndroidSupports.retrofit)
+    implementation(AndroidSupports.retrofitRx2)
+    implementation(AndroidSupports.retrofitGson)
+    implementation(AndroidSupports.retrofitScalar)
+    implementation(AndroidSupports.butterKnife)
+    kapt(AndroidSupports.butterKnifeAnnotation)
+    implementation(AndroidSupports.localization)
+    implementation(AndroidSupports.stetho)
 
     // unit test dependencies
-    // Android Test
-    testImplementation(TestDependencies.kotlinJUnit)
-    testImplementation(TestDependencies.kotlinCoroutineTest)
-    testImplementation(TestDependencies.mockitoCore)
-    // fix this mixing version
-    androidTestImplementation(TestDependencies.testJunit)
-    androidTestImplementation(TestDependencies.testRules)
-    androidTestImplementation(TestDependencies.testRunner)
-    androidTestImplementation(TestDependencies.kotlinCoroutineTest)
-    androidTestImplementation(TestDependencies.mockitoAndroid)
-    androidTestUtil(TestDependencies.testOrchestrator)
+    testImplementation(AndroidSupports.junit)
+    androidTestImplementation(AndroidSupports.junitRunner)
+    androidTestImplementation(AndroidSupports.espressoCore)
 }

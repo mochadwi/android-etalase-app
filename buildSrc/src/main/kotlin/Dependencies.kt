@@ -1,10 +1,19 @@
+import Versions.archRoomVersion
+import Versions.butterKnifeVersion
 import Versions.chuck
+import Versions.constraintLayoutVersion
+import Versions.espressoCoreVersion
+import Versions.glideVersion
 import Versions.kotlin
 import Versions.kotlinxSerialization
+import Versions.multiDexVersion
 import Versions.navgraph
+import Versions.okHttpVersion
 import Versions.paging
 import Versions.playService
+import Versions.retrofitVersion
 import Versions.room
+import Versions.supportLibraryVersion
 
 /**
  * This file contains all the dependencies we need in our project. Because we placed
@@ -16,6 +25,17 @@ import Versions.room
  */
 @Suppress("unused")
 object Versions {
+
+    // Android Support
+    const val supportLibraryVersion = "27.1.1"
+    const val constraintLayoutVersion = "1.0.2"
+    const val multiDexVersion = "1.0.1"
+    const val archRoomVersion = "1.1.1"
+    const val okHttpVersion = "3.10.0"
+    const val retrofitVersion = "2.3.0"
+    const val glideVersion = "4.7.1"
+    const val espressoCoreVersion = "2.2.2"
+    const val butterKnifeVersion = "8.8.1"
 
     // Android
     const val applicationId = "io.mochadwi.etalase"
@@ -77,6 +97,42 @@ object Versions {
     const val test = "1.1.0"
 }
 
+@Suppress("unused")
+object AndroidSupports {
+    const val appCompat = "com.android.support:appcompat-v7:${supportLibraryVersion}"
+    const val support = "com.android.support:support-v4:${supportLibraryVersion}"
+    const val design = "com.android.support:design:${supportLibraryVersion}"
+    const val recyclerView = "com.android.support:recyclerview-v7:${supportLibraryVersion}"
+    const val cardView = "com.android.support:cardview-v7:${supportLibraryVersion}"
+    const val constraintLayout = "com.android.support.constraint:constraint-layout:${constraintLayoutVersion}"
+    const val multiDex = "com.android.support:multidex:${multiDexVersion}"
+
+    const val archRoomRuntime = "android.arch.persistence.room:runtime:${archRoomVersion}"
+    const val archRoomComp = "android.arch.persistence.room:compiler:${archRoomVersion}"
+
+    const val okhttp = "com.squareup.okhttp3:okhttp:${okHttpVersion}"
+    const val okhttpLogging = "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}"
+
+    const val glide = "com.github.bumptech.glide:glide:${glideVersion}"
+    const val glideCompiler = "com.github.bumptech.glide:compiler:${glideVersion}"
+
+    const val retrofit = "com.squareup.retrofit2:retrofit:${retrofitVersion}"
+    const val retrofitRx = "com.squareup.retrofit2:adapter-rxjava:${retrofitVersion}"
+    const val retrofitRx2 = "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}"
+    const val retrofitGson = "com.squareup.retrofit2:converter-gson:${retrofitVersion}"
+    const val retrofitScalar = "com.squareup.retrofit2:converter-scalars:${retrofitVersion}"
+
+    const val butterKnife = "com.jakewharton:butterknife:${butterKnifeVersion}"
+    const val butterKnifeAnnotation = "com.jakewharton:butterknife-compiler:${butterKnifeVersion}"
+
+    const val localization = "com.akexorcist:localizationactivity:1.2.2"
+    const val stetho = "com.facebook.stetho:stetho:1.5.0"
+
+    const val junit = "junit:junit:4.12"
+    const val junitRunner = "com.android.support.test:runner:1.0.1"
+    const val espressoCore = "com.android.support.test.espresso:espresso-core:${espressoCoreVersion}"
+
+}
 @Suppress("unused")
 object AndroidDependencies {
 
