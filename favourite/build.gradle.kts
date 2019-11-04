@@ -9,6 +9,10 @@ android {
     compileSdkVersion(Versions.androidCompileSdk)
     buildToolsVersion(Versions.androidBuildTools)
 
+    androidExtensions {
+        isExperimental = true
+    }
+
     defaultConfig {
         vectorDrawables.useSupportLibrary = true
         minSdkVersion(Versions.androidMinSdk)
