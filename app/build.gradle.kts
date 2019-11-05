@@ -122,6 +122,7 @@ android {
 
             buildConfigField("String", "IMAGE_URL", "\"http://image.tmdb.org/t/p/w780/\"")
             buildConfigField("String", "API_KEY", "\"334879b2c8dc36a9f2c64f7bd4f0c91d\"")
+            buildConfigField("String", "AUTHORITY", "\"${Versions.applicationId}.data.provider\"")
 
             // Inject app name for dev
             resValue("string", "app_name", "Etalase App")

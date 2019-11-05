@@ -25,6 +25,13 @@
         tools:ignore="GoogleAppIndexingWarning">
 
         <provider
+            android:name=".data.datasource.local.provider.EtalaseContentProvider"
+            android:authorities="${applicationId}.data.provider"
+            android:exported="true"
+            android:readPermission="${applicationId}.data.provider.READ_DATABASE"
+            android:writePermission="${applicationId}.data.provider.WRITE_DATABASE" />
+
+        <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
             android:exported="false"

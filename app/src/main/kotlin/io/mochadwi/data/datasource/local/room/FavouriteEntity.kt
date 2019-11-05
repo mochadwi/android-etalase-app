@@ -2,13 +2,14 @@ package io.mochadwi.data.datasource.local.room
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import io.mochadwi.data.datasource.local.room.FavouriteEntity.Companion.FAVOURITE_TABLE_NAME
 
 /**
  * Created by mochadwi on 2019-10-31
  * Copyright (c) 2019 dicoding. All rights reserved.
  */
 
-@Entity(tableName = "tbl_favourite")
+@Entity(tableName = FAVOURITE_TABLE_NAME)
 data class FavouriteEntity(
         @PrimaryKey
         val id: Int,
@@ -30,6 +31,7 @@ data class FavouriteEntity(
         val isFavourite: Boolean?
 ) {
     companion object {
+        const val FAVOURITE_TABLE_NAME = "tbl_favourite"
         fun empty() = FavouriteEntity(
                 0,
                 "",

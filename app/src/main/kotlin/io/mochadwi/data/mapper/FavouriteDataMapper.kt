@@ -2,6 +2,7 @@ package io.mochadwi.data.mapper
 
 import io.mochadwi.data.datasource.local.room.FavouriteEntity
 import io.mochadwi.domain.model.favourite.Favourite
+import io.mochadwi.domain.model.movie.Movie
 
 /**
  * Created by mochadwi on 2019-11-01
@@ -14,6 +15,10 @@ class FavouriteDataMapper {
         }
 
         fun from(model: Favourite) = with(model) {
+            FavouriteEntity(id, title, name, adult, backdropPath, genreIds, originalLanguage, originalTitle, originalName, overview, posterPath, popularity, releaseDate, video, voteAverage, voteCount, isFavourite)
+        }
+
+        fun from(model: Movie) = with(model) {
             FavouriteEntity(id, title, name, adult, backdropPath, genreIds, originalLanguage, originalTitle, originalName, overview, posterPath, popularity, releaseDate, video, voteAverage, voteCount, isFavourite)
         }
     }

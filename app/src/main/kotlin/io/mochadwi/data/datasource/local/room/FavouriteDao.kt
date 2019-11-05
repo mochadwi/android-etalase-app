@@ -1,5 +1,6 @@
 package io.mochadwi.data.datasource.local.room
 
+import android.database.Cursor
 import androidx.room.Dao
 import androidx.room.Query
 
@@ -19,5 +20,11 @@ abstract class FavouriteDao : BaseDao<FavouriteEntity> {
     abstract suspend fun getFavouriteById(id: Int): FavouriteEntity
 
     @Query("UPDATE tbl_favourite SET isFavourite = 0 WHERE id = :id")
-    abstract suspend fun deleteFavouriteById(id: Int): Int
+    abstract suspend fun deleteFavouriteById(id: Long): Int
+
+    @Query("SELECT * FROM tbl_favourite WHERE isFavourite = 1")
+    abstract suspend fun selectAll(): Cursor
+
+    @Query("SELECT * FROM tbl_favourite WHERE id = :id")
+    abstract suspend fun selectById(id: Long): Cursor
 }

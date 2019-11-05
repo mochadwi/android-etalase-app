@@ -113,7 +113,7 @@ class CoRepository(
 
     override fun deleteFromLocalFavouriteById(id: Int): Boolean = runBlocking {
         try {
-            val updatedRowsCount = favouriteDao.deleteFavouriteById(id)
+            val updatedRowsCount = favouriteDao.deleteFavouriteById(id.toLong())
             updatedRowsCount > 0
         } catch (e: IllegalAccessException) {
             false
