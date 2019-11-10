@@ -23,6 +23,7 @@ object MovieProvider {
             .build()
 
     // the getColumn# used to get from Content Provider
+    @Throws(IllegalArgumentException::class, IllegalStateException::class)
     fun getColumnString(cursor: Cursor, columnName: String): String {
         return cursor.getString(cursor.getColumnIndexOrThrow(columnName))
     }
@@ -52,7 +53,13 @@ object MovieProvider {
         movie.originalLanguage = getColumnString(cursor, "originalLanguage")
         movie.originalTitle = getColumnString(cursor, "originalTitle")
         movie.isVideo = getColumnBool(cursor, "video") == 1
-        movie.title = getColumnString(cursor, "title")
+        movie.title = try {
+            getColumnString(cursor, "title")
+        } catch (e: IllegalArgumentException) {
+            getColumnString(cursor, "name")
+        } catch (e: IllegalStateException) {
+            getColumnString(cursor, "name")
+        }
         movie.posterPath = getColumnString(cursor, "posterPath")
         movie.backdropPath = getColumnString(cursor, "backdropPath")
         movie.releaseDate = getColumnString(cursor, "releaseDate")
