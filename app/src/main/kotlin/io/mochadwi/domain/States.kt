@@ -55,3 +55,5 @@ data class FavouriteListState(
         }
     }
 }
+
+data class CursorState(val error: Throwable) : State()

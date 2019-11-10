@@ -1,8 +1,8 @@
 package io.mochadwi.domain.model.movie
 
 data class Movie(
-        val _id: Long,
-        val movieId: Int,
+        val _id: Long = 0,
+        val movieId: Int = 0,
         val title: String?,
         val name: String?,
         val adult: Boolean = false,

@@ -31,6 +31,10 @@ import kotlinx.coroutines.channels.Channel.Factory.UNLIMITED
  *
  */
 
+// TODO(mochadwi): 2019-11-10 ContentProvider = Repository pattern
+//    https://stackoverflow.com/a/43646354/3763032
+//    https://github.com/android10/Android-CleanArchitecture/issues/47
+//    https://medium.com/@dmilicic/a-detailed-guide-on-developing-android-apps-using-the-clean-architecture-pattern-d38d71e94029
 class MovieViewModel(
         private val repo: AppRepository,
         schedulerProvider: SchedulerProvider,

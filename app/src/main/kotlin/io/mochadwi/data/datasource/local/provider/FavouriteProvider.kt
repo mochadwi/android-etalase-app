@@ -49,13 +49,18 @@ class FavouriteProvider {
             return cursor.getInt(cursor.getColumnIndexOrThrow(columnName))
         }
 
+        @Throws(IllegalArgumentException::class, IllegalStateException::class, NullPointerException::class)
+        fun catchErrorWithDefaultString(cursor: Cursor, columnName: String) = try {
+            getColumnString(cursor, columnName)
+        } catch (e: Exception) {
+            ""
+        }
+
         // for insert & update query
         fun fromCursorValues(cursor: Cursor): Movie {
             return Movie(
-                    _id = getColumnLong(cursor, "_id"),
-                    movieId = getColumnInt(cursor, "movieId"),
-                    title = getColumnString(cursor, "title"),
-                    name = getColumnString(cursor, "name"),
+                    title = catchErrorWithDefaultString(cursor, "title"),
+                    name = catchErrorWithDefaultString(cursor, "name"),
                     adult = getColumnBool(cursor, "adult") == 1,
                     backdropPath = getColumnString(cursor, "backdropPath"),
                     originalLanguage = getColumnString(cursor, "originalLanguage"),
@@ -68,7 +73,6 @@ class FavouriteProvider {
                     voteAverage = getColumnDouble(cursor, "voteAverage"),
                     voteCount = getColumnInt(cursor, "voteCount"),
                     isFavourite = getColumnBool(cursor, "favourite") == 1
-
             )
         }
 

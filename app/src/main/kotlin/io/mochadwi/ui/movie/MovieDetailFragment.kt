@@ -111,7 +111,7 @@ class MovieDetailFragment : Fragment() {
                         isMovieFavourite.set(state.single.isFavourite.default)
                     }
                     is FavouriteState -> showSuccess(state.isFavourite)
-                    is ErrorState -> showError(state.error)
+                    is ErrorState, is CursorState -> showError(state)
                 }
             })
         }
@@ -124,7 +124,10 @@ class MovieDetailFragment : Fragment() {
         ))
     }
 
-    private fun showError(err: Throwable) {
-        toastSpammable(err.localizedMessage)
+    private fun showError(state: State) {
+        when (state) {
+            is ErrorState -> toastSpammable(state.error.localizedMessage)
+            is CursorState -> toastSpammable("Not yet liked!")
+        }
     }
 }
