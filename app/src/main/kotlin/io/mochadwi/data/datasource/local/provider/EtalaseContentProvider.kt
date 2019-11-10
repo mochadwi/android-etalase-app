@@ -9,6 +9,7 @@ import io.mochadwi.data.datasource.local.room.FAVOURITE_TABLE_NAME
 import io.mochadwi.data.datasource.local.room.FavouriteDao
 import io.mochadwi.data.mapper.FavouriteDataMapper
 import kotlinx.coroutines.runBlocking
+import org.koin.android.ext.android.inject
 
 /**
  * Created by mochadwi on 2019-11-05
@@ -23,9 +24,10 @@ import kotlinx.coroutines.runBlocking
  * Note that you don't need to implement a ContentProvider unless you want to expose the data
  * outside your process or your application already uses a ContentProvider.
  */
-class EtalaseContentProvider(
-        private val ctx: Context,
-        private val favouriteDao: FavouriteDao) : ContentProvider() {
+class EtalaseContentProvider : ContentProvider() {
+
+    private val ctx: Context by inject()
+    private val favouriteDao: FavouriteDao by inject()
 
     override fun onCreate(): Boolean {
         return true
