@@ -60,7 +60,7 @@ class MovieEntityMapper {
                         overview = overview,
                         posterPath = posterPath.default,
                         popularity = popularity,
-                        releaseDate = releaseDate,
+                            releaseDate = if (releaseDate.isBlank()) firstAirDate else releaseDate,
                         video = video,
                         voteAverage = voteAverage,
                         voteCount = voteCount

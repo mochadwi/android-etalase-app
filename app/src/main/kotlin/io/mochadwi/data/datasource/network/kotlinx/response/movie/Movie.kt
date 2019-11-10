@@ -31,6 +31,8 @@ data class MovieResponse(
         @Optional
     @SerialName("release_date")
     val releaseDate: String = "",
+        @SerialName("first_air_date")
+        val firstAirDate: String = "",
         val title: String? = null,
         val name: String? = null,
         val video: Boolean = false,
