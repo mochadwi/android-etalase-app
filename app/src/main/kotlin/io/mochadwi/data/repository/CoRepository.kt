@@ -2,8 +2,8 @@ package io.mochadwi.data.repository
 
 import io.mochadwi.data.datasource.local.room.FavouriteDao
 import io.mochadwi.data.datasource.local.room.MovieDao
-import io.mochadwi.data.datasource.local.room.MovieEntity
 import io.mochadwi.data.datasource.network.RetrofitEndpoint
+import io.mochadwi.data.datasource.network.kotlinx.response.movie.MovieResponse
 import io.mochadwi.data.mapper.FavouriteDataMapper
 import io.mochadwi.data.mapper.MovieEntityMapper
 import io.mochadwi.data.mapper.MovieResultMapper
@@ -73,7 +73,12 @@ class CoRepository(
     }
 
     override fun searchMovies(query: String): List<Movie>? = runBlocking {
-        MovieEntityMapper.from<MovieEntity, Movie>(movieDao.searchMovies(query))
+        val response = endpoint.searchMovies(query = query)
+
+        response.body()?.let {
+            if (response.isSuccessful) MovieEntityMapper.from<MovieResponse, Movie>(it.results!!)
+            else emptyList()
+        }
     }
 
     override fun getLocalFavouriteMovies(): List<Favourite> = runBlocking {

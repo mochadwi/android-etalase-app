@@ -24,7 +24,7 @@ class MovieEntityMapper {
         }
 
         // TODO(mochadwi): 2019-08-25 This is either known issue or due to type erasure at compile time, that detect different List<A> & List<B> as clashes
-        fun <S : Any, D : Any> from(movies: ListMovie<S>): List<D> = movies.map {
+        inline fun <reified S : Any, reified D : Any> from(movies: List<S>): List<D> = movies.map {
             with(it) {
                 when (this) {
                     is MovieEntity -> Movie(
@@ -47,25 +47,48 @@ class MovieEntityMapper {
                             voteCount = voteCount
                     )
 
-                    is MovieResponse -> MovieEntity(
-                        id,
-                        title,
-                        name,
-                        adult = adult,
-                        backdropPath = backdropPath.default,
-                        genreIds = genreIds,
-                        originalLanguage = originalLanguage,
-                        originalTitle = originalTitle,
-                        originalName = originalName,
-                        overview = overview,
-                        posterPath = posterPath.default,
-                        popularity = popularity,
-                            releaseDate = if (releaseDate.isBlank()) firstAirDate else releaseDate,
-                        video = video,
-                        voteAverage = voteAverage,
-                        voteCount = voteCount
-                    )
-
+                    is MovieResponse -> {
+                        if (D::class == Movie::class) {
+                            Movie(
+                                    0,
+                                    id,
+                                    title,
+                                    name,
+                                    adult = adult,
+                                    backdropPath = backdropPath.default,
+                                    genreIds = genreIds,
+                                    originalLanguage = originalLanguage,
+                                    originalTitle = originalTitle,
+                                    originalName = originalName,
+                                    overview = overview,
+                                    posterPath = posterPath.default,
+                                    popularity = popularity,
+                                    releaseDate = releaseDate,
+                                    video = video,
+                                    voteAverage = voteAverage,
+                                    voteCount = voteCount
+                            )
+                        } else {
+                            MovieEntity(
+                                    id,
+                                    title,
+                                    name,
+                                    adult = adult,
+                                    backdropPath = backdropPath.default,
+                                    genreIds = genreIds,
+                                    originalLanguage = originalLanguage,
+                                    originalTitle = originalTitle,
+                                    originalName = originalName,
+                                    overview = overview,
+                                    posterPath = posterPath.default,
+                                    popularity = popularity,
+                                    releaseDate = if (releaseDate.isBlank()) firstAirDate else releaseDate,
+                                    video = video,
+                                    voteAverage = voteAverage,
+                                    voteCount = voteCount
+                            )
+                        }
+                    }
                     else -> TODO()
                 } as D
             }
