@@ -53,7 +53,7 @@ class MovieDetailFragment : Fragment() {
                     } else {
                         val movieItem = MovieModelMapper.from(args.movieItem
                                 ?: MovieItem(id = -1, isFavourite = false))
-                        addToContentProvider(URI_FAVOURITE, toContentValues(movieItem))
+                        addToContentProvider(URI_FAVOURITE, toContentValues(movieItem.copy(isFavourite = true)))
                     }
                 }
                 true

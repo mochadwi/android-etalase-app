@@ -130,12 +130,11 @@ class MovieViewModel(
         }
     }
 
-    fun addToContentProvider(uri: Uri, contentValues: ContentValues) {
+    fun addToContentProvider(pathUri: Uri, contentValues: ContentValues) {
         launchIo {
             try {
-                isMovieFavourite.set(
-                        context.contentResolver.insert(uri, contentValues) != null
-                )
+                val resultUri = context.contentResolver.insert(pathUri, contentValues)
+                isMovieFavourite.set(resultUri != pathUri)
 
                 _states.postValue(FavouriteState(isMovieFavourite.get().default))
             } catch (error: Throwable) {
