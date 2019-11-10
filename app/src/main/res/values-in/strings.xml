@@ -21,4 +21,5 @@
     <string name="error_emptyfavourites">Anda tidak memiliki favorit</string>
     <string name="message_releasereminder">Hari ini %1$s dirilis</string>
     <string name="error_emptymovie">Tidak ada film terbaru</string>
+    <string name="message_dailyreminder">Yuk cek %1$s hari ini</string>
 </resources>

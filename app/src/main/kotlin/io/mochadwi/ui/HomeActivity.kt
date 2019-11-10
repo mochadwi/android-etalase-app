@@ -17,15 +17,22 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import androidx.work.PeriodicWorkRequest
+import androidx.work.WorkManager
 import io.mochadwi.R
 import io.mochadwi.databinding.HomeActivityBinding
 import io.mochadwi.ui.movie.MovieViewModel
 import io.mochadwi.util.base.BaseActivity
 import io.mochadwi.util.ext.coroutineLaunch
 import io.mochadwi.util.ext.default
+import io.mochadwi.util.helper.AppHelper
+import io.mochadwi.util.service.NotifyDailyWorker
+import io.mochadwi.util.service.NotifyReleaseWorker
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.util.concurrent.TimeUnit
 
 /**
  *
@@ -44,18 +51,33 @@ class HomeActivity : BaseActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
 
     val viewModel by viewModel<MovieViewModel>()
+    val workManager by inject<WorkManager>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme_Launcher)
         super.onCreate(savedInstanceState)
 
         viewBinding.executePendingBindings()
+        setupWorkManager()
         setupNavController()
         setupAppBar()
         if (::mNavController.isInitialized && ::appBarConfiguration.isInitialized) {
             setupActionBar(mNavController, appBarConfiguration)
             setupBottomNav(mNavController)
         }
+    }
+
+    private fun setupWorkManager() {
+        val notificationDaily = PeriodicWorkRequest.Builder(NotifyDailyWorker::class.java, 1, TimeUnit.HOURS)
+                .addTag(AppHelper.Const.TAG_MOVIE_DAILY)
+                .build()
+        workManager.enqueue(notificationDaily)
+
+
+        val notificationRelease = PeriodicWorkRequest.Builder(NotifyReleaseWorker::class.java, 1, TimeUnit.HOURS)
+                .addTag(AppHelper.Const.TAG_MOVIE_RELEASE)
+                .build()
+        workManager.enqueue(notificationRelease)
     }
 
     override fun onBackPressed() {

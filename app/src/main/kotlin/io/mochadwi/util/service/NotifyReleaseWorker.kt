@@ -24,7 +24,7 @@ class NotifyReleaseWorker(context: Context, workerParameters: WorkerParameters) 
     override fun doWork(): Result =
             when (DateTime().hourOfDay) {
                 8 -> {
-                    Log.d(TAG_MOVIE_RELEASE, "date: " + getTimeEqualToday("2018-10-10"))
+                    Log.d(TAG_MOVIE_RELEASE, "date: " + getTimeEqualToday(DateTime.now().toString("yyyy-MM-dd")))
                     getDiscoverMovies("in")
                 }
                 else -> {

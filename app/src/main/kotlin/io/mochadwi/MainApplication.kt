@@ -22,8 +22,7 @@ class MainApplication : Application() {
             modules(onlineEtalaseApp)
         }
 
-        Iconify
-                .with(WeathericonsModule())
+        Iconify.with(WeathericonsModule())
 
         Stetho.initializeWithDefaults(this)
     }

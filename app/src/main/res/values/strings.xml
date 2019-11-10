@@ -24,5 +24,6 @@
     <string name="not_favourite">Unfavourite</string>
     <string name="error_emptyfavourites">You have no favourites</string>
     <string name="message_releasereminder">Today %1$s released</string>
+    <string name="message_dailyreminder">Let\'s check %1$s today</string>
     <string name="error_emptymovie">The Movie DB does not have any updates</string>
 </resources>

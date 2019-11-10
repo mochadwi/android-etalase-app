@@ -3,22 +3,16 @@ package io.mochadwi.di
 import androidx.room.Room
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
-import androidx.work.PeriodicWorkRequest
 import androidx.work.WorkManager
 import io.mochadwi.data.datasource.local.room.AppRoomDatabase
 import io.mochadwi.data.repository.CoRepository
 import io.mochadwi.domain.repository.AppRepository
 import io.mochadwi.ui.movie.MovieViewModel
-import io.mochadwi.util.helper.AppHelper.Const.TAG_MOVIE_DAILY
-import io.mochadwi.util.helper.AppHelper.Const.TAG_MOVIE_RELEASE
 import io.mochadwi.util.rx.ApplicationSchedulerProvider
 import io.mochadwi.util.rx.SchedulerProvider
-import io.mochadwi.util.service.NotifyDailyWorker
-import io.mochadwi.util.service.NotifyReleaseWorker
 import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
-import java.util.concurrent.TimeUnit
 
 /**
  * App Components
@@ -60,22 +54,6 @@ val repoModule = module {
 
 val workManagerModule = module {
     single { WorkManager.getInstance(get()) }
-
-    single {
-        val notificationDaily = PeriodicWorkRequest.Builder(NotifyDailyWorker::class.java, 1, TimeUnit.HOURS)
-                .addTag(TAG_MOVIE_DAILY)
-                .build()
-
-        get<WorkManager>().enqueue(notificationDaily)
-    }
-
-    single {
-        val notificationRelease = PeriodicWorkRequest.Builder(NotifyReleaseWorker::class.java, 1, TimeUnit.HOURS)
-                .addTag(TAG_MOVIE_RELEASE)
-                .build()
-
-        get<WorkManager>().enqueue(notificationRelease)
-    }
 }
 
 // Gather all app modules
