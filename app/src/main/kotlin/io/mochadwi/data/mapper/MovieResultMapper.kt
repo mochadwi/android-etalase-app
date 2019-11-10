@@ -15,22 +15,23 @@ class MovieResultMapper {
         fun from(movies: List<MovieResponse>): List<Movie> = movies.map {
             with(it) {
                 Movie(
-                    id,
-                    title,
-                    name,
-                    adult = adult,
-                    backdropPath = backdropPath.default,
-                    genreIds = genreIds,
-                    originalLanguage = originalLanguage,
-                    originalTitle = originalTitle,
-                    originalName = originalName,
-                    overview = overview,
-                    posterPath = posterPath.default,
-                    popularity = popularity,
-                    releaseDate = releaseDate,
-                    video = video,
-                    voteAverage = voteAverage,
-                    voteCount = voteCount
+                        0,
+                        id,
+                        title,
+                        name,
+                        adult = adult,
+                        backdropPath = backdropPath.default,
+                        genreIds = genreIds,
+                        originalLanguage = originalLanguage,
+                        originalTitle = originalTitle,
+                        originalName = originalName,
+                        overview = overview,
+                        posterPath = posterPath.default,
+                        popularity = popularity,
+                        releaseDate = releaseDate,
+                        video = video,
+                        voteAverage = voteAverage,
+                        voteCount = voteCount
                 )
             }
         }

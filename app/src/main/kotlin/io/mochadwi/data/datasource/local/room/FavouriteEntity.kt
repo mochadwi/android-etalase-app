@@ -12,9 +12,10 @@ import androidx.room.PrimaryKey
 const val FAVOURITE_TABLE_NAME = "tbl_favourite"
 
 @Entity(tableName = FAVOURITE_TABLE_NAME)
-data class FavouriteEntity(
+data class FavouriteEntity @JvmOverloads constructor(
+        var _id: Long = 0,
         @PrimaryKey
-        var id: Int = 0,
+        var favouriteId: Int = 0,
         var title: String? = null,
         var name: String? = null,
         var adult: Boolean = false,

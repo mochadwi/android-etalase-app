@@ -52,19 +52,20 @@ class FavouriteProvider {
         // for insert & update query
         fun fromCursorValues(cursor: Cursor): Movie {
             return Movie(
-                    id = getColumnInt(cursor, "id"),
-                    overview = getColumnString(cursor, "overview"),
-                    originalLanguage = getColumnString(cursor, "originalLanguage"),
-                    originalTitle = getColumnString(cursor, "originalTitle"),
-                    video = getColumnBool(cursor, "video") == 1,
+                    _id = getColumnLong(cursor, "_id"),
+                    movieId = getColumnInt(cursor, "movieId"),
                     title = getColumnString(cursor, "title"),
                     name = getColumnString(cursor, "name"),
-                    posterPath = getColumnString(cursor, "posterPath"),
-                    backdropPath = getColumnString(cursor, "backdropPath"),
-                    releaseDate = getColumnString(cursor, "releaseDate"),
-                    voteAverage = getColumnDouble(cursor, "voteAverage"),
-                    popularity = getColumnDouble(cursor, "popularity"),
                     adult = getColumnBool(cursor, "adult") == 1,
+                    backdropPath = getColumnString(cursor, "backdropPath"),
+                    originalLanguage = getColumnString(cursor, "originalLanguage"),
+                    originalTitle = getColumnString(cursor, "originalTitle"),
+                    overview = getColumnString(cursor, "overview"),
+                    posterPath = getColumnString(cursor, "posterPath"),
+                    popularity = getColumnDouble(cursor, "popularity"),
+                    releaseDate = getColumnString(cursor, "releaseDate"),
+                    video = getColumnBool(cursor, "video") == 1,
+                    voteAverage = getColumnDouble(cursor, "voteAverage"),
                     voteCount = getColumnInt(cursor, "voteCount"),
                     isFavourite = getColumnBool(cursor, "favourite") == 1
 
@@ -73,19 +74,20 @@ class FavouriteProvider {
 
         fun fromContentValues(values: ContentValues): Movie {
             return Movie(
-                    id = values.getAsInteger("id"),
-                    overview = values.getAsString("overview"),
-                    originalLanguage = values.getAsString("originalLanguage"),
-                    originalTitle = values.getAsString("originalTitle"),
-                    video = values.getAsBoolean("video"),
+                    _id = values.getAsLong("_id"),
+                    movieId = values.getAsInteger("movieId"),
                     title = values.getAsString("title"),
                     name = values.getAsString("name"),
-                    posterPath = values.getAsString("posterPath"),
-                    backdropPath = values.getAsString("backdropPath"),
-                    releaseDate = values.getAsString("releaseDate"),
-                    voteAverage = values.getAsDouble("voteAverage"),
-                    popularity = values.getAsDouble("popularity"),
                     adult = values.getAsBoolean("adult"),
+                    backdropPath = values.getAsString("backdropPath"),
+                    originalLanguage = values.getAsString("originalLanguage"),
+                    originalTitle = values.getAsString("originalTitle"),
+                    overview = values.getAsString("overview"),
+                    posterPath = values.getAsString("posterPath"),
+                    popularity = values.getAsDouble("popularity"),
+                    releaseDate = values.getAsString("releaseDate"),
+                    video = values.getAsBoolean("video"),
+                    voteAverage = values.getAsDouble("voteAverage"),
                     voteCount = values.getAsInteger("voteCount"),
                     isFavourite = values.getAsBoolean("favourite")
             )
@@ -94,7 +96,8 @@ class FavouriteProvider {
         fun toContentValues(movie: Movie): ContentValues {
             val values = ContentValues()
 
-            values.put("id", movie.id)
+            values.put("_id", movie._id)
+            values.put("movieId", movie.movieId)
             values.put("overview", movie.overview)
             values.put("originalLanguage", movie.originalLanguage)
             values.put("originalTitle", movie.originalTitle)

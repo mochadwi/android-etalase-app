@@ -20,7 +20,7 @@ class MovieEntityMapper {
 
     companion object {
         fun from(favourite: Favourite) = with(favourite) {
-            Movie(id, title, name, adult, backdropPath, genreIds, originalLanguage, originalTitle, originalName, overview, posterPath, popularity, releaseDate, video, voteAverage, voteCount, isFavourite)
+            Movie(0, id, title, name, adult, backdropPath, genreIds, originalLanguage, originalTitle, originalName, overview, posterPath, popularity, releaseDate, video, voteAverage, voteCount, isFavourite)
         }
 
         // TODO(mochadwi): 2019-08-25 This is either known issue or due to type erasure at compile time, that detect different List<A> & List<B> as clashes
@@ -28,22 +28,23 @@ class MovieEntityMapper {
             with(it) {
                 when (this) {
                     is MovieEntity -> Movie(
-                        id,
-                        title,
-                        name,
-                        adult = adult,
-                        backdropPath = backdropPath.default,
-                        genreIds = genreIds,
-                        originalLanguage = originalLanguage,
-                        originalTitle = originalTitle,
-                        originalName = originalName,
-                        overview = overview,
-                        posterPath = posterPath.default,
-                        popularity = popularity,
-                        releaseDate = releaseDate,
-                        video = video,
-                        voteAverage = voteAverage,
-                        voteCount = voteCount
+                            0,
+                            id,
+                            title,
+                            name,
+                            adult = adult,
+                            backdropPath = backdropPath.default,
+                            genreIds = genreIds,
+                            originalLanguage = originalLanguage,
+                            originalTitle = originalTitle,
+                            originalName = originalName,
+                            overview = overview,
+                            posterPath = posterPath.default,
+                            popularity = popularity,
+                            releaseDate = releaseDate,
+                            video = video,
+                            voteAverage = voteAverage,
+                            voteCount = voteCount
                     )
 
                     is MovieResponse -> MovieEntity(

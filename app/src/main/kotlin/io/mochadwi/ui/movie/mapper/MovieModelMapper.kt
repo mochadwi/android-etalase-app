@@ -14,7 +14,7 @@ class MovieModelMapper {
 
     companion object {
         fun from(model: Movie) = with(model) {
-            MovieItem(id, title, name, adult, backdropPath, genreIds, originalLanguage,
+            MovieItem(movieId, title, name, adult, backdropPath, genreIds, originalLanguage,
                     originalTitle, originalName, overview, posterPath, popularity, releaseDate, video,
                     voteAverage,
                     voteCount,
@@ -38,8 +38,9 @@ class MovieModelMapper {
         }
 
         fun from(item: MovieItem) = with(item) {
-            Movie(id, title, name, adult, backdropPath, genreIds, originalLanguage,
-                    originalTitle, originalName, overview, posterPath, popularity, releaseDate, video,
+            Movie(0, id, title, name, adult, backdropPath, genreIds,
+                    originalLanguage, originalTitle, originalName, overview, posterPath, popularity, releaseDate,
+                    video,
                     voteAverage,
                     voteCount,
                     isFavourite)

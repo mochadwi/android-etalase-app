@@ -1,7 +1,8 @@
 package io.mochadwi.domain.model.movie
 
 data class Movie(
-        val id: Int,
+        val _id: Long,
+        val movieId: Int,
         val title: String?,
         val name: String?,
         val adult: Boolean = false,
@@ -21,6 +22,7 @@ data class Movie(
 ) {
     companion object {
         fun empty() = Movie(
+                0,
                 0,
                 "",
                 "",
