@@ -5,8 +5,8 @@ import android.database.Cursor
 import android.net.Uri
 import io.mochadwi.BuildConfig
 import io.mochadwi.data.datasource.local.provider.FavouriteProvider.Companion.fromContentValues
+import io.mochadwi.data.datasource.local.room.FAVOURITE_TABLE_NAME
 import io.mochadwi.data.datasource.local.room.FavouriteDao
-import io.mochadwi.data.datasource.local.room.FavouriteEntity.Companion.FAVOURITE_TABLE_NAME
 import io.mochadwi.data.mapper.FavouriteDataMapper
 import kotlinx.coroutines.runBlocking
 
@@ -36,8 +36,8 @@ class EtalaseContentProvider(
         val code = MATCHER.match(uri)
         if (code == CODE_MOVIE || code == CODE_MOVIE_ID) {
             val cursor: Cursor = when (code) {
-                CODE_MOVIE -> runBlocking { favouriteDao.selectAll() }
-                else -> runBlocking { favouriteDao.selectById(ContentUris.parseId(uri)) }
+                CODE_MOVIE -> favouriteDao.selectAll()
+                else -> favouriteDao.selectById(ContentUris.parseId(uri))
             }
             cursor.setNotificationUri(ctx.contentResolver, uri)
             return cursor

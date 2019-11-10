@@ -11,7 +11,7 @@ import io.mochadwi.domain.model.movie.Movie
 class FavouriteDataMapper {
     companion object {
         fun from(entity: FavouriteEntity) = with(entity) {
-            Favourite(id, title, name, adult, backdropPath, genreIds, originalLanguage, originalTitle, originalName, overview, posterPath, popularity, releaseDate, video, voteAverage, voteCount, isFavourite)
+            Favourite(id, title, name, adult, backdropPath, genreIds, originalLanguage, originalTitle, originalName, overview, posterPath, popularity, releaseDate, video, voteAverage, voteCount, favourite)
         }
 
         fun from(model: Favourite) = with(model) {

@@ -4,7 +4,7 @@ import android.content.ContentValues
 import android.database.Cursor
 import android.net.Uri
 import io.mochadwi.BuildConfig
-import io.mochadwi.data.datasource.local.room.FavouriteEntity.Companion.FAVOURITE_TABLE_NAME
+import io.mochadwi.data.datasource.local.room.FAVOURITE_TABLE_NAME
 import io.mochadwi.domain.model.movie.Movie
 
 /**

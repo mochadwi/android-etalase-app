@@ -1,55 +1,35 @@
 package io.mochadwi.data.datasource.local.room
 
 import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
-import io.mochadwi.data.datasource.local.room.FavouriteEntity.Companion.FAVOURITE_TABLE_NAME
 
 /**
  * Created by mochadwi on 2019-10-31
  * Copyright (c) 2019 dicoding. All rights reserved.
  */
 
+const val FAVOURITE_TABLE_NAME = "tbl_favourite"
+
 @Entity(tableName = FAVOURITE_TABLE_NAME)
 data class FavouriteEntity(
         @PrimaryKey
-        val id: Int,
-        val title: String?,
-        val name: String?,
-        val adult: Boolean,
-        val backdropPath: String,
-        val genreIds: List<Int>,
-        val originalLanguage: String,
-        val originalTitle: String,
-        val originalName: String,
-        val overview: String,
-        val posterPath: String,
-        val popularity: Double,
-        val releaseDate: String,
-        val video: Boolean,
-        val voteAverage: Double,
-        val voteCount: Int,
-        val isFavourite: Boolean?
-) {
-    companion object {
-        const val FAVOURITE_TABLE_NAME = "tbl_favourite"
-        fun empty() = FavouriteEntity(
-                0,
-                "",
-                "",
-                false,
-                "",
-                emptyList(),
-                "",
-                "",
-                "",
-                "",
-                "",
-                0.0,
-                "",
-                false,
-                0.0,
-                0,
-                false
-        )
-    }
-}
+        var id: Int = 0,
+        var title: String? = null,
+        var name: String? = null,
+        var adult: Boolean = false,
+        var backdropPath: String = "",
+        @Ignore
+        var genreIds: List<Int> = emptyList(),
+        var originalLanguage: String = "",
+        var originalTitle: String = "",
+        var originalName: String = "",
+        var overview: String = "",
+        var posterPath: String = "",
+        var popularity: Double = 0.0,
+        var releaseDate: String = "",
+        var video: Boolean = false,
+        var voteAverage: Double = 0.0,
+        var voteCount: Int = 0,
+        var favourite: Boolean? = null
+)
