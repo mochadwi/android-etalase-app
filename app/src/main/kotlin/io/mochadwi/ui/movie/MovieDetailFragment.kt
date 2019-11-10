@@ -6,12 +6,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import io.mochadwi.R
+import io.mochadwi.data.datasource.local.provider.EtalaseContentProvider.Companion.URI_FAVOURITE
+import io.mochadwi.data.datasource.local.provider.FavouriteProvider.Companion.toContentValues
 import io.mochadwi.databinding.MoviedetailFragmentBinding
 import io.mochadwi.domain.ErrorState
 import io.mochadwi.domain.FavouriteListState
 import io.mochadwi.domain.FavouriteState
-import io.mochadwi.ui.favourite.mapper.FavouriteItemMapper
 import io.mochadwi.ui.movie.list.MovieItem
+import io.mochadwi.ui.movie.mapper.MovieModelMapper
 import io.mochadwi.util.base.ToolbarListener
 import io.mochadwi.util.ext.default
 import io.mochadwi.util.ext.toastSpammable
@@ -49,8 +51,9 @@ class MovieDetailFragment : Fragment() {
                     if (isMovieFavourite.get().default) {
                         deleteFromFavourite(args.movieItem?.id ?: -1)
                     } else {
-                        addToFavourite(FavouriteItemMapper.from(args.movieItem
-                                ?: MovieItem(id = -1, isFavourite = false)))
+                        val movieItem = MovieModelMapper.from(args.movieItem
+                                ?: MovieItem(id = -1, isFavourite = false))
+                        addToContentProvider(URI_FAVOURITE, toContentValues(movieItem))
                     }
                 }
                 true

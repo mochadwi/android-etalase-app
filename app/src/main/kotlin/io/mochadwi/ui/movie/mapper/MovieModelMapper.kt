@@ -36,5 +36,13 @@ class MovieModelMapper {
                     voteCount,
                     isFavourite)
         }
+
+        fun from(item: MovieItem) = with(item) {
+            Movie(id, title, name, adult, backdropPath, genreIds, originalLanguage,
+                    originalTitle, originalName, overview, posterPath, popularity, releaseDate, video,
+                    voteAverage,
+                    voteCount,
+                    isFavourite)
+        }
     }
 }

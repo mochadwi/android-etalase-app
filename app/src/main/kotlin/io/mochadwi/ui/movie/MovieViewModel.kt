@@ -1,5 +1,8 @@
 package io.mochadwi.ui.movie
 
+import android.content.ContentValues
+import android.content.Context
+import android.net.Uri
 import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -24,8 +27,9 @@ import kotlinx.coroutines.channels.Channel.Factory.UNLIMITED
  */
 
 class MovieViewModel(
-    private val repo: AppRepository,
-    schedulerProvider: SchedulerProvider
+        private val repo: AppRepository,
+        schedulerProvider: SchedulerProvider,
+        private val context: Context
 ) : BaseViewModel(schedulerProvider) {
 
     val keywords = Channel<String>(UNLIMITED)
@@ -120,6 +124,20 @@ class MovieViewModel(
                 val movieFavourites = repo.getLocalFavouriteTv()
 
                 _states.postValue(FavouriteListState(list = movieFavourites!!))
+            } catch (error: Throwable) {
+                _states.postValue(ErrorState(error))
+            }
+        }
+    }
+
+    fun addToContentProvider(uri: Uri, contentValues: ContentValues) {
+        launchIo {
+            try {
+                isMovieFavourite.set(
+                        context.contentResolver.insert(uri, contentValues) != null
+                )
+
+                _states.postValue(FavouriteState(isMovieFavourite.get().default))
             } catch (error: Throwable) {
                 _states.postValue(ErrorState(error))
             }
