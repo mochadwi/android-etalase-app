@@ -40,16 +40,13 @@ class MainActivity : AppCompatActivity(), LoaderManager.LoaderCallbacks<Cursor> 
     override fun onResume() {
         super.onResume()
         supportLoaderManager.restartLoader(LOADER_MOVIES, null, this)
-        if (mLvMovies!!.adapter.count > 0) {
-            mTvEmpty!!.visibility = View.GONE
-        } else {
-            mTvEmpty!!.visibility = View.VISIBLE
-        }
+        hideEmpty()
     }
 
 
     override fun onLoadFinished(loader: Loader<Cursor>, data: Cursor?) {
         mAdapter!!.swapCursor(data)
+        hideEmpty()
     }
 
     override fun onLoaderReset(loader: Loader<Cursor>) {
@@ -63,6 +60,14 @@ class MainActivity : AppCompatActivity(), LoaderManager.LoaderCallbacks<Cursor> 
     override fun onDestroy() {
         super.onDestroy()
         supportLoaderManager.destroyLoader(LOADER_MOVIES)
+    }
+
+    private fun hideEmpty() {
+        if (mLvMovies!!.adapter.count > 0) {
+            mTvEmpty!!.visibility = View.GONE
+        } else {
+            mTvEmpty!!.visibility = View.VISIBLE
+        }
     }
 
     companion object {
