@@ -1,6 +1,9 @@
 package io.mochadwi.ui.movie
 
+import android.content.ContentUris
+import android.net.Uri
 import android.os.Bundle
+import android.provider.BaseColumns
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -49,7 +52,13 @@ class MovieDetailFragment : Fragment() {
             R.id.actFavourite -> {
                 vm.run {
                     if (isMovieFavourite.get().default) {
-                        deleteFromFavourite(args.movieItem?.id ?: -1)
+                        val movieId = args.movieItem?.id ?: -1
+                        val pathUriWithId = try {
+                            ContentUris.withAppendedId(URI_FAVOURITE, movieId.toLong())
+                        } catch (e: Exception) {
+                            Uri.EMPTY
+                        }
+                        deleteFromContentProvider(pathUriWithId, BaseColumns._ID + " = ?", arrayOf("$movieId"))
                     } else {
                         val movieItem = MovieModelMapper.from(args.movieItem
                                 ?: MovieItem(id = -1, isFavourite = false))

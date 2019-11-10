@@ -157,6 +157,19 @@ class MovieViewModel(
         }
     }
 
+    fun deleteFromContentProvider(pathUriWithId: Uri, whereQuery: String, selectionArgs: Array<String>) {
+        launchIo {
+            try {
+                val resultUri = context.contentResolver.delete(pathUriWithId, whereQuery, selectionArgs)
+                isMovieFavourite.set(resultUri < 1)
+
+                _states.postValue(FavouriteState(isMovieFavourite.get().default))
+            } catch (error: Throwable) {
+                _states.postValue(ErrorState(error))
+            }
+        }
+    }
+
     fun deleteFromFavourite(id: Int) {
         launchIo {
             try {
