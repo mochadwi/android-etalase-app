@@ -1,14 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Favorit Etalase</string>
-    <string name="message_search">Cari</string>
-    <string name="message_upcoming">Akan Datang</string>
-    <string name="message_now_playing">Sedang diputar</string>
-    <string name="message_setting">Pengaturan</string>
-    <string name="message_movietitle">Judul Film</string>
-    <string name="message_language">Bahasa</string>
-    <string name="message_english">Inggris</string>
-    <string name="message_indonesia">Indonesia</string>
-    <string name="message_search_movie">Cari film sekarang</string>
-    <string name="message_movie_empty">Film tidak tersedia</string>
 </resources>
