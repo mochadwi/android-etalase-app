@@ -15,6 +15,7 @@ import Versions.playService
 import Versions.retrofitVersion
 import Versions.room
 import Versions.supportLibraryVersion
+import Versions.workVersion
 
 /**
  * This file contains all the dependencies we need in our project. Because we placed
@@ -80,9 +81,10 @@ object Versions {
     const val moshi = "1.6.0"
     const val lifecycle = "2.1.0-rc01"
     const val arch = "2.1.0-rc01"
-    const val room = "2.1.0-beta01"
+    const val room = "2.2.1"
     const val navgraph = "2.1.0-rc01"
     const val paging = "2.1.0"
+    const val workVersion = "2.2.0"
     const val dexter = "5.0.0"
     const val imagePickerVersion = "1.13.1"
 
@@ -196,6 +198,10 @@ object AndroidDependencies {
     const val pagingCommonTest = "androidx.paging:paging-common:$paging"
     const val pagingCommonTestKtx = "androidx.paging:paging-common-ktx:$paging"
     const val playServiceLocation = "com.google.android.gms:play-services-location:$playService"
+
+    // work manager
+    const val workManager = "androidx.work:work-runtime:$workVersion"
+    const val workManagerKtx = "androidx.work:work-runtime-ktx:$workVersion"
 }
 
 @Suppress("unused")

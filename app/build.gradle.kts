@@ -189,6 +189,9 @@ dependencies {
     testImplementation(TestDependencies.roomTesting)
     androidTestImplementation(TestDependencies.roomTesting)
 
+    // Work
+    implementation(AndroidDependencies.workManager)
+
     // Networking
     implementation(AppDependencies.retrofit)
     implementation(AppDependencies.retrofitConverterKotlinSerialization)
