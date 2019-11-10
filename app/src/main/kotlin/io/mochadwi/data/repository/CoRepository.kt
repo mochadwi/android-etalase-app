@@ -81,6 +81,15 @@ class CoRepository(
         }
     }
 
+    override fun searchTv(query: String): List<Movie>? = runBlocking {
+        val response = endpoint.searchMovies(query = query)
+
+        response.body()?.let {
+            if (response.isSuccessful) MovieEntityMapper.from<MovieResponse, Movie>(it.results!!)
+            else emptyList()
+        }
+    }
+
     override fun getLocalFavouriteMovies(): List<Favourite> = runBlocking {
         try {
             // TODO(mochadwi): 2019-11-01 Don't use mapper here

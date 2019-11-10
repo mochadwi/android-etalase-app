@@ -1,13 +1,8 @@
 package io.mochadwi.ui.movie
 
-import android.app.SearchManager
-import android.content.ComponentName
 import android.os.Bundle
 import android.os.Handler
 import android.view.*
-import androidx.appcompat.widget.SearchView
-import androidx.core.content.ContextCompat
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import io.mochadwi.R
@@ -23,13 +18,11 @@ import io.mochadwi.util.base.BaseApiModel
 import io.mochadwi.util.base.BaseUserActionListener
 import io.mochadwi.util.base.ToolbarListener
 import io.mochadwi.util.ext.coroutineLaunch
-import io.mochadwi.util.ext.default
 import io.mochadwi.util.ext.fromJson
 import io.mochadwi.util.ext.putArgs
 import io.mochadwi.util.list.EndlessRecyclerOnScrollListener
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.channels.consumeEach
-import kotlinx.coroutines.delay
 import kotlinx.serialization.serializer
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import retrofit2.HttpException
@@ -62,7 +55,7 @@ class MovieFragment : Fragment(), BaseUserActionListener {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        setupSearchBar(menu)
+        (requireActivity() as HomeActivity).setupSearchBar(menu, viewModel)
         super.onCreateOptionsMenu(menu, inflater)
     }
 
@@ -101,45 +94,6 @@ class MovieFragment : Fragment(), BaseUserActionListener {
 
     override fun onRefresh() {
         Handler().postDelayed({ pullToRefresh() }, 1000)
-    }
-
-    private fun setupSearchBar(menu: Menu) {
-        val searchManager = ContextCompat.getSystemService(requireActivity(), SearchManager::class.java)
-        val componentName = ComponentName(requireActivity(), HomeActivity::class.java)
-        val searchItem = menu.findItem(R.id.actSearch)
-
-        var searchFor = ""
-        (searchItem?.actionView as SearchView).apply {
-            isVisible = true
-            // TODO: @mochadwi Definitely must using paging library, or upsert / delsert manually to the room
-            setOnQueryTextListener(
-                    object : SearchView.OnQueryTextListener {
-                        override fun onQueryTextSubmit(query: String?): Boolean {
-                            coroutineLaunch(Main) {
-                                viewModel.keywords.send(query.default)
-                            }
-                            return true
-                        }
-
-                        override fun onQueryTextChange(newText: String?): Boolean {
-                            val searchText = newText.default.trim()
-
-                            if (searchText == searchFor) return false
-
-                            searchFor = searchText
-                            coroutineLaunch(Main) {
-                                delay(300)
-                                if (searchText != searchFor)
-                                    return@coroutineLaunch
-
-                                viewModel.keywords.send(newText.default)
-                            }
-                            return true
-                        }
-                    }
-            )
-            setSearchableInfo(searchManager?.getSearchableInfo(componentName))
-        }
     }
 
     private fun setupData() {

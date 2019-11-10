@@ -16,6 +16,7 @@ interface AppRepository {
     fun getDiscoverMovies(): List<Movie>?
     fun getTvShows(): List<Movie>?
     fun searchMovies(query: String): List<Movie>?
+    fun searchTv(query: String): List<Movie>?
     fun getLocalMovieById(id: Int): Favourite?
     fun getLocalFavouriteMovies(): List<Favourite>?
     fun getLocalFavouriteTv(): List<Favourite>?

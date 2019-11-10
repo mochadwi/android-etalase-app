@@ -20,8 +20,6 @@ import io.mochadwi.util.base.BaseViewModel
 import io.mochadwi.util.ext.default
 import io.mochadwi.util.mvvm.MutableSetObservableField
 import io.mochadwi.util.rx.SchedulerProvider
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.channels.Channel.Factory.UNLIMITED
 
 /**
  *
@@ -41,7 +39,6 @@ class MovieViewModel(
         private val context: Context
 ) : BaseViewModel(schedulerProvider) {
 
-    val keywords = Channel<String>(UNLIMITED)
     val movieListSet = MutableSetObservableField<MovieItem>()
     val isMovieFavourite = ObservableField<Boolean>()
 
@@ -88,6 +85,22 @@ class MovieViewModel(
             launchIo {
                 try {
                     val movies = repo.searchMovies(query)
+
+                    _states.postValue(MovieListState.from(movies!!))
+                } catch (error: Throwable) {
+                    _states.postValue(ErrorState(error))
+                }
+            }
+        }
+    }
+
+    fun searchTv(query: String) {
+        if (query.isNotBlank()) {
+            _states.value = LoadingState
+
+            launchIo {
+                try {
+                    val movies = repo.searchTv(query)
 
                     _states.postValue(MovieListState.from(movies!!))
                 } catch (error: Throwable) {

@@ -1,10 +1,15 @@
 package io.mochadwi.ui
 
+import android.app.SearchManager
+import android.content.ComponentName
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.widget.SearchView
+import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -17,6 +22,11 @@ import io.mochadwi.R
 import io.mochadwi.databinding.HomeActivityBinding
 import io.mochadwi.ui.movie.MovieViewModel
 import io.mochadwi.util.base.BaseActivity
+import io.mochadwi.util.base.BaseViewModel
+import io.mochadwi.util.ext.coroutineLaunch
+import io.mochadwi.util.ext.default
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
@@ -86,6 +96,45 @@ class HomeActivity : BaseActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    fun setupSearchBar(menu: Menu, viewModel: BaseViewModel) {
+        val searchManager = ContextCompat.getSystemService(this, SearchManager::class.java)
+        val componentName = ComponentName(this, HomeActivity::class.java)
+        val searchItem = menu.findItem(R.id.actSearch)
+
+        var searchFor = ""
+        (searchItem?.actionView as SearchView).apply {
+            isVisible = true
+            // TODO: @mochadwi Definitely must using paging library, or upsert / delsert manually to the room
+            setOnQueryTextListener(
+                    object : SearchView.OnQueryTextListener {
+                        override fun onQueryTextSubmit(query: String?): Boolean {
+                            coroutineLaunch(Dispatchers.Main) {
+                                viewModel.keywords.send(query.default)
+                            }
+                            return true
+                        }
+
+                        override fun onQueryTextChange(newText: String?): Boolean {
+                            val searchText = newText.default.trim()
+
+                            if (searchText == searchFor) return false
+
+                            searchFor = searchText
+                            coroutineLaunch(Dispatchers.Main) {
+                                delay(300)
+                                if (searchText != searchFor)
+                                    return@coroutineLaunch
+
+                                viewModel.keywords.send(newText.default)
+                            }
+                            return true
+                        }
+                    }
+            )
+            setSearchableInfo(searchManager?.getSearchableInfo(componentName))
+        }
     }
 
     private fun setupNavController() {

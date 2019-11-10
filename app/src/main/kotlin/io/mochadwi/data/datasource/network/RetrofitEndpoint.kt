@@ -18,6 +18,7 @@ import retrofit2.http.Query
  */
 
 const val ENDPOINT_SEARCH_MOVIES = "search/movie"
+const val ENDPOINT_SEARCH_TV = "search/tv"
 
 interface RetrofitEndpoint {
     @GET(ENDPOINT_DISCOVER_MOVIES)
@@ -34,5 +35,11 @@ interface RetrofitEndpoint {
     @GET(ENDPOINT_DISCOVER_TV)
     suspend fun getTvShows(
             @Query("api_key") apiKey: String = BuildConfig.API_KEY
+    ): Response<BaseResponse<MovieResponse>>
+
+    @GET(ENDPOINT_SEARCH_TV)
+    suspend fun searchTv(
+            @Query("api_key") apiKey: String = BuildConfig.API_KEY,
+            @Query("query") query: String
     ): Response<BaseResponse<MovieResponse>>
 }

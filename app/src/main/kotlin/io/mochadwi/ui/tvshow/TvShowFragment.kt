@@ -2,9 +2,7 @@ package io.mochadwi.ui.tvshow
 
 import android.os.Bundle
 import android.os.Handler
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import io.mochadwi.R
@@ -13,6 +11,7 @@ import io.mochadwi.domain.ErrorState
 import io.mochadwi.domain.FavouriteListState
 import io.mochadwi.domain.LoadingState
 import io.mochadwi.domain.MovieListState
+import io.mochadwi.ui.HomeActivity
 import io.mochadwi.ui.movie.MovieViewModel
 import io.mochadwi.ui.movie.list.MovieItem
 import io.mochadwi.ui.movie.mapper.MovieModelMapper
@@ -51,8 +50,12 @@ class TvShowFragment : Fragment(), BaseUserActionListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        super.setHasOptionsMenu(true)
+    }
 
-        setHasOptionsMenu(true)
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        (requireActivity() as HomeActivity).setupSearchBar(menu, viewModel)
+        super.onCreateOptionsMenu(menu, inflater)
     }
 
     override fun onCreateView(
@@ -122,7 +125,7 @@ class TvShowFragment : Fragment(), BaseUserActionListener {
         })
 
         coroutineLaunch(Main) {
-            keywords.consumeEach { searchMovies(it) }
+            keywords.consumeEach { searchTv(it) }
         }
     }
 
@@ -167,6 +170,7 @@ class TvShowFragment : Fragment(), BaseUserActionListener {
     private fun showItemList(movies: List<MovieItem>) {
         viewModel.apply {
             // TODO: @mochadwi clearing list doesn't good for pagination?
+            movieListSet.clear()
             movieListSet.addAll(movies.toMutableList())
             isRefreshing.set(false)
             progress.set(false)

@@ -3,6 +3,7 @@ package io.mochadwi.util.base
 import androidx.databinding.ObservableField
 import io.mochadwi.util.mvvm.RxViewModel
 import io.mochadwi.util.rx.SchedulerProvider
+import kotlinx.coroutines.channels.Channel
 
 /**
  *
@@ -14,6 +15,7 @@ open class BaseViewModel(
         schedulerProvider: SchedulerProvider
 ) : RxViewModel(schedulerProvider) {
 
+    val keywords = Channel<String>(Channel.UNLIMITED)
     val progress = ObservableField<Boolean>(false)
     val isRefreshing = ObservableField<Boolean>(false)
     val isError = ObservableField<Boolean>(false)
