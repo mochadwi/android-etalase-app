@@ -3,11 +3,15 @@ package io.mochadwi.ui.movie
 import android.content.ContentUris
 import android.content.ContentValues
 import android.content.Context
+import android.database.Cursor
+import android.database.CursorIndexOutOfBoundsException
 import android.net.Uri
 import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import io.mochadwi.data.datasource.local.provider.FavouriteProvider.Companion.fromCursorValues
 import io.mochadwi.domain.*
+import io.mochadwi.domain.model.movie.Movie
 import io.mochadwi.domain.repository.AppRepository
 import io.mochadwi.ui.favourite.item.FavouriteItem
 import io.mochadwi.ui.favourite.mapper.FavouriteItemMapper
@@ -159,15 +163,25 @@ class MovieViewModel(
         }
     }
 
+    private fun setupMovieFromCursor(cursor: Cursor): Movie {
+        cursor.moveToFirst()
+        return fromCursorValues(cursor)
+    }
 
-    fun getContentProviderById(id: Int) {
+    fun getContentProviderById(pathUriWithId: Uri, whereQuery: String, selectionArgs: Array<String>) {
         _states.value = LoadingState
 
         launchIo {
             try {
-                val movie = repo.getLocalMovieById(id)!!
-
-                _states.postValue(FavouriteListState(movie))
+                context.contentResolver.query(pathUriWithId, null, whereQuery, selectionArgs, null, null).use {
+                    if (it == null) throw NullPointerException("Content provider is empty")
+                    val favourite = FavouriteItemMapper.from(setupMovieFromCursor(it))
+                    _states.postValue(FavouriteListState(favourite))
+                }
+            } catch (cursorNull: NullPointerException) {
+                _states.postValue(CursorState(cursorNull))
+            } catch (notFound: CursorIndexOutOfBoundsException) {
+                _states.postValue(CursorState(notFound))
             } catch (error: Throwable) {
                 _states.postValue(ErrorState(error))
             }

@@ -12,9 +12,7 @@ import io.mochadwi.R
 import io.mochadwi.data.datasource.local.provider.EtalaseContentProvider.Companion.URI_FAVOURITE
 import io.mochadwi.data.datasource.local.provider.FavouriteProvider.Companion.toContentValues
 import io.mochadwi.databinding.MoviedetailFragmentBinding
-import io.mochadwi.domain.ErrorState
-import io.mochadwi.domain.FavouriteListState
-import io.mochadwi.domain.FavouriteState
+import io.mochadwi.domain.*
 import io.mochadwi.ui.movie.list.MovieItem
 import io.mochadwi.ui.movie.mapper.MovieModelMapper
 import io.mochadwi.util.base.ToolbarListener
@@ -35,6 +33,10 @@ class MovieDetailFragment : Fragment() {
     private lateinit var viewBinding: MoviedetailFragmentBinding
     private val vm: MovieViewModel by viewModel()
     private val args by navArgs<MovieDetailFragmentArgs>()
+    private var movieId: Int = 0
+    private lateinit var pathUriWithId: Uri
+    private val whereQuery = "${BaseColumns._ID} = ?"
+    private lateinit var arrayOfMovieId: Array<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,13 +54,7 @@ class MovieDetailFragment : Fragment() {
             R.id.actFavourite -> {
                 vm.run {
                     if (isMovieFavourite.get().default) {
-                        val movieId = args.movieItem?.id ?: -1
-                        val pathUriWithId = try {
-                            ContentUris.withAppendedId(URI_FAVOURITE, movieId.toLong())
-                        } catch (e: Exception) {
-                            Uri.EMPTY
-                        }
-                        deleteFromContentProvider(pathUriWithId, BaseColumns._ID + " = ?", arrayOf("$movieId"))
+                        deleteFromContentProvider(pathUriWithId, whereQuery, arrayOfMovieId)
                     } else {
                         val movieItem = MovieModelMapper.from(args.movieItem
                                 ?: MovieItem(id = -1, isFavourite = false))
@@ -83,9 +79,21 @@ class MovieDetailFragment : Fragment() {
                 }
 
         setupObserver()
-        vm.getMovieById(args.movieItem?.id.default)
+        setupData()
+
+        vm.getContentProviderById(pathUriWithId, whereQuery, arrayOfMovieId)
 
         return viewBinding.root
+    }
+
+    private fun setupData() {
+        movieId = args.movieItem?.id ?: -1
+        pathUriWithId = try {
+            ContentUris.withAppendedId(URI_FAVOURITE, movieId.toLong())
+        } catch (e: Exception) {
+            Uri.EMPTY
+        }
+        arrayOfMovieId = arrayOf("$movieId")
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
