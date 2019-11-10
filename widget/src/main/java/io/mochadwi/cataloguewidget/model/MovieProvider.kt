@@ -12,7 +12,7 @@ object MovieProvider {
     /**
      * The authority of this content provider.
      */
-    val AUTHORITY = "io.mochadwi.cataloguemovie.data.provider"
+    val AUTHORITY = "io.mochadwi.etalase.data.provider"
 
     /**
      * The URI for the MovieModel table.

@@ -14,6 +14,13 @@
         android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
         tools:ignore="ProtectedPermissions"/>
 
+    <permission
+        android:name="io.mochadwi.etalase.data.provider.READ_DATABASE"
+        android:protectionLevel="normal" />
+    <permission
+        android:name="io.mochadwi.etalase.data.provider.WRITE_DATABASE"
+        android:protectionLevel="normal" />
+
     <application
         android:name=".MainApplication"
         android:allowBackup="true"
@@ -26,14 +33,14 @@
 
         <provider
             android:name=".data.datasource.local.provider.EtalaseContentProvider"
-            android:authorities="${applicationId}.data.provider"
+            android:authorities="io.mochadwi.etalase.data.provider"
             android:exported="true"
-            android:readPermission="${applicationId}.data.provider.READ_DATABASE"
-            android:writePermission="${applicationId}.data.provider.WRITE_DATABASE" />
+            android:readPermission="io.mochadwi.etalase.data.provider.READ_DATABASE"
+            android:writePermission="io.mochadwi.etalase.data.provider.WRITE_DATABASE" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="${applicationId}.provider"
+            android:authorities="io.mochadwi.etalase.provider"
             android:exported="false"
             android:grantUriPermissions="true">
 
