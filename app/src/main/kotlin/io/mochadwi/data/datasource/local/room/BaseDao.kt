@@ -48,7 +48,7 @@ interface BaseDao<T> {
      * @param obj the object to be deleted
      */
     @Delete
-    fun delete(obj: T)
+    fun delete(obj: T): Int
 
     /**
      * Delete an object from the database
@@ -65,11 +65,13 @@ interface BaseDao<T> {
      * @param obj
      */
     @Transaction
-    fun upsert(obj: T) {
+    fun upsert(obj: T): Long {
         val id = insert(obj)
         if (id == -1L) {
-            update(obj)
+            return update(obj).toLong()
         }
+
+        return id
     }
 
     /**

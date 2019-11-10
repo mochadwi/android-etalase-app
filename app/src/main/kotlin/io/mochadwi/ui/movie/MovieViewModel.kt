@@ -1,5 +1,6 @@
 package io.mochadwi.ui.movie
 
+import android.content.ContentUris
 import android.content.ContentValues
 import android.content.Context
 import android.net.Uri
@@ -130,19 +131,6 @@ class MovieViewModel(
         }
     }
 
-    fun addToContentProvider(pathUri: Uri, contentValues: ContentValues) {
-        launchIo {
-            try {
-                val resultUri = context.contentResolver.insert(pathUri, contentValues)
-                isMovieFavourite.set(resultUri != pathUri)
-
-                _states.postValue(FavouriteState(isMovieFavourite.get().default))
-            } catch (error: Throwable) {
-                _states.postValue(ErrorState(error))
-            }
-        }
-    }
-
     fun addToFavourite(data: FavouriteItem) {
         launchIo {
             try {
@@ -157,11 +145,12 @@ class MovieViewModel(
         }
     }
 
-    fun deleteFromContentProvider(pathUriWithId: Uri, whereQuery: String, selectionArgs: Array<String>) {
+    fun deleteFromFavourite(id: Int) {
         launchIo {
             try {
-                val resultUri = context.contentResolver.delete(pathUriWithId, whereQuery, selectionArgs)
-                isMovieFavourite.set(resultUri < 1)
+                val isDeleted = repo.deleteFromLocalFavouriteById(id)
+
+                isMovieFavourite.set(!isDeleted)
 
                 _states.postValue(FavouriteState(isMovieFavourite.get().default))
             } catch (error: Throwable) {
@@ -170,12 +159,55 @@ class MovieViewModel(
         }
     }
 
-    fun deleteFromFavourite(id: Int) {
+
+    fun getContentProviderById(id: Int) {
+        _states.value = LoadingState
+
         launchIo {
             try {
-                val isDeleted = repo.deleteFromLocalFavouriteById(id)
+                val movie = repo.getLocalMovieById(id)!!
 
-                isMovieFavourite.set(!isDeleted)
+                _states.postValue(FavouriteListState(movie))
+            } catch (error: Throwable) {
+                _states.postValue(ErrorState(error))
+            }
+        }
+    }
+
+    fun updateToContentProvider(pathUri: Uri, contentValues: ContentValues) {
+        launchIo {
+            try {
+//                val resultUri = context.contentResolver.update(pathUri, contentValues)
+//                isMovieFavourite.set(resultUri > 0)
+
+                _states.postValue(FavouriteState(isMovieFavourite.get().default))
+            } catch (error: Throwable) {
+                _states.postValue(ErrorState(error))
+            }
+        }
+    }
+
+    fun addToContentProvider(pathUri: Uri, contentValues: ContentValues) {
+        launchIo {
+            try {
+                val resultUri = context.contentResolver.insert(pathUri, contentValues)
+                val rowId = ContentUris.parseId(resultUri).toInt()
+                if (rowId == -1) throw Throwable(message = "Unable or already favourite before")
+
+                isMovieFavourite.set(rowId != -1)
+
+                _states.postValue(FavouriteState(isMovieFavourite.get().default))
+            } catch (error: Throwable) {
+                _states.postValue(ErrorState(error))
+            }
+        }
+    }
+
+    fun deleteFromContentProvider(pathUriWithId: Uri, whereQuery: String, selectionArgs: Array<String>) {
+        launchIo {
+            try {
+                val resultUri = context.contentResolver.delete(pathUriWithId, whereQuery, selectionArgs)
+                isMovieFavourite.set(resultUri < 1)
 
                 _states.postValue(FavouriteState(isMovieFavourite.get().default))
             } catch (error: Throwable) {

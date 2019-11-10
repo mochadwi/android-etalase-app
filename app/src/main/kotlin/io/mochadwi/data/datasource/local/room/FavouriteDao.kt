@@ -22,6 +22,9 @@ abstract class FavouriteDao : BaseDao<FavouriteEntity> {
     @Query("UPDATE tbl_favourite SET favourite = 0 WHERE favouriteId = :favouriteId")
     abstract suspend fun deleteFavouriteById(favouriteId: Long): Int
 
+    @Query("DELETE FROM tbl_favourite WHERE favouriteId = :favouriteId")
+    abstract suspend fun deleteById(favouriteId: Long): Int
+
     @Query("SELECT * FROM tbl_favourite WHERE favourite = 1")
     abstract fun selectAll(): Cursor
 
