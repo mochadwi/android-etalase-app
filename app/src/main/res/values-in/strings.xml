@@ -10,6 +10,7 @@
     <string name="message_defaulttitle">Izin akses</string>
     <string name="message_defaultmessage">Izin diperlukan untuk melanjutkan aktifitasnya</string>
     <string name="language">Bahasa</string>
+    <string name="notification">Notifikasi</string>
     <string name="search">Cari</string>
     <string name="movie">Film</string>
     <string name="tv">Acara Tv</string>
@@ -20,6 +21,12 @@
     <string name="not_favourite">Tidak disukai</string>
     <string name="error_emptyfavourites">Anda tidak memiliki favorit</string>
     <string name="message_releasereminder">Hari ini %1$s dirilis</string>
+    <string name="message_dailynotif">Mulai Notif Harian</string>
+    <string name="message_releasenotif">Mulai Notif Rilis</string>
     <string name="error_emptymovie">Tidak ada film terbaru</string>
     <string name="message_dailyreminder">Yuk cek %1$s hari ini</string>
+    <string name="message">Pesan</string>
+    <string name="message_dialog">Apakah Anda yakin ingin %1$s?</string>
+    <string name="message_disable">menonaktifkan </string>
+    <string name="message_enable">mengaktifkan </string>
 </resources>

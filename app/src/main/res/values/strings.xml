@@ -14,6 +14,7 @@
     <string name="message_celcius_symbol" translatable="false">%1$s°</string>
     <string name="message_cameratitle">Camera access permission</string>
     <string name="language">Language</string>
+    <string name="notification">Notification</string>
     <string name="search">Search</string>
     <string name="movie">Movie</string>
     <string name="tv">Tv Show</string>
@@ -24,6 +25,12 @@
     <string name="not_favourite">Unfavourite</string>
     <string name="error_emptyfavourites">You have no favourites</string>
     <string name="message_releasereminder">Today %1$s released</string>
+    <string name="message_dailynotif">Start Daily Notif</string>
+    <string name="message_releasenotif">Start Release Notif</string>
     <string name="message_dailyreminder">Let\'s check %1$s today</string>
     <string name="error_emptymovie">The Movie DB does not have any updates</string>
+    <string name="message">Message</string>
+    <string name="message_dialog">Are you sure to %1$s?</string>
+    <string name="message_disable">disable </string>
+    <string name="message_enable">enable </string>
 </resources>

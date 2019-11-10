@@ -13,6 +13,9 @@ import io.mochadwi.util.helper.MyPreferencesFactory.set
  * Created by mochadwi on 12/26/2018.
  */
 
+const val NOTIFY_DAILY_PREFERENCE = "NOTIFY_DAILY_PREFERENCE"
+const val NOTIFY_RELEASE_PREFERENCE = "NOTIFY_RELEASE_PREFERENCE"
+
 val Context.prefs: SharedPreferences
     get() = MyPreferencesFactory.initPreferences(this)
 
@@ -32,4 +35,16 @@ var Context.longitude: Float
     get() = prefs[LONGITUDE_PREFERENCE, 0F].default
     set(value) {
         prefs[LONGITUDE_PREFERENCE] = value
+    }
+
+var Context.isDailyNotifActive: Boolean
+    get() = prefs[NOTIFY_DAILY_PREFERENCE, false].default
+    set(value) {
+        prefs[NOTIFY_DAILY_PREFERENCE] = value
+    }
+
+var Context.isReleaseNotifActive: Boolean
+    get() = prefs[NOTIFY_RELEASE_PREFERENCE, false].default
+    set(value) {
+        prefs[NOTIFY_RELEASE_PREFERENCE] = value
     }

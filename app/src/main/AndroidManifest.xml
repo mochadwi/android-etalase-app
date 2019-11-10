@@ -72,6 +72,11 @@
                 android:resource="@xml/searchable"/>
 
         </activity>
+
+        <activity
+            android:name="io.mochadwi.ui.NotifSettingActivity"
+            android:configChanges="layoutDirection|orientation|screenSize"
+            android:parentActivityName=".ui.HomeActivity" />
     </application>
 
 </manifest>

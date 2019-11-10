@@ -17,4 +17,10 @@
         android:icon="@android:drawable/ic_dialog_info"
         app:showAsAction="ifRoom|withText" />
 
+    <item
+        android:id="@+id/actNotif"
+        android:icon="@android:drawable/ic_lock_idle_alarm"
+        android:title="@string/notification"
+        app:showAsAction="ifRoom|withText" />
+
 </menu>
