@@ -52,7 +52,7 @@ data class MovieModel(
 
     companion object {
 
-        const val TABLE_NAME = "movies"
+        const val TABLE_NAME = "tbl_favourite"
         const val COLUMN_ID = BaseColumns._ID
         const val COLUMN_TITLE = "title"
     }
