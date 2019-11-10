@@ -15,10 +15,14 @@ import android.preference.PreferenceManager
 import android.telephony.PhoneNumberUtils
 import android.text.TextUtils
 import android.text.format.DateFormat
+import android.util.Log
 import android.widget.Toast
 import io.mochadwi.BuildConfig
 import io.mochadwi.util.helper.AppHelper.Const.DATE_TIME_GLOBAL
 import io.mochadwi.util.helper.AppHelper.Const.NUMBER_DEFAULT
+import org.joda.time.DateTime
+import org.joda.time.DateTimeZone
+import org.joda.time.format.DateTimeFormat
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.FileOutputStream
@@ -30,6 +34,20 @@ import java.util.*
 import java.util.regex.Pattern
 
 class AppHelper {
+
+    object Strings {
+        @JvmStatic
+        fun getTimeEqualToday(date: String): Boolean {
+            val formatter = DateTimeFormat.forPattern("yyyy-MM-dd")
+            val dateTime = DateTime.parse(date, formatter)
+            val dateTimeWithZone = dateTime.withZone(DateTimeZone.forID("Asia/Jakarta"))
+
+            Log.d("AppHelper(dateZone)", dateTimeWithZone.toString(formatter))
+            Log.d("AppHelper(date)", dateTime.toString(formatter))
+            Log.d("AppHelper(today)", DateTime().toString(formatter))
+            return dateTimeWithZone.toString(formatter) == DateTime().toString(formatter)
+        }
+    }
 
     object Func {
 
@@ -239,10 +257,15 @@ class AppHelper {
     object Const {
         // If getting data from intent
         const val EXTRA_MOVIE_ITEM = "EXTRA_MOVIE_ITEM"
+        const val EXTRA_MOVIE_TITLE = "EXTRA_MOVIE_TITLE"
         const val EXTRA_MOVIE_ID = "EXTRA_MOVIE_ID"
         const val EXTRA_GLOBAL = "EXTRA_GLOBAL"
         const val EXTRA_REGISTER_ITEM = "EXTRA_REGISTER_ITEM"
         const val EXTRA_REGISTER_ID = "EXTRA_REGISTER_ID"
+
+        // If tag for work manager
+        const val TAG_MOVIE_RELEASE = "TAG_MOVIE_RELEASE"
+        const val TAG_MOVIE_DAILY = "TAG_MOVIE_DAILY"
 
         // If getting date from argument
         const val ARGUMENT_MOVIE_ITEM = "ARGUMENT_MOVIE_ITEM"
@@ -420,7 +443,7 @@ class AppHelper {
          */
         @Deprecated("Use injection and pass pref to repository",
                 ReplaceWith("getSp(mContext).edit().putString(key, value).apply()",
-                        "io.mochadwi.utils.AppHelper.Preference.getSp"))
+                        "io.mochadwi.util.helper.AppHelper.Preference.getSp"))
         fun savePref(mContext: Context, key: String, value: String) {
             getSp(mContext).edit().putString(key, Func.encryptionText(value)).apply()
         }

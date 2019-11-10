@@ -19,4 +19,6 @@
     <string name="favourite">Disukai</string>
     <string name="not_favourite">Tidak disukai</string>
     <string name="error_emptyfavourites">Anda tidak memiliki favorit</string>
+    <string name="message_releasereminder">Hari ini %1$s dirilis</string>
+    <string name="error_emptymovie">Tidak ada film terbaru</string>
 </resources>
