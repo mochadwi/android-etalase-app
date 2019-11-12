@@ -1,8 +1,11 @@
 package io.mochadwi.util.service
 
 import android.app.IntentService
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.content.Intent
 import android.graphics.BitmapFactory
+import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationCompat
 
@@ -35,7 +38,24 @@ class NotificationDailyService : IntentService(TAG) {
                 .setAutoCancel(true)
                 .setShowWhen(true)
 
-        mNotifManager.notify(NOTIFICATION_DAILY_ID, notification.build());
+        /*
+        Untuk android Oreo ke atas perlu menambahkan notification channel
+        Materi ini akan dibahas lebih lanjut di modul extended
+         */
+        val CHANNEL_NAME = "dicoding channel"
+        val CHANNEL_ID = "channel_01"
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            /* Create or update. */
+            val channel = NotificationChannel(CHANNEL_ID,
+                    CHANNEL_NAME,
+                    NotificationManager.IMPORTANCE_DEFAULT)
+
+            notification.setChannelId(CHANNEL_ID)
+
+            mNotifManager.createNotificationChannel(channel)
+        }
+
+        mNotifManager.notify(NOTIFICATION_DAILY_ID, notification.build())
     }
 
     private fun setupDailyReminder() {

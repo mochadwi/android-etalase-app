@@ -42,16 +42,15 @@ class NotifyReleaseWorker(context: Context, workerParameters: WorkerParameters) 
         when {
             list.isEmpty() -> isSucceed = Result.retry()
             else -> {
-                mMovies.addAll(list.filter {
+                mMovies.addAll(list.filter { getTimeEqualToday(it.releaseDate) })
+                mMovies.forEach {
                     applicationContext.startService(
                             Intent(applicationContext, NotificationReleaseService::class.java).apply {
                                 putExtra(EXTRA_MOVIE_TITLE, it.originalTitle)
                                 putExtra(EXTRA_MOVIE_PHOTO, "${BuildConfig.IMAGE_URL}${it.posterPath}")
                             }
                     )
-
-                    getTimeEqualToday(it.releaseDate)
-                })
+                }
 
                 isSucceed = Result.success()
             }
