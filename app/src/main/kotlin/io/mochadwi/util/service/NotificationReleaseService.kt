@@ -14,6 +14,9 @@ import io.mochadwi.R
 import io.mochadwi.util.helper.AppHelper.Const.EXTRA_MOVIE_PHOTO
 import io.mochadwi.util.helper.AppHelper.Const.EXTRA_MOVIE_TITLE
 import io.mochadwi.util.helper.AppHelper.Const.TAG_MOVIE_RELEASE
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 import java.io.IOException
 import java.net.HttpURLConnection
 import java.net.URL
@@ -67,17 +70,21 @@ class NotificationReleaseService : IntentService(TAG) {
         showReleaseNotification(title, photoUrl)
     }
 
-    private fun getBitmapFromURL(src: String): Bitmap? = try {
-        val url = URL(src)
-        val connection = url.openConnection() as HttpURLConnection
-        connection.doInput = true
-        connection.connect()
-        val input = connection.inputStream
-        val myBitmap = BitmapFactory.decodeStream(input)
-        myBitmap
-    } catch (e: IOException) {
-        // Log exception
-        BitmapFactory.decodeResource(resources, R.drawable.ic_tmdb)
+    private fun getBitmapFromURL(src: String): Bitmap? = runBlocking {
+        try {
+            withContext(Dispatchers.IO) {
+                val url = URL(src)
+                val connection = url.openConnection() as HttpURLConnection
+                connection.doInput = true
+                connection.connect()
+                val input = connection.inputStream
+                val myBitmap = BitmapFactory.decodeStream(input)
+                myBitmap
+            }
+        } catch (e: IOException) {
+            // Log exception
+            BitmapFactory.decodeResource(resources, R.drawable.ic_tmdb)
+        }
     }
 
     companion object {
