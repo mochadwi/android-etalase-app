@@ -77,6 +77,15 @@
             android:name="io.mochadwi.ui.NotifSettingActivity"
             android:configChanges="layoutDirection|orientation|screenSize"
             android:parentActivityName=".ui.HomeActivity" />
+
+        <service
+            android:name=".util.service.NotificationDailyService"
+            android:exported="false" />
+
+        <service
+            android:name=".util.service.NotificationReleaseService"
+            android:exported="false" />
+
     </application>
 
 </manifest>

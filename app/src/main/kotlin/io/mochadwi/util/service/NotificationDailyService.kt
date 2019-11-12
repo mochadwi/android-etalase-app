@@ -27,7 +27,7 @@ class NotificationDailyService : IntentService(TAG) {
                 .setSmallIcon(R.drawable.ic_tmdb)
                 .setLargeIcon(BitmapFactory.decodeResource(
                         resources,
-                        R.mipmap.ic_launcher))
+                        R.drawable.ic_tmdb))
                 .setContentTitle(getString(R.string.app_name))
                 .setContentText(getString(
                         R.string.message_dailyreminder,
@@ -38,7 +38,7 @@ class NotificationDailyService : IntentService(TAG) {
         mNotifManager.notify(NOTIFICATION_DAILY_ID, notification.build());
     }
 
-    protected fun setupDailyReminder() {
+    private fun setupDailyReminder() {
         Log.d(TAG_MOVIE_DAILY, "showDailyNotification() executed!")
         showDailyNotification()
     }

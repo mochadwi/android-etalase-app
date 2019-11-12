@@ -5,8 +5,10 @@ import android.content.Intent
 import android.util.Log
 import androidx.work.Worker
 import androidx.work.WorkerParameters
+import io.mochadwi.BuildConfig
 import io.mochadwi.domain.model.movie.Movie
 import io.mochadwi.domain.repository.AppRepository
+import io.mochadwi.util.helper.AppHelper.Const.EXTRA_MOVIE_PHOTO
 import io.mochadwi.util.helper.AppHelper.Const.EXTRA_MOVIE_TITLE
 import io.mochadwi.util.helper.AppHelper.Const.TAG_MOVIE_RELEASE
 import io.mochadwi.util.helper.AppHelper.Strings.getTimeEqualToday
@@ -44,6 +46,7 @@ class NotifyReleaseWorker(context: Context, workerParameters: WorkerParameters) 
                     applicationContext.startService(
                             Intent(applicationContext, NotificationReleaseService::class.java).apply {
                                 putExtra(EXTRA_MOVIE_TITLE, it.originalTitle)
+                                putExtra(EXTRA_MOVIE_PHOTO, "${BuildConfig.IMAGE_URL}${it.posterPath}")
                             }
                     )
 

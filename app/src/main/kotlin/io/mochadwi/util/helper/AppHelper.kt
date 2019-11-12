@@ -258,6 +258,7 @@ class AppHelper {
         // If getting data from intent
         const val EXTRA_MOVIE_ITEM = "EXTRA_MOVIE_ITEM"
         const val EXTRA_MOVIE_TITLE = "EXTRA_MOVIE_TITLE"
+        const val EXTRA_MOVIE_PHOTO = "EXTRA_MOVIE_PHOTO"
         const val EXTRA_MOVIE_ID = "EXTRA_MOVIE_ID"
         const val EXTRA_GLOBAL = "EXTRA_GLOBAL"
         const val EXTRA_REGISTER_ITEM = "EXTRA_REGISTER_ITEM"

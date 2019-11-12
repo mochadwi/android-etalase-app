@@ -4,6 +4,7 @@
     package="io.mochadwi.cataloguewidget">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.BIND_REMOTEVIEWS" />
 
     <uses-permission android:name="io.mochadwi.etalase.data.provider.READ_DATABASE" />
     <uses-permission android:name="io.mochadwi.etalase.data.provider.WRITE_DATABASE" />
