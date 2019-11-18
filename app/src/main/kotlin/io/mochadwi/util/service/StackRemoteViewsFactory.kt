@@ -10,11 +10,17 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.Target
 import io.mochadwi.BuildConfig
 import io.mochadwi.R
-import io.mochadwi.data.datasource.local.provider.FavouriteProvider.Companion.URI_MOVIE
 import io.mochadwi.data.datasource.local.provider.FavouriteProvider.Companion.fromCursorValues
+import io.mochadwi.data.datasource.local.room.FavouriteDao
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
+import org.koin.core.KoinComponent
+import org.koin.core.inject
 
-class StackRemoteViewsFactory(private val mContext: Context, intent: Intent) : RemoteViewsService.RemoteViewsFactory {
+class StackRemoteViewsFactory(private val mContext: Context, intent: Intent) : RemoteViewsService.RemoteViewsFactory, KoinComponent {
 
+    private val favoriteDao: FavouriteDao by inject()
     private lateinit var mCursor: Cursor
     private val mAppWidgetId: Int = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID)
 
@@ -78,8 +84,10 @@ class StackRemoteViewsFactory(private val mContext: Context, intent: Intent) : R
     private fun initData() {
         // Get all movie info
         if (::mCursor.isInitialized) mCursor.close()
-        mCursor = mContext.contentResolver.query(
-                URI_MOVIE, null, null, null, null
-        )
+        mCursor = runBlocking {
+            withContext(Dispatchers.IO) {
+                favoriteDao.selectAll()
+            }
+        }
     }
 }

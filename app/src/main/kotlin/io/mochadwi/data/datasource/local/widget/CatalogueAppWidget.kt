@@ -76,7 +76,7 @@ class CatalogueAppWidget : AppWidgetProvider() {
         super.onReceive(context, intent)
     }
 
-    protected fun getPendingSelfIntent(context: Context, appWidgetId: Int, action: String): PendingIntent {
+    fun getPendingSelfIntent(context: Context, appWidgetId: Int, action: String): PendingIntent {
         val intent = Intent(context, javaClass)
         intent.action = action
         intent.putExtra(WIDGET_ID_EXTRA, appWidgetId)
