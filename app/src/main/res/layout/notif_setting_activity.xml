@@ -27,14 +27,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cbRelease" />
 
-        <CheckBox
-            android:id="@+id/cbUpdateWidget"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/message_dailynotif"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cbRelease" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
 
