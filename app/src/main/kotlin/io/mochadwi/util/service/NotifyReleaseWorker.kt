@@ -42,8 +42,8 @@ class NotifyReleaseWorker(context: Context, workerParameters: WorkerParameters) 
         when {
             list.isEmpty() -> isSucceed = Result.retry()
             else -> {
-                mMovies.addAll(list.filter { getTimeEqualToday(it.releaseDate) })
-                mMovies.forEach {
+                list.forEach {
+                    mMovies.add(it)
                     applicationContext.startService(
                             Intent(applicationContext, NotificationReleaseService::class.java).apply {
                                 putExtra(EXTRA_MOVIE_TITLE, it.originalTitle)

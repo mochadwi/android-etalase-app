@@ -34,9 +34,17 @@ class CoRepository(
         private val favouriteDao: FavouriteDao
 ) : AppRepository {
 
+    override fun getDiscoverMovies(today: String): List<Movie>? = runBlocking {
+        val local = withContext(IO) { localGetDiscoverMoviesAsync() }
+        val remote = withContext(IO) { remoteGetDiscoverMoviesAsync(today) }
+
+        if ((local sameContentWith remote).default) local
+        else remote
+    }
+
     override fun getDiscoverMovies(): List<Movie>? = runBlocking(IO) {
         val local = withContext(IO) { localGetDiscoverMoviesAsync() }
-        val remote = withContext(IO) { remoteGetDiscoverMoviesAsync() }
+        val remote = withContext(IO) { remoteGetDiscoverMoviesAsync(null) }
 
         if ((local sameContentWith remote).default) local
         else remote
@@ -53,8 +61,12 @@ class CoRepository(
         else emptyList()
     }
 
-    private suspend fun remoteGetDiscoverMoviesAsync(): List<Movie>? {
-        val response = endpoint.getDiscoverMovies()
+    private suspend fun remoteGetDiscoverMoviesAsync(today: String?): List<Movie>? {
+        val response = if (today != null) endpoint.getDiscoverMovies(
+                releaseDateGte = today,
+                releaseDateLte = today
+        )
+        else endpoint.getDiscoverMovies()
 
         return response.body()?.let {
             if (response.isSuccessful) MovieResultMapper.from(it.results ?: emptyList())

@@ -14,6 +14,7 @@ import io.mochadwi.domain.model.movie.Movie
  */
 interface AppRepository {
     fun getDiscoverMovies(): List<Movie>?
+    fun getDiscoverMovies(today: String): List<Movie>?
     fun getTvShows(): List<Movie>?
     fun searchMovies(query: String): List<Movie>?
     fun searchTv(query: String): List<Movie>?

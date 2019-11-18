@@ -26,6 +26,13 @@ interface RetrofitEndpoint {
             @Query("api_key") apiKey: String = BuildConfig.API_KEY
     ): Response<BaseResponse<MovieResponse>>
 
+    @GET(ENDPOINT_DISCOVER_MOVIES)
+    suspend fun getDiscoverMovies(
+            @Query("api_key") apiKey: String = BuildConfig.API_KEY,
+            @Query("primary_release_date.gte") releaseDateGte: String = "",
+            @Query("primary_release_date.lte") releaseDateLte: String = ""
+    ): Response<BaseResponse<MovieResponse>>
+
     @GET(ENDPOINT_SEARCH_MOVIES)
     suspend fun searchMovies(
             @Query("api_key") apiKey: String = BuildConfig.API_KEY,
