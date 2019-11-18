@@ -26,6 +26,7 @@
     <string name="error_emptyfavourites">You have no favourites</string>
     <string name="message_releasereminder">Today %1$s released</string>
     <string name="message_dailynotif">Start Daily Notif</string>
+    <string name="message_updatewidget">Always Update Widget</string>
     <string name="message_releasenotif">Start Release Notif</string>
     <string name="message_dailyreminder">Let\'s check %1$s today</string>
     <string name="error_emptymovie">The Movie DB does not have any updates</string>
@@ -36,4 +37,6 @@
 
     <string name="appwidget_text">ETALASE BANNER</string>
     <string name="empty_text">NO DATA</string>
+    <string name="appwidget_service_started">Widget Service updated</string>
+    <string name="appwidget_service_cancelled">Widget Service stopped</string>
 </resources>

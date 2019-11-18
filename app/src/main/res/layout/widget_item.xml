@@ -13,7 +13,7 @@
         android:layout_weight="1"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        app:srcCompat="@drawable/star_wars_logo" />
+        app:srcCompat="@drawable/ic_tmdb" />
 
     <TextView
         android:id="@+id/tv_widget_favouritedate"
@@ -22,7 +22,7 @@
         android:layout_weight="0.5"
         android:gravity="center"
         android:text="Release date"
-        android:textSize="@dimen/textsize_12sp"
+        android:textSize="12sp"
         android:textStyle="bold|italic" />
 
 </LinearLayout>

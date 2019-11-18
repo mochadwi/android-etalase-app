@@ -6,8 +6,8 @@ import android.appwidget.AppWidgetManager
 import android.content.ComponentName
 import android.widget.RemoteViews
 
-import io.mochadwi.cataloguewidget.R
-import io.mochadwi.cataloguewidget.utils.NumberGenerator
+import io.mochadwi.R
+import io.mochadwi.util.NumberGenerator
 
 class UpdateWidgetService : JobService() {
     override fun onStartJob(jobParameters: JobParameters): Boolean {

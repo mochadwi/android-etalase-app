@@ -15,6 +15,7 @@ import io.mochadwi.util.helper.MyPreferencesFactory.set
 
 const val NOTIFY_DAILY_PREFERENCE = "NOTIFY_DAILY_PREFERENCE"
 const val NOTIFY_RELEASE_PREFERENCE = "NOTIFY_RELEASE_PREFERENCE"
+const val UPDATE_WIDGET_PREFERENCE = "UPDATE_WIDGET_PREFERENCE"
 
 val Context.prefs: SharedPreferences
     get() = MyPreferencesFactory.initPreferences(this)
@@ -47,4 +48,10 @@ var Context.isReleaseNotifActive: Boolean
     get() = prefs[NOTIFY_RELEASE_PREFERENCE, false].default
     set(value) {
         prefs[NOTIFY_RELEASE_PREFERENCE] = value
+    }
+
+var Context.isUpdateWidgetActive: Boolean
+    get() = prefs[UPDATE_WIDGET_PREFERENCE, false].default
+    set(value) {
+        prefs[UPDATE_WIDGET_PREFERENCE] = value
     }

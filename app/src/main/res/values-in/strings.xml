@@ -22,6 +22,7 @@
     <string name="error_emptyfavourites">Anda tidak memiliki favorit</string>
     <string name="message_releasereminder">Hari ini %1$s dirilis</string>
     <string name="message_dailynotif">Mulai Notif Harian</string>
+    <string name="message_updatewidget">Selalu Mutakhirkan Widget</string>
     <string name="message_releasenotif">Mulai Notif Rilis</string>
     <string name="error_emptymovie">Tidak ada film terbaru</string>
     <string name="message_dailyreminder">Yuk cek %1$s hari ini</string>
@@ -32,4 +33,7 @@
 
     <string name="appwidget_text">SPANDUK ETALASE</string>
     <string name="empty_text">DATA KOSONG</string>
+
+    <string name="appwidget_service_started">Servis Widget akan diperbarui</string>
+    <string name="appwidget_service_cancelled">Servis Widget akan dihilangkan</string>
 </resources>
