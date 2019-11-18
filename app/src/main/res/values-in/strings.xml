@@ -29,4 +29,7 @@
     <string name="message_dialog">Apakah Anda yakin ingin %1$s?</string>
     <string name="message_disable">menonaktifkan </string>
     <string name="message_enable">mengaktifkan </string>
+
+    <string name="appwidget_text">SPANDUK ETALASE</string>
+    <string name="empty_text">DATA KOSONG</string>
 </resources>

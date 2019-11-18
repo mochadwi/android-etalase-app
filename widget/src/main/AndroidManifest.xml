@@ -4,7 +4,6 @@
     package="io.mochadwi.cataloguewidget">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.BIND_REMOTEVIEWS" />
 
     <uses-permission android:name="io.mochadwi.etalase.data.provider.READ_DATABASE" />
     <uses-permission android:name="io.mochadwi.etalase.data.provider.WRITE_DATABASE" />
@@ -24,22 +23,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <receiver android:name="io.mochadwi.cataloguewidget.widget.CatalogueAppWidget">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-            </intent-filter>
-
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/catalogue_widgetinfo" />
-        </receiver>
-
-        <!-- 2. The service that will send our collection data to our widget. It needs the
-                        permission android.permission.BIND_REMOTEVIEWS -->
-        <service
-            android:name="io.mochadwi.cataloguewidget.services.StackWidgetService"
-            android:permission="android.permission.BIND_REMOTEVIEWS" />
 
         <service
             android:name="io.mochadwi.cataloguewidget.services.NotificationService"

@@ -1,4 +1,4 @@
-package io.mochadwi.cataloguewidget.utils
+package io.mochadwi.util
 
 import java.util.*
 

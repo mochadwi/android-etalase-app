@@ -33,4 +33,7 @@
     <string name="message_dialog">Are you sure to %1$s?</string>
     <string name="message_disable">disable </string>
     <string name="message_enable">enable </string>
+
+    <string name="appwidget_text">ETALASE BANNER</string>
+    <string name="empty_text">NO DATA</string>
 </resources>

@@ -1,4 +1,4 @@
-package io.mochadwi.cataloguewidget.widget
+package io.mochadwi.data.datasource.local.widget
 
 import android.annotation.TargetApi
 import android.app.PendingIntent
@@ -11,16 +11,16 @@ import android.os.Build
 import android.widget.RemoteViews
 import android.widget.Toast
 
-import io.mochadwi.cataloguewidget.R
-import io.mochadwi.cataloguewidget.home.MainActivity
-import io.mochadwi.cataloguewidget.services.StackWidgetService
+import io.mochadwi.R
+import io.mochadwi.ui.HomeActivity
+import io.mochadwi.util.service.StackWidgetService
 
 /**
  * Implementation of App Widget functionality.
  */
 class CatalogueAppWidget : AppWidgetProvider() {
 
-    internal fun updateAppWidget(context: Context, appWidgetManager: AppWidgetManager, appWidgetId: Int) {
+    private fun updateAppWidget(context: Context, appWidgetManager: AppWidgetManager, appWidgetId: Int) {
 
         val intent = Intent(context, StackWidgetService::class.java)
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
@@ -36,7 +36,7 @@ class CatalogueAppWidget : AppWidgetProvider() {
 
         views.setEmptyView(R.id.stack_view, R.id.empty_view)
 
-        val toastIntent = Intent(context, MainActivity::class.java)
+        val toastIntent = Intent(context, HomeActivity::class.java)
         toastIntent.action = TOAST_ACTION
         toastIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId)
         intent.data = Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME))

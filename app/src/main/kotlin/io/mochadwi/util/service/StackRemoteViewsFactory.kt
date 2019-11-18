@@ -1,4 +1,4 @@
-package io.mochadwi.cataloguewidget.utils
+package io.mochadwi.util.service
 
 import android.appwidget.AppWidgetManager
 import android.content.Context
@@ -8,10 +8,10 @@ import android.widget.RemoteViews
 import android.widget.RemoteViewsService
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.Target
-import io.mochadwi.cataloguewidget.BuildConfig
-import io.mochadwi.cataloguewidget.R
-import io.mochadwi.cataloguewidget.model.MovieProvider.URI_MOVIE
-import io.mochadwi.cataloguewidget.model.MovieProvider.fromCursorValues
+import io.mochadwi.BuildConfig
+import io.mochadwi.R
+import io.mochadwi.data.datasource.local.provider.FavouriteProvider.Companion.URI_MOVIE
+import io.mochadwi.data.datasource.local.provider.FavouriteProvider.Companion.fromCursorValues
 
 class StackRemoteViewsFactory(private val mContext: Context, intent: Intent) : RemoteViewsService.RemoteViewsFactory {
 

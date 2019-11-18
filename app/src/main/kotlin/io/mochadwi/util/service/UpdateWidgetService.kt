@@ -1,4 +1,4 @@
-package io.mochadwi.cataloguewidget.services
+package io.mochadwi.util.service
 
 import android.app.job.JobParameters
 import android.app.job.JobService

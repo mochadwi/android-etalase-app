@@ -13,6 +13,7 @@
     <uses-permission
         android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
         tools:ignore="ProtectedPermissions"/>
+    <uses-permission android:name="android.permission.BIND_REMOTEVIEWS" />
 
     <permission
         android:name="io.mochadwi.etalase.data.provider.READ_DATABASE"
@@ -49,6 +50,22 @@
                 android:resource="@xml/provider_paths"/>
 
         </provider>
+
+        <receiver android:name="io.mochadwi.data.datasource.local.widget.CatalogueAppWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/catalogue_widgetinfo" />
+        </receiver>
+
+        <!-- 2. The service that will send our collection data to our widget. It needs the
+                        permission android.permission.BIND_REMOTEVIEWS -->
+        <service
+            android:name="io.mochadwi.util.service.StackWidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
 
         <activity
             android:name="io.mochadwi.ui.SplashActivity"

@@ -4,7 +4,7 @@
     android:initialLayout="@layout/catalogue_widget"
     android:minWidth="250dp"
     android:minHeight="110dp"
-    android:previewImage="@drawable/star_wars_logo"
+    android:previewImage="@drawable/ic_tmdb"
     android:resizeMode="horizontal|vertical"
     android:updatePeriodMillis="0"
     android:widgetCategory="home_screen" />
