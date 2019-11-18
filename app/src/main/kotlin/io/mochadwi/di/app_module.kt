@@ -3,6 +3,8 @@ package io.mochadwi.di
 import androidx.room.Room
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
+import androidx.work.Constraints
+import androidx.work.NetworkType
 import androidx.work.PeriodicWorkRequest
 import androidx.work.WorkManager
 import io.mochadwi.data.datasource.local.room.AppRoomDatabase
@@ -14,6 +16,8 @@ import io.mochadwi.util.rx.ApplicationSchedulerProvider
 import io.mochadwi.util.rx.SchedulerProvider
 import io.mochadwi.util.service.NotifyDailyWorker
 import io.mochadwi.util.service.NotifyReleaseWorker
+import org.joda.time.DateTime
+import org.joda.time.Duration
 import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
@@ -62,14 +66,40 @@ val repoModule = module {
 val workManagerModule = module {
     single { WorkManager.getInstance(get()) }
 
+    single {
+        Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED)
+    } bind Constraints::class
+
     single(named("daily")) {
-        PeriodicWorkRequest.Builder(NotifyDailyWorker::class.java, 1, TimeUnit.HOURS)
+        // reference: https@ //stackoverflow.com/a/56250553/3763032
+        // or: https://code.luasoftware.com/tutorials/android/android-schedule-daily-reminder-alarm-at-specific-time-with-workmanager/
+        val SELF_REMINDER_HOUR = 7
+
+        val delay = if (DateTime.now().hourOfDay < SELF_REMINDER_HOUR) {
+            Duration(DateTime.now(), DateTime.now().withTimeAtStartOfDay().plusHours(SELF_REMINDER_HOUR)).standardMinutes
+        } else {
+            Duration(DateTime.now(), DateTime.now().withTimeAtStartOfDay().plusDays(1).plusHours(SELF_REMINDER_HOUR)).standardMinutes
+        }
+
+        PeriodicWorkRequest.Builder(NotifyDailyWorker::class.java, 1, TimeUnit.DAYS, PeriodicWorkRequest.MIN_PERIODIC_FLEX_MILLIS, TimeUnit.MILLISECONDS)
                 .addTag(AppHelper.Const.TAG_MOVIE_DAILY)
+                .setInitialDelay(delay, TimeUnit.MINUTES)
                 .build()
     }
 
     single(named("release")) {
-        PeriodicWorkRequest.Builder(NotifyReleaseWorker::class.java, 1, TimeUnit.HOURS)
+        val SELF_REMINDER_HOUR = 8
+
+        val delay = if (DateTime.now().hourOfDay < SELF_REMINDER_HOUR) {
+            Duration(DateTime.now(), DateTime.now().withTimeAtStartOfDay().plusHours(SELF_REMINDER_HOUR)).standardMinutes
+        } else {
+            Duration(DateTime.now(), DateTime.now().withTimeAtStartOfDay().plusDays(1).plusHours(SELF_REMINDER_HOUR)).standardMinutes
+        }
+
+        PeriodicWorkRequest
+                .Builder(NotifyReleaseWorker::class.java, 1, TimeUnit.DAYS, PeriodicWorkRequest.MIN_PERIODIC_FLEX_MILLIS, TimeUnit.MILLISECONDS)
+                .setInitialDelay(delay, TimeUnit.MINUTES)
+                .setConstraints(get())
                 .addTag(AppHelper.Const.TAG_MOVIE_RELEASE)
                 .build()
     }
