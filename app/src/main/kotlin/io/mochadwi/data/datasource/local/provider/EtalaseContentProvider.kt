@@ -85,7 +85,7 @@ class EtalaseContentProvider : ContentProvider() {
         when (MATCHER.match(uri)) {
             CODE_MOVIE -> throw IllegalArgumentException("Invalid URI, cannot update without ID$uri")
             CODE_MOVIE_ID -> {
-                val count = runBlocking { favouriteDao.deleteById(ContentUris.parseId(uri)) }
+                val count = runBlocking { favouriteDao.deleteFavouriteById(ContentUris.parseId(uri)) }
                 ctx.contentResolver.notifyChange(uri, null)
                 return count
             }
