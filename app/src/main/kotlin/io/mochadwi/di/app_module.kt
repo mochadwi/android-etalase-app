@@ -107,4 +107,4 @@ val workManagerModule = module {
 
 // Gather all app modules
 val onlineEtalaseApp = listOf(workManagerModule, rxModule, remoteDatasourceModule, roomModule, repoModule, viewModelModule)
-val offlineEtalaseApp = listOf(workManagerModule, rxModule, localAndroidDatasourceModule, roomModule, repoModule, viewModelModule)
+val offlineEtalaseApp = listOf(workManagerModule, rxModule, roomModule, repoModule, viewModelModule)

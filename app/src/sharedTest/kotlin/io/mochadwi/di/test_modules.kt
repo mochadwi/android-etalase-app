@@ -5,28 +5,16 @@ import androidx.room.Room
 import io.mochadwi.BuildConfig.BASE_URL
 import io.mochadwi.MainApplication
 import io.mochadwi.data.datasource.local.room.AppRoomDatabase
-import io.mochadwi.data.datasource.mock.jsonreader.JavaReader
-import io.mochadwi.data.datasource.mock.jsonreader.JsonReader
-import io.mochadwi.data.datasource.mock.jsonreader.LocalFileDataSource
 import io.mochadwi.data.datasource.network.RetrofitEndpoint
 import io.mochadwi.util.TestSchedulerProvider
 import io.mochadwi.util.mock
 import io.mochadwi.util.rx.SchedulerProvider
 import io.mochadwi.util.singleton
-import org.koin.dsl.bind
 import org.koin.dsl.module
 
 val testAndroidModule =
         mock<MainApplication>().singleton(autoStart = true, override = true) +
                 mock<Context>().singleton(autoStart = true, override = true)
-
-/**
- * Local java json repository
- */
-val testLocalJavaDatasourceModule = module {
-    single { JavaReader() } bind JsonReader::class
-    single { LocalFileDataSource(get(), false) as RetrofitEndpoint }
-}
 
 /**
  * Remote Web Service datasource
@@ -63,5 +51,5 @@ val testRxModule = module {
 
 val testOnlineEtalaseApp = testAndroidModule + testRemoteDatasourceModule + testRoomModule +
         testRxModule + repoModule + viewModelModule
-val testOfflineEtalaseApp = testAndroidModule + testLocalJavaDatasourceModule + testRoomModule +
+val testOfflineEtalaseApp = testAndroidModule + testRoomModule +
         testRxModule + repoModule + viewModelModule
