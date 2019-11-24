@@ -52,7 +52,7 @@ class StackRemoteViewsFactory(private val mContext: Context, intent: Intent) : R
         try {
             val bitmap = Glide.with(mContext)
                     .asBitmap()
-                    .load(BuildConfig.IMAGE_URL + movie.posterPath!!)
+                    .load("${BuildConfig.BASE_IMAGE_URL}${movie.posterPath}")
                     .submit(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
                     .get()
 

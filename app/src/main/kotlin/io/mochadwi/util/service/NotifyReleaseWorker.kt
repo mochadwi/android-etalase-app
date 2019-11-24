@@ -47,7 +47,7 @@ class NotifyReleaseWorker(context: Context, workerParameters: WorkerParameters) 
                     applicationContext.startService(
                             Intent(applicationContext, NotificationReleaseService::class.java).apply {
                                 putExtra(EXTRA_MOVIE_TITLE, it.originalTitle)
-                                putExtra(EXTRA_MOVIE_PHOTO, "${BuildConfig.IMAGE_URL}${it.posterPath}")
+                                putExtra(EXTRA_MOVIE_PHOTO, "${BuildConfig.BASE_IMAGE_URL}${it.posterPath}")
                             }
                     )
                 }

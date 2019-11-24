@@ -52,7 +52,7 @@ class MainAdapter(context: Context, c: Cursor?, autoRequery: Boolean) : CursorAd
             if (movieModel != null) {
                 //                if (movieModel.isFavourite()) {
                 GlideApp.with(view)
-                        .load(BuildConfig.IMAGE_URL + movieModel.posterPath!!)
+                        .load("${BuildConfig.BASE_IMAGE_URL}${movieModel.posterPath}")
                         .override(100, 200)
                         .into(mMoviePhoto)
                 mMovieTitle!!.text = movieModel.title
