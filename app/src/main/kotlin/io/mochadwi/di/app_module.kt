@@ -67,8 +67,8 @@ val workManagerModule = module {
     single { WorkManager.getInstance(get()) }
 
     single {
-        Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED)
-    } bind Constraints::class
+        Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build()
+    }
 
     single(named("daily")) {
         // reference: https@ //stackoverflow.com/a/56250553/3763032
@@ -99,7 +99,7 @@ val workManagerModule = module {
         PeriodicWorkRequest
                 .Builder(NotifyReleaseWorker::class.java, 1, TimeUnit.DAYS, PeriodicWorkRequest.MIN_PERIODIC_FLEX_MILLIS, TimeUnit.MILLISECONDS)
                 .setInitialDelay(delay, TimeUnit.MINUTES)
-                .setConstraints(get())
+                .setConstraints(get<Constraints>())
                 .addTag(AppHelper.Const.TAG_MOVIE_RELEASE)
                 .build()
     }
