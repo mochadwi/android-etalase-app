@@ -41,7 +41,7 @@ fun createOkHttpClient(vararg interceptors: Interceptor): OkHttpClient {
         .connectTimeout(60L, TimeUnit.SECONDS)
         .readTimeout(60L, TimeUnit.SECONDS)
         .apply {
-            if (BuildConfig.DEBUG) {
+            if (BuildConfig.DEBUG && interceptors.isNotEmpty()) {
                 for (intercept in interceptors) {
                     addInterceptor(intercept)
                 }

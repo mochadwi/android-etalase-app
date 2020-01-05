@@ -1,17 +1,9 @@
 package io.mochadwi.ui.movie
 
-import android.content.ContentUris
-import android.content.ContentValues
-import android.content.Context
-import android.database.Cursor
-import android.database.CursorIndexOutOfBoundsException
-import android.net.Uri
 import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import io.mochadwi.data.datasource.local.provider.FavouriteProvider.Companion.fromCursorValues
 import io.mochadwi.domain.*
-import io.mochadwi.domain.model.movie.Movie
 import io.mochadwi.domain.repository.AppRepository
 import io.mochadwi.ui.favourite.item.FavouriteItem
 import io.mochadwi.ui.favourite.mapper.FavouriteItemMapper
@@ -35,8 +27,7 @@ import io.mochadwi.util.rx.SchedulerProvider
 //    https://medium.com/@dmilicic/a-detailed-guide-on-developing-android-apps-using-the-clean-architecture-pattern-d38d71e94029
 class MovieViewModel(
         private val repo: AppRepository,
-        schedulerProvider: SchedulerProvider,
-        private val context: Context
+        schedulerProvider: SchedulerProvider
 ) : BaseViewModel(schedulerProvider) {
 
     val movieListSet = MutableSetObservableField<MovieItem>()
@@ -69,9 +60,9 @@ class MovieViewModel(
 
         launchIo {
             try {
-                val movies = repo.getDiscoverMovies()!!
+                val movies = repo.getDiscoverMovies()
 
-                _states.postValue(MovieListState.from(movies))
+                _states.postValue(MovieListState.from(movies ?: emptyList()))
             } catch (error: Throwable) {
                 _states.postValue(ErrorState(error))
             }
@@ -172,73 +163,6 @@ class MovieViewModel(
                 val isDeleted = repo.deleteFromLocalFavouriteById(id)
 
                 isMovieFavourite.set(!isDeleted)
-
-                _states.postValue(FavouriteState(isMovieFavourite.get().default))
-            } catch (error: Throwable) {
-                _states.postValue(ErrorState(error))
-            }
-        }
-    }
-
-    private fun setupMovieFromCursor(cursor: Cursor): Movie {
-        cursor.moveToFirst()
-        return fromCursorValues(cursor)
-    }
-
-    fun getContentProviderById(pathUriWithId: Uri, whereQuery: String, selectionArgs: Array<String>) {
-        _states.value = LoadingState
-
-        launchIo {
-            try {
-                context.contentResolver.query(pathUriWithId, null, whereQuery, selectionArgs, null, null).use {
-                    if (it == null) throw NullPointerException("Content provider is empty")
-                    val favourite = FavouriteItemMapper.from(setupMovieFromCursor(it))
-                    _states.postValue(FavouriteListState(favourite))
-                }
-            } catch (cursorNull: NullPointerException) {
-                _states.postValue(CursorState(cursorNull))
-            } catch (notFound: CursorIndexOutOfBoundsException) {
-                _states.postValue(CursorState(notFound))
-            } catch (error: Throwable) {
-                _states.postValue(ErrorState(error))
-            }
-        }
-    }
-
-    fun updateToContentProvider(pathUri: Uri, contentValues: ContentValues) {
-        launchIo {
-            try {
-//                val resultUri = context.contentResolver.update(pathUri, contentValues)
-//                isMovieFavourite.set(resultUri > 0)
-
-                _states.postValue(FavouriteState(isMovieFavourite.get().default))
-            } catch (error: Throwable) {
-                _states.postValue(ErrorState(error))
-            }
-        }
-    }
-
-    fun addToContentProvider(pathUri: Uri, contentValues: ContentValues) {
-        launchIo {
-            try {
-                val resultUri = context.contentResolver.insert(pathUri, contentValues)
-                val rowId = ContentUris.parseId(resultUri).toInt()
-                if (rowId == -1) throw Throwable(message = "Unable or already favourite before")
-
-                isMovieFavourite.set(rowId != -1)
-
-                _states.postValue(FavouriteState(isMovieFavourite.get().default))
-            } catch (error: Throwable) {
-                _states.postValue(ErrorState(error))
-            }
-        }
-    }
-
-    fun deleteFromContentProvider(pathUriWithId: Uri, whereQuery: String, selectionArgs: Array<String>) {
-        launchIo {
-            try {
-                val resultUri = context.contentResolver.delete(pathUriWithId, whereQuery, selectionArgs)
-                isMovieFavourite.set(resultUri < 1)
 
                 _states.postValue(FavouriteState(isMovieFavourite.get().default))
             } catch (error: Throwable) {

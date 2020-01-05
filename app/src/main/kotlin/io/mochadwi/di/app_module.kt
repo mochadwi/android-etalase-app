@@ -36,7 +36,7 @@ val rxModule = module {
 val viewModelModule = module {
 
     // ViewModel for Etalase app
-    viewModel { MovieViewModel(get(), get(), get()) }
+    viewModel { MovieViewModel(get(), get()) }
 }
 
 val roomModule = module {

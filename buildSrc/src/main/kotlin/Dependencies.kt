@@ -97,7 +97,7 @@ object Versions {
     const val dexopener = "0.12.1"
     const val espresso = "3.0.1"
     const val jUnit = "4.12"
-    const val mockito = "2.8.47"
+    const val mockito = "3.0.0"
     const val mockitoKotlin = "1.5.0"
     const val robolectric = "3.4.2"
     const val test = "1.1.0"

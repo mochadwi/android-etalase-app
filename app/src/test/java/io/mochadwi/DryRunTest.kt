@@ -1,6 +1,5 @@
 package io.mochadwi
 
-import io.mochadwi.di.testOfflineEtalaseApp
 import io.mochadwi.di.testOnlineEtalaseApp
 import org.junit.After
 import org.junit.Test
@@ -19,13 +18,6 @@ class DryRunTest : KoinTest {
     @After
     fun after() {
         stopKoin()
-    }
-
-    @Test
-    fun `test LocalConfiguration`() {
-        startKoin {
-            modules(testOfflineEtalaseApp)
-        }.checkModules()
     }
 
     @Test

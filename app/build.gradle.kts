@@ -47,6 +47,8 @@ android {
 
     testOptions {
         execution = "ANDROIDX_TEST_ORCHESTRATOR"
+        unitTests.isReturnDefaultValues = true
+        unitTests.isIncludeAndroidResources = true
     }
 
     buildTypes {
@@ -145,6 +147,9 @@ dependencies {
     testImplementation(TestDependencies.kotlinJUnit)
     testImplementation(TestDependencies.kotlinCoroutineTest)
     testImplementation(TestDependencies.mockitoCore)
+    testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0")
+    testImplementation("org.mockito:mockito-inline:3.0.0")
+    testImplementation("org.hamcrest:hamcrest-all:1.3")
     // fix this mixing version
     androidTestImplementation(TestDependencies.testJunit)
     androidTestImplementation(TestDependencies.testRules)

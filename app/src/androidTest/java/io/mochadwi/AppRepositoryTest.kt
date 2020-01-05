@@ -27,13 +27,13 @@ class AppRepositoryTest : KoinTest {
     }
 
     @Test
-    fun test_getProductsApi() {
+    fun test_getMovieApi() {
         val result = repository.getDiscoverMovies()
         result?.forEach(::println)
     }
 
     @Test
-    fun test_isNotEmptyProductsApi() {
+    fun test_isNotEmptyMovieApi() {
         val result = repository.getDiscoverMovies()
 
         assertEquals(true, result != null)

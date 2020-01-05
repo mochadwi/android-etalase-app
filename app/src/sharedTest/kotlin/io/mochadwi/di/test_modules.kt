@@ -6,10 +6,15 @@ import io.mochadwi.BuildConfig.BASE_URL
 import io.mochadwi.MainApplication
 import io.mochadwi.data.datasource.local.room.AppRoomDatabase
 import io.mochadwi.data.datasource.network.RetrofitEndpoint
+import io.mochadwi.data.repository.CoRepository
+import io.mochadwi.domain.repository.AppRepository
+import io.mochadwi.ui.movie.MovieViewModel
 import io.mochadwi.util.TestSchedulerProvider
 import io.mochadwi.util.mock
 import io.mochadwi.util.rx.SchedulerProvider
 import io.mochadwi.util.singleton
+import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.dsl.bind
 import org.koin.dsl.module
 
 val testAndroidModule =
@@ -39,6 +44,7 @@ val testRoomModule = module {
 
     // Expose Dao directly
     single { get<AppRoomDatabase>().movieDao() }
+    single { get<AppRoomDatabase>().favouriteDao() }
 }
 
 /**
@@ -49,7 +55,16 @@ val testRxModule = module {
     single { TestSchedulerProvider() as SchedulerProvider }
 }
 
+val testRepoModule = module {
+    // App Data Repository
+    single { CoRepository(get(), get(), get()) } bind AppRepository::class
+}
+
+val testViewModelModule = module {
+
+    // ViewModel for Etalase app
+    viewModel { MovieViewModel(get(), get()) }
+}
+
 val testOnlineEtalaseApp = testAndroidModule + testRemoteDatasourceModule + testRoomModule +
-        testRxModule + repoModule + viewModelModule
-val testOfflineEtalaseApp = testAndroidModule + testRoomModule +
-        testRxModule + repoModule + viewModelModule
+        testRxModule + testRepoModule + testViewModelModule

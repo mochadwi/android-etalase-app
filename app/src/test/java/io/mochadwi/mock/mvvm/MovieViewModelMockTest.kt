@@ -1,9 +1,10 @@
 package io.mochadwi.mock.mvvm
 
-import android.content.res.Resources
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
-import io.mochadwi.R
+import com.nhaarman.mockitokotlin2.given
+import com.nhaarman.mockitokotlin2.times
+import com.nhaarman.mockitokotlin2.verify
 import io.mochadwi.di.testOnlineEtalaseApp
 import io.mochadwi.domain.ErrorState
 import io.mochadwi.domain.LoadingState
@@ -23,10 +24,7 @@ import org.junit.Test
 import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 import org.koin.test.KoinTest
-import org.mockito.BDDMockito.given
 import org.mockito.Mock
-import org.mockito.Mockito.times
-import org.mockito.Mockito.verify
 import org.mockito.MockitoAnnotations
 
 /**
@@ -40,6 +38,7 @@ class MovieViewModelMockTest : KoinTest {
 
     @Mock
     lateinit var repository: AppRepository
+
     val viewModel: MovieViewModel by lazy {
         MovieViewModel(repository, TestSchedulerProvider())
     }
@@ -67,7 +66,6 @@ class MovieViewModelMockTest : KoinTest {
 
     @Test
     fun `test MovieViewModel getMovies Succeed`() = runBlockingTest {
-        val page = 1
         given(repository.getDiscoverMovies()).willReturn(mockMoviesModel)
 
         viewModel.getMovies()
@@ -86,7 +84,7 @@ class MovieViewModelMockTest : KoinTest {
 
     @Test
     fun `test MovieViewModel getMovies Failed`() = runBlockingTest {
-        val error = Throwable(Resources.getSystem().getString(R.string.error_unknown))
+        val error = Throwable("Got an error")
         given(repository.getDiscoverMovies()).will { throw error }
 
         viewModel.getMovies()

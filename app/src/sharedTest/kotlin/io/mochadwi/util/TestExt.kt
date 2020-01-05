@@ -61,7 +61,7 @@ fun <T> LiveData<T>.observeForTest(observe: Observer<T>, block: (Observer<T>) ->
 }
 
 inline fun <reified T> mock() = Mockito.mock(T::class.java)
-inline fun <T> whenever(methodCall: T): OngoingStubbing<T> =
+fun <T> whenever(methodCall: T): OngoingStubbing<T> =
         `when`(methodCall)
 
 inline fun <reified T : Any> T.singleton(scope: KClass<out Any>? = null,
