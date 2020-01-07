@@ -1,8 +1,8 @@
 buildscript {
 
     repositories {
-        jcenter()
         google()
+        jcenter()
         maven { setUrl("https://maven.fabric.io/public") }
         maven { setUrl("https://jitpack.io") }
     }
@@ -18,13 +18,14 @@ buildscript {
 
 allprojects {
     repositories {
+        google()
         mavenCentral()
         jcenter()
-        google()
         maven { setUrl("https://maven.fabric.io/public") }
         maven { setUrl("https://jitpack.io") }
         // artifacts are published to this repository
         maven { setUrl("https://kotlin.bintray.com/kotlinx") }
+        maven { setUrl("https://maven.google.com") }
     }
 }
 

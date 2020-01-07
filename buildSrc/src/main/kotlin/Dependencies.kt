@@ -95,12 +95,13 @@ object Versions {
     const val assertJ = "3.8.0"
     const val dexmakerMockito = "2.16.0"
     const val dexopener = "0.12.1"
-    const val espresso = "3.0.1"
+    const val espresso = "3.1.0"
     const val jUnit = "4.12"
     const val mockito = "3.0.0"
     const val mockitoKotlin = "1.5.0"
-    const val robolectric = "3.4.2"
+    const val robolectric = "4.1"
     const val test = "1.1.0"
+    const val testExt = "1.0.0"
 }
 
 @Suppress("unused")
@@ -141,6 +142,7 @@ object AndroidSupports {
     const val espressoCore = "com.android.support.test.espresso:espresso-core:${espressoCoreVersion}"
 
 }
+
 @Suppress("unused")
 object AndroidDependencies {
 
@@ -252,15 +254,19 @@ object NetworkDeps {
 @Suppress("unused")
 object TestDependencies {
 
+    const val fragmentTest = "androidx.fragment:fragment-testing:1.1.0"
+    const val testCore = "androidx.test:core:${Versions.testExt}"
     const val testRules = "androidx.test:rules:${Versions.test}"
     const val testRunner = "androidx.test:runner:${Versions.test}"
-    const val testJunit = "androidx.test.ext:junit:${Versions.test}"
+    const val testJunit = "androidx.test.ext:junit:${Versions.testExt}"
+    const val testTruth = "androidx.test.ext:truth:${Versions.testExt}"
     const val lifecycleTest = "androidx.arch.core:core-testing:${Versions.arch}"
     const val assertj = "org.assertj:assertj-core:${Versions.assertJ}"
     const val dexmakerMockito = "com.linkedin.dexmaker:dexmaker-mockito:${Versions.dexmakerMockito}"
     const val dexopener = "com.github.tmurakami:dexopener:${Versions.dexopener}"
-    const val espressoContrib = "androidx.test.espresso:espresso-contrib:${Versions.espresso}"
     const val espressoCore = "androidx.test.espresso:espresso-core:${Versions.espresso}"
+    const val espressoIdlingResource = "androidx.test.espresso:espresso-idling-resource:${Versions.espresso}"
+    const val espressoContrib = "androidx.test.espresso:espresso-contrib:${Versions.espresso}"
     const val espressoIntents = "androidx.test.espresso:espresso-intents:${Versions.espresso}"
     const val junit = "junit:junit:${Versions.jUnit}"
     const val kotlinJUnit = "org.jetbrains.kotlin:kotlin-test-junit:${Versions.kotlin}"

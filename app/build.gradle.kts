@@ -129,6 +129,10 @@ android {
             resValue("string", "app_name", "Etalase App")
         }
     }
+
+    testOptions {
+        unitTests.isIncludeAndroidResources = true
+    }
 }
 
 dependencies {
@@ -144,18 +148,37 @@ dependencies {
     implementation(AndroidDependencies.playServiceLocation)
 
     // Android Test
+    debugImplementation(TestDependencies.testCore)
+    debugImplementation(TestDependencies.testRules)
+    debugImplementation(TestDependencies.testRunner)
+    debugImplementation(TestDependencies.fragmentTest) {
+        exclude(group = "androidx.test", module = "core")
+    }
+
+
     testImplementation(TestDependencies.kotlinJUnit)
     testImplementation(TestDependencies.kotlinCoroutineTest)
     testImplementation(TestDependencies.mockitoCore)
+    testImplementation(TestDependencies.testJunit)
+    testImplementation(TestDependencies.testTruth) {
+        exclude(group = "com.google.code.findbugs", module = "jsr305")
+    }
+    testImplementation(TestDependencies.espressoCore)
+    testImplementation(TestDependencies.robolectric)
     testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0")
     testImplementation("org.mockito:mockito-inline:3.0.0")
     testImplementation("org.hamcrest:hamcrest-all:1.3")
-    // fix this mixing version
+
     androidTestImplementation(TestDependencies.testJunit)
-    androidTestImplementation(TestDependencies.testRules)
-    androidTestImplementation(TestDependencies.testRunner)
-    androidTestImplementation(TestDependencies.kotlinCoroutineTest)
+    androidTestImplementation(TestDependencies.testTruth) {
+        exclude(group = "com.google.code.findbugs", module = "jsr305")
+    }
+    androidTestImplementation(TestDependencies.espressoCore)
+    androidTestImplementation(TestDependencies.mockitoCore)
     androidTestImplementation(TestDependencies.mockitoAndroid)
+    androidTestImplementation(TestDependencies.kotlinCoroutineTest)
+    androidTestImplementation("com.google.code.findbugs:jsr305:2.0.1")
+
     androidTestUtil(TestDependencies.testOrchestrator)
 
     // Kotlin
@@ -232,9 +255,9 @@ dependencies {
 // Fix linting error
 tasks.withType<KotlinCompile>().all {
     kotlinOptions.freeCompilerArgs += listOf(
-        "-Xuse-experimental=kotlinx.serialization.ImplicitReflectionSerializer",
-        "-Xuse-experimental=kotlinx.serialization.UnstableDefault",
-        "-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi",
-        "-Xuse-experimental=kotlinx.coroutines.ObsoleteCoroutinesApi"
+            "-Xuse-experimental=kotlinx.serialization.ImplicitReflectionSerializer",
+            "-Xuse-experimental=kotlinx.serialization.UnstableDefault",
+            "-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi",
+            "-Xuse-experimental=kotlinx.coroutines.ObsoleteCoroutinesApi"
     )
 }

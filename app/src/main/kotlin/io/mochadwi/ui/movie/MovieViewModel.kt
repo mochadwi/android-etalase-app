@@ -60,7 +60,7 @@ class MovieViewModel(
 
         launchIo {
             try {
-                val movies = repo.getDiscoverMovies()
+                val movies = repo.getDiscoverMovies()!!
 
                 _states.postValue(MovieListState.from(movies ?: emptyList()))
             } catch (error: Throwable) {
