@@ -158,8 +158,7 @@ dependencies {
     debugImplementation(TestDependencies.fragmentTest) {
         exclude(group = "androidx.test", module = "core")
     }
-//    testImplementation("org.apache.maven:maven-ant-tasks:2.1.3")
-
+    testImplementation("org.apache.maven:maven-ant-tasks:2.1.3")
 
     testImplementation(TestDependencies.kotlinJUnit)
     testImplementation(TestDependencies.kotlinCoroutineTest)
