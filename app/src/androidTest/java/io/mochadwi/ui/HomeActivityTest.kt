@@ -1,12 +1,12 @@
 package io.mochadwi.ui
 
+import androidx.test.core.app.ActivityScenario
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import io.mochadwi.R
 import org.hamcrest.Matchers.equalTo
 import org.junit.Assert.assertThat
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.robolectric.Robolectric
-import org.robolectric.RobolectricTestRunner
 import org.robolectric.Shadows
 import org.robolectric.shadows.ShadowActivity
 import org.robolectric.shadows.ShadowIntent
@@ -17,22 +17,24 @@ import org.robolectric.shadows.ShadowIntent
  * Copyright (c) 2020 sampingan.co.id. All rights reserved.
  */
 
-@RunWith(RobolectricTestRunner::class)
+@RunWith(AndroidJUnit4::class)
 class HomeActivityTest {
     @Test
     fun shouldOpenNotifActivity() {
         // given
-        val activity: HomeActivity = Robolectric.buildActivity(HomeActivity::class.java).create().visible().get()
-        val shadowActivity: ShadowActivity = Shadows.shadowOf(activity)
-        val menuItem = shadowActivity.optionsMenu.findItem(R.id.actNotif)
+        val scenario = ActivityScenario.launch(HomeActivity::class.java)
+        scenario.onActivity {
+            val shadowActivity: ShadowActivity = Shadows.shadowOf(it)
+            val menuItem = shadowActivity.optionsMenu.findItem(R.id.actNotif)
 
-        // then
-        activity.onOptionsItemSelected(menuItem)
+            // then
+            it.onOptionsItemSelected(menuItem)
 
-        val notifIntent = shadowActivity.nextStartedActivity
-        val shadowIntent: ShadowIntent = Shadows.shadowOf(notifIntent)
+            val notifIntent = shadowActivity.nextStartedActivity
+            val shadowIntent: ShadowIntent = Shadows.shadowOf(notifIntent)
 
-        // verify
-        assertThat(shadowIntent.intentClass.name, equalTo(NotifSettingActivity::class.java.name))
+            // verify
+            assertThat(shadowIntent.intentClass.name, equalTo(NotifSettingActivity::class.java.name))
+        }
     }
 }
