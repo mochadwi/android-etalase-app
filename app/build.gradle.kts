@@ -158,6 +158,7 @@ dependencies {
     debugImplementation(TestDependencies.fragmentTest) {
         exclude(group = "androidx.test", module = "core")
     }
+//    testImplementation("org.apache.maven:maven-ant-tasks:2.1.3")
 
 
     testImplementation(TestDependencies.kotlinJUnit)
@@ -170,6 +171,18 @@ dependencies {
     testImplementation(TestDependencies.robolectric) {
         exclude(group = "androidx.test", module = "monitor")
         exclude(group = "com.google.guava", module = "listenablefuture")
+        exclude(group = "org.apache.maven", module = "maven-artifact")
+        exclude(group = "org.apache.maven", module = "maven-artifact-manager")
+        exclude(group = "org.apache.maven", module = "maven-model")
+        exclude(group = "org.apache.maven", module = "maven-plugin-registry")
+        exclude(group = "org.apache.maven", module = "maven-profile")
+        exclude(group = "org.apache.maven", module = "maven-project")
+        exclude(group = "org.apache.maven", module = "maven-settings")
+        exclude(group = "org.apache.maven", module = "maven-error-diagnostics")
+        exclude(group = "org.apache.maven", module = "maven-ant-tasks")
+        exclude(group = "org.apache.maven.wagon")
+        exclude(group = "org.codehaus.classworlds")
+        exclude(group = "org.codehaus.plexus")
     }
     testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0")
     testImplementation("org.mockito:mockito-inline:3.0.0")
@@ -183,6 +196,18 @@ dependencies {
     androidTestImplementation(TestDependencies.robolectric) {
         exclude(group = "androidx.test", module = "monitor")
         exclude(group = "com.google.guava", module = "listenablefuture")
+        exclude(group = "org.apache.maven", module = "maven-artifact")
+        exclude(group = "org.apache.maven", module = "maven-artifact-manager")
+        exclude(group = "org.apache.maven", module = "maven-model")
+        exclude(group = "org.apache.maven", module = "maven-plugin-registry")
+        exclude(group = "org.apache.maven", module = "maven-profile")
+        exclude(group = "org.apache.maven", module = "maven-project")
+        exclude(group = "org.apache.maven", module = "maven-settings")
+        exclude(group = "org.apache.maven", module = "maven-error-diagnostics")
+        exclude(group = "org.apache.maven", module = "maven-ant-tasks")
+        exclude(group = "org.apache.maven.wagon")
+        exclude(group = "org.codehaus.classworlds")
+        exclude(group = "org.codehaus.plexus")
     }
     androidTestImplementation(TestDependencies.mockitoAndroid)
     androidTestImplementation(TestDependencies.kotlinCoroutineTest)

@@ -275,6 +275,7 @@ object TestDependencies {
     const val mockitoAndroid = "org.mockito:mockito-android:${Versions.mockito}"
     const val mockitoKotlin = "com.nhaarman:mockito-kotlin:${Versions.mockitoKotlin}"
     const val robolectric = "org.robolectric:robolectric:${Versions.robolectric}"
+    const val robolectricAnnotations = "org.robolectric:annotations:${Versions.robolectric}"
     const val roomTesting = "androidx.room:room-testing:$room"
     const val koinTest = "org.koin:koin-test:${Versions.koin}"
     const val testOrchestrator = "androidx.test:orchestrator:${Versions.test}"
