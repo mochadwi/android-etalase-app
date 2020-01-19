@@ -99,7 +99,7 @@ object Versions {
     const val jUnit = "4.12"
     const val mockito = "3.0.0"
     const val mockitoKotlin = "1.5.0"
-    const val robolectric = "4.1"
+    const val robolectric = "4.3.1"
     const val test = "1.1.0"
     const val testExt = "1.0.0"
 }

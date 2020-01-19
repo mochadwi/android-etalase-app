@@ -148,9 +148,13 @@ dependencies {
     implementation(AndroidDependencies.playServiceLocation)
 
     // Android Test
-    debugImplementation(TestDependencies.testCore)
+    debugImplementation(TestDependencies.testCore) {
+        exclude(group = "androidx.test", module = "monitor")
+    }
     debugImplementation(TestDependencies.testRules)
-    debugImplementation(TestDependencies.testRunner)
+    debugImplementation(TestDependencies.testRunner) {
+        exclude(group = "androidx.test", module = "monitor")
+    }
     debugImplementation(TestDependencies.fragmentTest) {
         exclude(group = "androidx.test", module = "core")
     }
@@ -160,24 +164,31 @@ dependencies {
     testImplementation(TestDependencies.kotlinCoroutineTest)
     testImplementation(TestDependencies.mockitoCore)
     testImplementation(TestDependencies.testJunit)
-    testImplementation(TestDependencies.testTruth) {
+    testImplementation(TestDependencies.espressoCore) {
         exclude(group = "com.google.code.findbugs", module = "jsr305")
     }
-    testImplementation(TestDependencies.espressoCore)
-    testImplementation(TestDependencies.robolectric)
+    testImplementation(TestDependencies.robolectric) {
+        exclude(group = "androidx.test", module = "monitor")
+        exclude(group = "com.google.guava", module = "listenablefuture")
+    }
     testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0")
     testImplementation("org.mockito:mockito-inline:3.0.0")
     testImplementation("org.hamcrest:hamcrest-all:1.3")
 
     androidTestImplementation(TestDependencies.testJunit)
-    androidTestImplementation(TestDependencies.testTruth) {
+    androidTestImplementation(TestDependencies.espressoCore) {
         exclude(group = "com.google.code.findbugs", module = "jsr305")
     }
-    androidTestImplementation(TestDependencies.espressoCore)
     androidTestImplementation(TestDependencies.mockitoCore)
+    androidTestImplementation(TestDependencies.robolectric) {
+        exclude(group = "androidx.test", module = "monitor")
+        exclude(group = "com.google.guava", module = "listenablefuture")
+    }
     androidTestImplementation(TestDependencies.mockitoAndroid)
     androidTestImplementation(TestDependencies.kotlinCoroutineTest)
     androidTestImplementation("com.google.code.findbugs:jsr305:2.0.1")
+    androidTestImplementation("androidx.test:monitor:1.1.0")
+    testImplementation("androidx.test:monitor:1.1.0")
 
     androidTestUtil(TestDependencies.testOrchestrator)
 
@@ -245,7 +256,9 @@ dependencies {
     implementation(AppDependencies.dexter)
 
     // Debug
-    implementation(AppDependencies.stetho)
+    implementation(AppDependencies.stetho) {
+        exclude(group = "com.google.code.findbugs", module = "jsr305")
+    }
 
     // Time
     implementation(AppDependencies.kodaTime)
