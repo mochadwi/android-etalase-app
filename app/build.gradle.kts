@@ -135,6 +135,12 @@ android {
     }
 }
 
+configurations.all {
+    resolutionStrategy {
+        force("androidx.test:monitor:1.2.0")
+    }
+}
+
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
@@ -158,25 +164,15 @@ dependencies {
     debugImplementation(TestDependencies.fragmentTest) {
         exclude(group = "androidx.test", module = "core")
     }
-//    androidTestImplementation("org.apache.maven:maven-ant-tasks:2.1.3")
-//    androidTestImplementation("org.apache.maven:maven-artifact:3.6.3")
-//    androidTestImplementation("org.apache.maven:maven-artifact-manager:2.2.1")
-//    androidTestImplementation("org.apache.maven:maven-model:3.6.3")
-//    androidTestImplementation("org.apache.maven:maven-plugin-registry:2.2.1")
-//    androidTestImplementation("org.apache.maven:maven-profile:2.2.1")
-//    androidTestImplementation("org.apache.maven:maven-settings:3.6.3")
-//    androidTestImplementation("org.apache.maven:maven-error-diagnostics:2.2.1")
+    debugImplementation(TestDependencies.testJunit)
+    debugImplementation(TestDependencies.kotlinCoroutineTest)
+    debugImplementation(TestDependencies.mockitoCore)
 
     testImplementation(TestDependencies.kotlinJUnit)
-    testImplementation(TestDependencies.kotlinCoroutineTest)
-    testImplementation(TestDependencies.mockitoCore)
-    testImplementation(TestDependencies.testJunit)
 
-    androidTestImplementation(TestDependencies.testJunit)
     androidTestImplementation(TestDependencies.espressoCore) {
         exclude(group = "com.google.code.findbugs", module = "jsr305")
     }
-    androidTestImplementation(TestDependencies.mockitoCore)
     androidTestImplementation(TestDependencies.robolectric) {
         exclude(group = "androidx.test", module = "monitor")
         exclude(group = "com.google.guava", module = "listenablefuture")
@@ -189,14 +185,12 @@ dependencies {
         exclude(group = "org.apache.maven", module = "maven-settings")
         exclude(group = "org.apache.maven", module = "maven-error-diagnostics")
         exclude(group = "org.apache.maven.wagon")
-        exclude(group = "org.codehaus.classworlds")
+        exclude(group = "classworlds")
         exclude(group = "org.codehaus.plexus")
+        exclude(group = "org.cyberneko")
     }
     androidTestImplementation(TestDependencies.mockitoAndroid)
-    androidTestImplementation(TestDependencies.kotlinCoroutineTest)
-//    androidTestImplementation("com.google.code.findbugs:jsr305:3.0.2")
-//    androidTestImplementation("androidx.test:monitor:1.2.0")
-//    testImplementation("androidx.test:monitor:1.1.0")
+    kapt("com.google.auto.service:auto-service:1.0-rc6")
 
     androidTestUtil(TestDependencies.testOrchestrator)
 

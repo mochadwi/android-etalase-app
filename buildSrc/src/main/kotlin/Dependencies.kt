@@ -101,7 +101,7 @@ object Versions {
     const val mockitoKotlin = "1.5.0"
     const val robolectric = "4.3.1"
     const val test = "1.1.0"
-    const val testExt = "1.0.0"
+    const val testExt = "1.2.0"
 }
 
 @Suppress("unused")
@@ -258,7 +258,7 @@ object TestDependencies {
     const val testCore = "androidx.test:core:${Versions.testExt}"
     const val testRules = "androidx.test:rules:${Versions.test}"
     const val testRunner = "androidx.test:runner:${Versions.test}"
-    const val testJunit = "androidx.test.ext:junit:${Versions.testExt}"
+    const val testJunit = "androidx.test.ext:junit:1.1.1"
     const val testTruth = "androidx.test.ext:truth:${Versions.testExt}"
     const val lifecycleTest = "androidx.arch.core:core-testing:${Versions.arch}"
     const val assertj = "org.assertj:assertj-core:${Versions.assertJ}"
