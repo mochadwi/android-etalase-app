@@ -256,6 +256,7 @@ object TestDependencies {
 
     const val fragmentTest = "androidx.fragment:fragment-testing:1.1.0"
     const val testCore = "androidx.test:core:${Versions.testExt}"
+    const val testCoreKtx = "androidx.test:core-ktx:${Versions.testExt}"
     const val testRules = "androidx.test:rules:${Versions.test}"
     const val testRunner = "androidx.test:runner:${Versions.test}"
     const val testJunit = "androidx.test.ext:junit:1.1.1"

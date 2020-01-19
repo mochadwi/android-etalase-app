@@ -155,6 +155,7 @@ dependencies {
 
     // Android Test
     debugImplementation(TestDependencies.testCore)
+    debugImplementation(TestDependencies.testCoreKtx)
     debugImplementation(TestDependencies.testRules)
     debugImplementation(TestDependencies.testRunner)
     debugImplementation(TestDependencies.fragmentTest)
@@ -163,25 +164,12 @@ dependencies {
     debugImplementation(TestDependencies.mockitoCore)
 
     testImplementation(TestDependencies.kotlinJUnit)
+    testImplementation(TestDependencies.robolectric)
+    testImplementation(TestDependencies.espressoCore)
+    testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0")
 
-    androidTestImplementation(TestDependencies.espressoCore)
-    androidTestImplementation(TestDependencies.robolectric) {
-        exclude(group = "com.google.guava", module = "listenablefuture")
-        exclude(group = "org.apache.maven", module = "maven-artifact")
-        exclude(group = "org.apache.maven", module = "maven-artifact-manager")
-        exclude(group = "org.apache.maven", module = "maven-model")
-        exclude(group = "org.apache.maven", module = "maven-plugin-registry")
-        exclude(group = "org.apache.maven", module = "maven-profile")
-        exclude(group = "org.apache.maven", module = "maven-project")
-        exclude(group = "org.apache.maven", module = "maven-settings")
-        exclude(group = "org.apache.maven", module = "maven-error-diagnostics")
-        exclude(group = "org.apache.maven.wagon")
-        exclude(group = "classworlds")
-        exclude(group = "org.codehaus.plexus")
-        exclude(group = "org.cyberneko")
-    }
-    androidTestImplementation(TestDependencies.mockitoAndroid)
-    kapt("com.google.auto.service:auto-service:1.0-rc6")
+    testImplementation("com.google.auto.service:auto-service:1.0-rc6")
+    kaptTest("com.google.auto.service:auto-service:1.0-rc6")
 
     androidTestUtil(TestDependencies.testOrchestrator)
 
@@ -199,13 +187,11 @@ dependencies {
     implementation(AppDependencies.koinAndroid)
     implementation(AppDependencies.koinViewModel)
     testImplementation(TestDependencies.koinTest)
-    androidTestImplementation(TestDependencies.koinTest)
 
     // ViewModel and LiveData
     implementation(AndroidDependencies.lifecycle)
     kapt(AndroidDependencies.lifecycleCompiler)
     testImplementation(TestDependencies.lifecycleTest)
-    androidTestImplementation(TestDependencies.lifecycleTest)
 
     // Navigation
     implementation(AndroidDependencies.navigationFragment)
@@ -218,7 +204,6 @@ dependencies {
     implementation(AndroidDependencies.roomKtx)
     kapt(AndroidDependencies.roomCompiler)
     testImplementation(TestDependencies.roomTesting)
-    androidTestImplementation(TestDependencies.roomTesting)
 
     // Work
     implementation(AndroidDependencies.workManager)
