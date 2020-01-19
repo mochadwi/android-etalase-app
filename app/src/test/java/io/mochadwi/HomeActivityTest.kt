@@ -1,15 +1,18 @@
 package io.mochadwi
 
-import androidx.test.core.app.launchActivity
-import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions.click
-import androidx.test.espresso.matcher.ViewMatchers.withId
+import android.os.Build
+import androidx.test.espresso.matcher.ViewMatchers.assertThat
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.rule.ActivityTestRule
 import io.mochadwi.ui.HomeActivity
-import org.junit.Rule
+import io.mochadwi.ui.NotifSettingActivity
+import org.hamcrest.CoreMatchers.equalTo
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.robolectric.Robolectric
+import org.robolectric.Shadows
+import org.robolectric.annotation.Config
+import org.robolectric.shadows.ShadowActivity
+import org.robolectric.shadows.ShadowIntent
 
 
 /**
@@ -17,17 +20,24 @@ import org.junit.runner.RunWith
  * Copyright (c) 2020 sampingan.co.id. All rights reserved.
  */
 
+@Config(sdk = [Build.VERSION_CODES.O_MR1])
 @RunWith(AndroidJUnit4::class)
 class HomeActivityTest {
+
     @Test
     fun shouldOpenNotifActivity() {
         // given
-        val scenario = launchActivity<HomeActivity>()
-        scenario.onActivity {
-            // when
-            onView(withId(R.id.actNotif)).perform(click())
+        val activity: HomeActivity = Robolectric.buildActivity(HomeActivity::class.java).create().visible().get()
+        val shadowActivity: ShadowActivity = Shadows.shadowOf(activity)
+        val menuItem = shadowActivity.optionsMenu.findItem(R.id.actNotif)
 
-            // then
-        }
+        // then
+        activity.onOptionsItemSelected(menuItem)
+
+        val notifIntent = shadowActivity.nextStartedActivity
+        val shadowIntent: ShadowIntent = Shadows.shadowOf(notifIntent)
+
+        // verify
+        assertThat(shadowIntent.intentClass.name, equalTo(NotifSettingActivity::class.java.name))
     }
 }

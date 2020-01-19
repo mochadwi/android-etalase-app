@@ -154,18 +154,19 @@ dependencies {
     implementation(AndroidDependencies.playServiceLocation)
 
     // Android Test
-    debugImplementation(TestDependencies.testCore)
-    debugImplementation(TestDependencies.testCoreKtx)
-    debugImplementation(TestDependencies.testRules)
-    debugImplementation(TestDependencies.testRunner)
-    debugImplementation(TestDependencies.fragmentTest)
-    debugImplementation(TestDependencies.testJunit)
-    debugImplementation(TestDependencies.kotlinCoroutineTest)
-    debugImplementation(TestDependencies.mockitoCore)
-
+    testImplementation(TestDependencies.junit)
+    testImplementation(TestDependencies.testCore)
+    testImplementation(TestDependencies.testCoreKtx)
+    testImplementation(TestDependencies.testRules)
+    testImplementation(TestDependencies.testRunner)
+    testImplementation(TestDependencies.fragmentTest)
+    testImplementation(TestDependencies.testJunit)
+    testImplementation(TestDependencies.kotlinCoroutineTest)
+    testImplementation(TestDependencies.mockitoCore)
     testImplementation(TestDependencies.kotlinJUnit)
     testImplementation(TestDependencies.robolectric)
     testImplementation(TestDependencies.espressoCore)
+    testImplementation(TestDependencies.espressoIntents)
     testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0")
 
     testImplementation("com.google.auto.service:auto-service:1.0-rc6")
