@@ -154,27 +154,18 @@ dependencies {
     implementation(AndroidDependencies.playServiceLocation)
 
     // Android Test
-    debugImplementation(TestDependencies.testCore) {
-        exclude(group = "androidx.test", module = "monitor")
-    }
+    debugImplementation(TestDependencies.testCore)
     debugImplementation(TestDependencies.testRules)
-    debugImplementation(TestDependencies.testRunner) {
-        exclude(group = "androidx.test", module = "monitor")
-    }
-    debugImplementation(TestDependencies.fragmentTest) {
-        exclude(group = "androidx.test", module = "core")
-    }
+    debugImplementation(TestDependencies.testRunner)
+    debugImplementation(TestDependencies.fragmentTest)
     debugImplementation(TestDependencies.testJunit)
     debugImplementation(TestDependencies.kotlinCoroutineTest)
     debugImplementation(TestDependencies.mockitoCore)
 
     testImplementation(TestDependencies.kotlinJUnit)
 
-    androidTestImplementation(TestDependencies.espressoCore) {
-        exclude(group = "com.google.code.findbugs", module = "jsr305")
-    }
+    androidTestImplementation(TestDependencies.espressoCore)
     androidTestImplementation(TestDependencies.robolectric) {
-        exclude(group = "androidx.test", module = "monitor")
         exclude(group = "com.google.guava", module = "listenablefuture")
         exclude(group = "org.apache.maven", module = "maven-artifact")
         exclude(group = "org.apache.maven", module = "maven-artifact-manager")
